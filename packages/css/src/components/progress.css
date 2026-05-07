@@ -71,61 +71,80 @@
             z-index: 0;
         }
 
-        /* Squiggle mode — sine-wave keyframes directly on
-           --progress-value. Direct keyframes guarantee pseudo
-           recomputation each frame across all engines. */
+        /* Squiggle mode — animated sine-wave shape traveling
+           horizontally. The bar's background is masked by a
+           repeating SVG path so only the wave-stroke shows.
+           filter:drop-shadow follows the mask shape, producing
+           a glow that matches the wave outline. */
         &[animate-='squiggle'] {
-            animation: progress-squiggle 3s linear infinite;
+            --squiggle-color: var(
+                --success,
+                var(--chart-1, var(--foreground0))
+            );
+            --squiggle-period: 8ch;
+            --squiggle-stroke: 5;
+
+            background-color: var(--squiggle-color);
+            background-image: none;
+
+            -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 30' preserveAspectRatio='none'><path d='M0,15 Q25,3 50,15 T100,15' fill='none' stroke='black' stroke-width='5' stroke-linecap='round'/></svg>");
+            mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 30' preserveAspectRatio='none'><path d='M0,15 Q25,3 50,15 T100,15' fill='none' stroke='black' stroke-width='5' stroke-linecap='round'/></svg>");
+            -webkit-mask-repeat: repeat-x;
+            mask-repeat: repeat-x;
+            -webkit-mask-size: var(--squiggle-period) 100%;
+            mask-size: var(--squiggle-period) 100%;
+            -webkit-mask-position: 0 50%;
+            mask-position: 0 50%;
+
+            filter: drop-shadow(0 0 0.3ch var(--squiggle-color));
+            animation: progress-squiggle-pan 1.5s linear infinite;
+
+            &::before,
+            &::after {
+                display: none;
+            }
         }
 
         &[animate-='squiggle'][speed-='slow'] {
-            animation-duration: 6s;
+            animation-duration: 3s;
         }
 
         &[animate-='squiggle'][speed-='fast'] {
-            animation-duration: 1.5s;
+            animation-duration: 0.75s;
+        }
+
+        /* Variant colors — tints the wave without changing markup */
+        &[animate-='squiggle'][variant-='primary'] {
+            --squiggle-color: var(--primary);
+        }
+        &[animate-='squiggle'][variant-='accent'] {
+            --squiggle-color: var(--accent);
+        }
+        &[animate-='squiggle'][variant-='warning'] {
+            --squiggle-color: var(--warning);
+        }
+        &[animate-='squiggle'][variant-='danger'] {
+            --squiggle-color: var(--destructive);
+        }
+        &[animate-='squiggle'][variant-='info'] {
+            --squiggle-color: var(--info);
         }
     }
 
-    @keyframes progress-squiggle {
-        0% {
-            --progress-value: 50;
+    @keyframes progress-squiggle-pan {
+        from {
+            -webkit-mask-position-x: 0;
+            mask-position-x: 0;
         }
-        8.33% {
-            --progress-value: 75;
+        to {
+            -webkit-mask-position-x: var(--squiggle-period);
+            mask-position-x: var(--squiggle-period);
         }
-        16.66% {
-            --progress-value: 93;
-        }
-        25% {
-            --progress-value: 100;
-        }
-        33.33% {
-            --progress-value: 93;
-        }
-        41.66% {
-            --progress-value: 75;
-        }
-        50% {
-            --progress-value: 50;
-        }
-        58.33% {
-            --progress-value: 25;
-        }
-        66.66% {
-            --progress-value: 7;
-        }
-        75% {
-            --progress-value: 0;
-        }
-        83.33% {
-            --progress-value: 7;
-        }
-        91.66% {
-            --progress-value: 25;
-        }
-        100% {
-            --progress-value: 50;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        [is-~='progress'][animate-='squiggle'] {
+            animation: none;
         }
     }
 }
