@@ -1,0 +1,61 @@
+@layer components {
+    @property --otp-length {
+        syntax: '<integer>';
+        inherits: true;
+        initial-value: 6;
+    }
+
+    input[is-='otp'],
+    [is-~='otp-field'] > input {
+        --otp-length: 6;
+        --otp-cell-width: 3ch;
+
+        appearance: none;
+        -webkit-appearance: none;
+        background-color: transparent;
+        color: var(--foreground0);
+        font-family: var(--font-family);
+        font-size: calc(var(--font-size) * 1.25);
+        font-weight: var(--font-weight-bold);
+        line-height: 1lh;
+        text-align: center;
+        letter-spacing: var(--otp-cell-width);
+        padding-left: var(--otp-cell-width);
+        padding-right: 0;
+        border: none;
+        outline: none;
+        caret-color: var(--foreground0);
+        background-image: repeating-linear-gradient(
+            to right,
+            var(--background1) 0,
+            var(--background1) calc(var(--otp-cell-width) * 2 - 0.5ch),
+            transparent calc(var(--otp-cell-width) * 2 - 0.5ch),
+            transparent calc(var(--otp-cell-width) * 2)
+        );
+        background-size: calc(var(--otp-cell-width) * 2) 1lh;
+        background-position: 0 0;
+        background-repeat: repeat-x;
+        width: calc(var(--otp-cell-width) * var(--otp-length) * 2);
+        min-width: 0;
+
+        &:focus-visible {
+            outline: solid 1px var(--foreground0);
+        }
+
+        &:user-invalid {
+            color: var(--foreground0);
+            text-decoration: underline wavy;
+        }
+
+        &:disabled {
+            color: var(--foreground2);
+            pointer-events: none;
+        }
+    }
+
+    [is-~='otp-field'] {
+        display: inline-block;
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+    }
+}

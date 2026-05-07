@@ -1,0 +1,33 @@
+@layer components {
+    [is-~='toggle-group'] {
+        display: inline-flex;
+        align-items: stretch;
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: var(--line-height);
+
+        & > button,
+        & > [is-~='toggle'] {
+            border-right: solid 1px var(--background2);
+
+            &:last-child {
+                border-right: none;
+            }
+        }
+
+        &[direction-='vertical'] {
+            flex-direction: column;
+            align-items: stretch;
+
+            & > button,
+            & > [is-~='toggle'] {
+                border-right: none;
+                border-bottom: solid 1px var(--background2);
+
+                &:last-child {
+                    border-bottom: none;
+                }
+            }
+        }
+    }
+}

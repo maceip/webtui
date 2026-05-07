@@ -1,0 +1,30 @@
+@layer components {
+    kbd,
+    [is-~='kbd'] {
+        --kbd-color: var(--foreground0);
+        --kbd-background: var(--background1);
+        --kbd-border: var(--background2);
+
+        display: inline-block;
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: 1lh;
+        color: var(--kbd-color);
+        background-color: var(--kbd-background);
+        padding: 0 1ch;
+        height: 1lh;
+        vertical-align: top;
+        white-space: nowrap;
+        box-shadow: 0 1px 0 0 var(--kbd-border);
+
+        &[size-='small'] {
+            padding: 0 0.5ch;
+        }
+
+        &[variant-='inverse'] {
+            --kbd-color: var(--background0);
+            --kbd-background: var(--foreground0);
+            --kbd-border: var(--foreground1);
+        }
+    }
+}

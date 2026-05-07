@@ -1,0 +1,60 @@
+@layer components {
+    /* Style native <input type="date|month|week|time|datetime-local">.
+       Uses native picker — no JS needed. */
+    input[type='date'][is-~='date-picker'],
+    input[type='month'][is-~='date-picker'],
+    input[type='week'][is-~='date-picker'],
+    input[type='time'][is-~='date-picker'],
+    input[type='datetime-local'][is-~='date-picker'],
+    [is-~='date-picker'] > input[type='date'],
+    [is-~='date-picker'] > input[type='month'],
+    [is-~='date-picker'] > input[type='week'],
+    [is-~='date-picker'] > input[type='time'] {
+        background-color: var(--background1);
+        color: var(--foreground0);
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: 1lh;
+        height: 1lh;
+        padding: 0 1ch;
+        min-width: 16ch;
+        border: none;
+        outline: none;
+        font-variant-numeric: tabular-nums;
+        cursor: pointer;
+
+        &::-webkit-calendar-picker-indicator {
+            cursor: pointer;
+            filter: invert(0);
+            opacity: 0.6;
+        }
+
+        &:focus-visible {
+            outline: solid 1px var(--foreground0);
+            outline-offset: -1px;
+        }
+
+        &:disabled {
+            color: var(--foreground2);
+            pointer-events: none;
+            text-decoration: line-through;
+        }
+    }
+
+    [data-webtui-theme='dark'] input[type='date'][is-~='date-picker']::-webkit-calendar-picker-indicator,
+    [data-webtui-theme='dark'] input[type='month'][is-~='date-picker']::-webkit-calendar-picker-indicator,
+    [data-webtui-theme='dark'] input[type='week'][is-~='date-picker']::-webkit-calendar-picker-indicator,
+    [data-webtui-theme='dark'] input[type='time'][is-~='date-picker']::-webkit-calendar-picker-indicator,
+    [data-webtui-theme='dark'] input[type='datetime-local'][is-~='date-picker']::-webkit-calendar-picker-indicator,
+    [data-webtui-theme='dark'] [is-~='date-picker'] > input::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+    }
+
+    [is-~='date-picker'] {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5ch;
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+    }
+}

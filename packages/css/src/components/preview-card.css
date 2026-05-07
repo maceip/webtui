@@ -1,0 +1,56 @@
+@layer components {
+    @property --preview-card-delay {
+        syntax: '<time>';
+        inherits: true;
+        initial-value: 0.3s;
+    }
+
+    @property --preview-card-offset-y {
+        syntax: '<length>';
+        inherits: true;
+        initial-value: 1lh;
+    }
+
+    [is-~='preview-card'] {
+        position: relative;
+        display: inline-block;
+
+        & > [is-~='preview-card-content'] {
+            opacity: 0;
+            visibility: hidden;
+            position: absolute;
+            top: calc(100% + var(--preview-card-offset-y));
+            left: 0;
+            min-width: 32ch;
+            background-color: var(--background0);
+            color: var(--foreground0);
+            padding: 1lh 1ch;
+            font-family: var(--font-family);
+            font-size: var(--font-size);
+            line-height: var(--line-height);
+            transition:
+                opacity 0.15s ease,
+                visibility 0.15s ease;
+            z-index: 10;
+        }
+
+        &:hover > [is-~='preview-card-content'],
+        &:focus-within > [is-~='preview-card-content'],
+        &:has([is-~='preview-card-trigger']:focus-visible) > [is-~='preview-card-content'],
+        & > [is-~='preview-card-content']:hover {
+            opacity: 1;
+            visibility: visible;
+            transition-delay: var(--preview-card-delay);
+        }
+
+        &[position-='top'] > [is-~='preview-card-content'] {
+            top: auto;
+            bottom: calc(100% + var(--preview-card-offset-y));
+        }
+
+        &[position-='end'] > [is-~='preview-card-content'] {
+            left: auto;
+            right: 0;
+        }
+    }
+}

@@ -1,0 +1,27 @@
+@layer components {
+    fieldset,
+    [is-~='fieldset'] {
+        --fieldset-border-color: var(--box-border-color);
+
+        display: flex;
+        flex-direction: column;
+        gap: 1lh;
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: var(--line-height);
+        padding: 1lh 1ch;
+        border: solid var(--box-border-width, 2px) var(--fieldset-border-color);
+        margin: 0;
+
+        & > legend {
+            padding: 0 1ch;
+            font-weight: var(--font-weight-bold);
+            color: var(--foreground0);
+        }
+
+        &:disabled {
+            color: var(--foreground2);
+            pointer-events: none;
+        }
+    }
+}

@@ -1,0 +1,72 @@
+@layer components {
+    [is-~='input-group'] {
+        display: inline-flex;
+        align-items: stretch;
+        background-color: var(--background1);
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: var(--line-height);
+        height: 1lh;
+        min-width: 24ch;
+
+        & > input,
+        & > [is-~='input'],
+        & > select,
+        & > textarea {
+            flex: 1;
+            min-width: 0;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            color: var(--foreground0);
+            padding: 0 1ch;
+            line-height: 1lh;
+            height: 1lh;
+        }
+
+        & > [is-~='input-group-prefix'],
+        & > [is-~='input-group-suffix'],
+        & > [is-~='input-group-addon'] {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--foreground2);
+            background-color: var(--background2);
+            padding: 0 1ch;
+            line-height: 1lh;
+            height: 1lh;
+            white-space: nowrap;
+            user-select: none;
+        }
+
+        & > button,
+        & > [is-~='button'] {
+            height: 1lh;
+            line-height: 1lh;
+            padding: 0 1ch;
+        }
+
+        &:focus-within {
+            outline: solid 1px var(--foreground0);
+        }
+
+        &[size-='large'] {
+            height: 3lh;
+
+            & > input,
+            & > [is-~='input'],
+            & > select,
+            & > textarea {
+                height: 3lh;
+                line-height: 3lh;
+            }
+
+            & > [is-~='input-group-prefix'],
+            & > [is-~='input-group-suffix'],
+            & > [is-~='input-group-addon'] {
+                height: 3lh;
+                line-height: 3lh;
+            }
+        }
+    }
+}

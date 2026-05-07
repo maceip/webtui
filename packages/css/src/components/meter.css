@@ -1,0 +1,49 @@
+@layer components {
+    meter,
+    [is-~='meter'] {
+        --meter-background: var(--background1);
+        --meter-optimum: var(--foreground0);
+        --meter-suboptimum: var(--foreground1);
+        --meter-even-less-good: var(--foreground2);
+
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: round(down, 100%, 1ch);
+        min-width: 16ch;
+        height: 1lh;
+        background-color: var(--meter-background);
+        border: none;
+        vertical-align: top;
+
+        &::-webkit-meter-bar {
+            background: var(--meter-background);
+            border: none;
+            height: 1lh;
+        }
+
+        &::-webkit-meter-optimum-value {
+            background: var(--meter-optimum);
+        }
+
+        &::-webkit-meter-suboptimum-value {
+            background: var(--meter-suboptimum);
+        }
+
+        &::-webkit-meter-even-less-good-value {
+            background: var(--meter-even-less-good);
+        }
+
+        &::-moz-meter-bar {
+            background: var(--meter-optimum);
+        }
+
+        &:-moz-meter-sub-optimum::-moz-meter-bar {
+            background: var(--meter-suboptimum);
+        }
+
+        &:-moz-meter-sub-sub-optimum::-moz-meter-bar {
+            background: var(--meter-even-less-good);
+        }
+    }
+}

@@ -43,7 +43,7 @@
         max-width: fit-content;
     }
 
-    label:has(input[type='radio']:focus) {
+    label:has(input[type='radio']:focus-visible) {
         font-weight: bold;
         text-decoration: underline;
     }

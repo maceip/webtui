@@ -1,12 +1,27 @@
 @layer components {
-    details[is-~='accordion'] {
+    details[is-~='accordion'],
+    details[is-~='collapsible'] {
+        &::details-content {
+            block-size: 0;
+            overflow: hidden;
+            transition:
+                block-size 0.2s ease,
+                content-visibility 0.2s ease allow-discrete;
+        }
+
         &[open]::details-content {
+            block-size: auto;
             padding-left: 2ch;
         }
 
         & > summary {
+            cursor: pointer;
+            list-style: none;
+
             &::before {
                 content: '˃ ';
+                display: inline-block;
+                transition: transform 0.15s ease;
             }
 
             &::-webkit-details-marker {
@@ -18,12 +33,12 @@
                 display: none;
             }
 
-            &:focus {
+            &:focus-visible {
                 text-decoration: underline;
             }
         }
 
-        &[open] summary::before {
+        &[open] > summary::before {
             content: '˅ ';
         }
     }

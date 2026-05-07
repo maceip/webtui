@@ -28,6 +28,22 @@
             color: var(--foreground2);
         }
 
+        &:focus-visible {
+            outline: none;
+            text-decoration: underline;
+        }
+
+        &:user-invalid {
+            color: var(--foreground0);
+            text-decoration: underline wavy;
+        }
+
+        &:disabled {
+            color: var(--foreground2);
+            text-decoration: line-through;
+            pointer-events: none;
+        }
+
         &:not([size-]) {
             height: 1lh;
             padding: 0 1ch;

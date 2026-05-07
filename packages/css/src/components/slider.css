@@ -1,0 +1,23 @@
+@layer components {
+    /* Slider is an alias for input[type='range'] */
+    input[type='range'][is-~='slider'],
+    [is-~='slider'] > input[type='range'] {
+        /* Inherits all input[type='range'] styles from range.css */
+    }
+
+    [is-~='slider'] {
+        display: inline-flex;
+        align-items: center;
+        gap: 1ch;
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: var(--line-height);
+
+        & > [is-~='slider-value'] {
+            min-width: 3ch;
+            text-align: right;
+            color: var(--foreground0);
+            font-variant-numeric: tabular-nums;
+        }
+    }
+}

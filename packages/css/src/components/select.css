@@ -1,0 +1,85 @@
+@layer components {
+    /* Style native <select>. Uses appearance: base-select where
+       supported (Chrome 130+) for full custom listbox styling.
+       Falls back to standard select rendering. */
+    select,
+    [is-~='select'] {
+        background-color: var(--background1);
+        color: var(--foreground0);
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: 1lh;
+        height: 1lh;
+        padding: 0 2ch 0 1ch;
+        min-width: 12ch;
+        border: none;
+        outline: none;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: linear-gradient(
+            45deg,
+            transparent 50%,
+            var(--foreground0) 50%
+        ),
+        linear-gradient(135deg, var(--foreground0) 50%, transparent 50%);
+        background-position:
+            calc(100% - 1ch) 50%,
+            calc(100% - 0.5ch) 50%;
+        background-size: 0.5ch 0.5ch;
+        background-repeat: no-repeat;
+        cursor: pointer;
+
+        &:focus-visible {
+            outline: solid 1px var(--foreground0);
+            outline-offset: -1px;
+        }
+
+        &:disabled {
+            color: var(--foreground2);
+            text-decoration: line-through;
+            pointer-events: none;
+        }
+
+        &[size-='large'] {
+            height: 3lh;
+            padding: 1lh 2ch 1lh 1ch;
+        }
+
+        & option {
+            background-color: var(--background0);
+            color: var(--foreground0);
+            font-family: var(--font-family);
+        }
+
+        @supports (appearance: base-select) {
+            &,
+            &::picker(select) {
+                appearance: base-select;
+            }
+
+            &::picker(select) {
+                background-color: var(--background0);
+                color: var(--foreground0);
+                font-family: var(--font-family);
+                font-size: var(--font-size);
+                line-height: var(--line-height);
+                border: solid var(--box-border-width, 2px) var(--box-border-color);
+                padding: 0;
+                min-width: 12ch;
+            }
+
+            & option {
+                padding: 0 1ch;
+                line-height: 1lh;
+                height: 1lh;
+
+                &:hover,
+                &:focus,
+                &:checked {
+                    background-color: var(--background1);
+                }
+            }
+        }
+    }
+}

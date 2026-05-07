@@ -101,7 +101,7 @@
         max-width: fit-content;
     }
 
-    label:has(input[type='range']:focus) {
+    label:has(input[type='range']:focus-visible) {
         font-weight: bold;
         text-decoration: underline;
     }

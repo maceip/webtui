@@ -1,0 +1,39 @@
+@layer components {
+    [is-~='empty'] {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1lh;
+        padding: 2lh 2ch;
+        text-align: center;
+        color: var(--foreground2);
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: var(--line-height);
+        min-height: 8lh;
+
+        & > [is-~='empty-icon'] {
+            font-size: calc(var(--font-size) * 2);
+            line-height: 2lh;
+            color: var(--foreground2);
+            opacity: 0.6;
+        }
+
+        & > [is-~='empty-title'] {
+            font-weight: var(--font-weight-bold);
+            color: var(--foreground0);
+        }
+
+        & > [is-~='empty-description'] {
+            color: var(--foreground2);
+            max-width: 48ch;
+        }
+
+        & > [is-~='empty-actions'] {
+            display: flex;
+            gap: 1ch;
+            margin-top: 1lh;
+        }
+    }
+}

@@ -1,0 +1,62 @@
+name: Deploy Showcase to Pages
+
+# Triggers on push to ANY branch and on manual dispatch.
+# Note: GitHub Pages has a single deployment slot per repo, so this
+# workflow conflicts with web.yml. The latest run wins.
+
+on:
+  push:
+    branches: ['**']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Cancel in-progress runs when a new push comes in — we only care
+# about the latest commit's showcase.
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build showcase
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build @webtui/css
+        run: bun run --filter @webtui/css build
+
+      - name: Assemble showcase artifact
+        run: |
+          mkdir -p _site
+          cp -r showcase/. _site/
+          cp packages/css/dist/full.css _site/css/webtui.css
+          ls -la _site _site/css
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

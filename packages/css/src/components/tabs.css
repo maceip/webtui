@@ -1,0 +1,106 @@
+@layer components {
+    [is-~='tabs'] {
+        --tabs-color: var(--foreground0);
+        --tabs-muted: var(--foreground2);
+        --tabs-active-background: var(--background1);
+
+        display: flex;
+        flex-direction: column;
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: var(--line-height);
+        container-type: inline-size;
+        container-name: tabs;
+
+        & > [is-~='tabs-list'] {
+            display: flex;
+            align-items: stretch;
+            gap: 0;
+            flex-wrap: wrap;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            border-bottom: solid var(--box-border-width, 2px) var(--box-border-color);
+        }
+
+        & [is-~='tabs-trigger'],
+        & > [is-~='tabs-list'] button,
+        & > [is-~='tabs-list'] a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 2ch;
+            height: 1lh;
+            color: var(--tabs-muted);
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: inherit;
+            line-height: 1lh;
+            text-decoration: none;
+            user-select: none;
+
+            &:hover,
+            &:focus-visible {
+                color: var(--tabs-color);
+                outline: none;
+            }
+
+            &[aria-selected='true'],
+            &[is-~='tabs-active'] {
+                color: var(--tabs-color);
+                background-color: var(--tabs-active-background);
+                font-weight: var(--font-weight-bold);
+            }
+
+            &:disabled,
+            &[aria-disabled='true'] {
+                color: var(--foreground2);
+                pointer-events: none;
+                text-decoration: line-through;
+            }
+        }
+
+        & > [is-~='tabs-content'] {
+            padding: 1lh 0;
+
+            &[hidden] {
+                display: none;
+            }
+        }
+
+        /* Radio-input based pure-CSS tabs */
+        & > input[type='radio'] {
+            display: none;
+        }
+
+        & > input[type='radio'] + label {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 2ch;
+            height: 1lh;
+            color: var(--tabs-muted);
+            cursor: pointer;
+            user-select: none;
+            line-height: 1lh;
+        }
+
+        & > input[type='radio']:checked + label {
+            color: var(--tabs-color);
+            background-color: var(--tabs-active-background);
+            font-weight: var(--font-weight-bold);
+        }
+
+        &[direction-='vertical'] {
+            flex-direction: row;
+
+            & > [is-~='tabs-list'] {
+                flex-direction: column;
+                border-bottom: none;
+                border-right: solid var(--box-border-width, 2px) var(--box-border-color);
+            }
+        }
+    }
+}

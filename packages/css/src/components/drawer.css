@@ -1,0 +1,31 @@
+@layer components {
+    /* Drawer leverages dialog component — variant-='drawer' is
+       defined in dialog.css. This file adds drawer-specific
+       sub-element styles (header/footer/body). */
+    dialog[variant-='drawer'],
+    [popover][is-~='drawer'],
+    dialog[is-~='drawer'] {
+        --drawer-padding-x: 1ch;
+        --drawer-padding-y: 1lh;
+
+        & > [is-~='drawer-header'] {
+            padding: var(--drawer-padding-y) var(--drawer-padding-x);
+            border-bottom: solid 1px var(--background2);
+            font-weight: var(--font-weight-bold);
+        }
+
+        & > [is-~='drawer-body'] {
+            flex: 1;
+            overflow-y: auto;
+            padding: var(--drawer-padding-y) var(--drawer-padding-x);
+        }
+
+        & > [is-~='drawer-footer'] {
+            padding: var(--drawer-padding-y) var(--drawer-padding-x);
+            border-top: solid 1px var(--background2);
+            display: flex;
+            gap: 1ch;
+            justify-content: flex-end;
+        }
+    }
+}

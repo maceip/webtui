@@ -1,0 +1,74 @@
+@layer components {
+    [is-~='number-field'] {
+        display: inline-flex;
+        align-items: stretch;
+        background-color: var(--background1);
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: var(--line-height);
+        height: 1lh;
+        min-width: 12ch;
+
+        & > input[type='number'] {
+            flex: 1;
+            min-width: 0;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            color: var(--foreground0);
+            padding: 0 1ch;
+            line-height: 1lh;
+            height: 1lh;
+            text-align: center;
+            -moz-appearance: textfield;
+            appearance: textfield;
+
+            &::-webkit-outer-spin-button,
+            &::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                appearance: none;
+                margin: 0;
+            }
+        }
+
+        & > [is-~='number-field-decrement'],
+        & > [is-~='number-field-increment'],
+        & > button[data-action='decrement'],
+        & > button[data-action='increment'] {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2ch;
+            height: 1lh;
+            background-color: var(--background2);
+            color: var(--foreground0);
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: inherit;
+            line-height: 1lh;
+            user-select: none;
+
+            &:hover,
+            &:focus-visible {
+                background-color: var(--foreground0);
+                color: var(--background0);
+            }
+
+            &:disabled {
+                color: var(--foreground2);
+                pointer-events: none;
+            }
+        }
+
+        & > [is-~='number-field-decrement']::after,
+        & > button[data-action='decrement']::after {
+            content: '-';
+        }
+
+        & > [is-~='number-field-increment']::after,
+        & > button[data-action='increment']::after {
+            content: '+';
+        }
+    }
+}

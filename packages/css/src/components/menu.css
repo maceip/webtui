@@ -1,0 +1,83 @@
+@layer components {
+    [is-~='menu'] {
+        --menu-color: var(--foreground0);
+        --menu-background: var(--background0);
+        --menu-hover-background: var(--background1);
+
+        display: flex;
+        flex-direction: column;
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: var(--line-height);
+        background-color: var(--menu-background);
+        color: var(--menu-color);
+        list-style: none;
+        margin: 0;
+        padding: 0.5lh 0;
+        min-width: 16ch;
+
+        & [is-~='menu-item'],
+        & > li > a,
+        & > li > button {
+            display: flex;
+            align-items: center;
+            gap: 1ch;
+            padding: 0 1ch;
+            height: 1lh;
+            line-height: 1lh;
+            color: var(--menu-color);
+            background-color: transparent;
+            border: none;
+            text-decoration: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: inherit;
+            text-align: left;
+            width: 100%;
+
+            &:hover,
+            &:focus-visible {
+                background-color: var(--menu-hover-background);
+                outline: none;
+            }
+
+            &:disabled,
+            &[aria-disabled='true'] {
+                color: var(--foreground2);
+                pointer-events: none;
+                text-decoration: line-through;
+            }
+
+            & [is-~='menu-shortcut'],
+            & kbd {
+                margin-left: auto;
+                color: var(--foreground2);
+            }
+        }
+
+        & [is-~='menu-separator'] {
+            height: 1px;
+            background-color: var(--background2);
+            margin: 0.5lh 0;
+        }
+
+        & [is-~='menu-label'] {
+            padding: 0 1ch;
+            color: var(--foreground2);
+            font-weight: var(--font-weight-bold);
+            text-transform: uppercase;
+            font-size: calc(var(--font-size) * 0.875);
+            line-height: 1lh;
+        }
+
+        &[direction-='horizontal'] {
+            flex-direction: row;
+            padding: 0;
+            min-width: 0;
+
+            & [is-~='menu-item'] {
+                width: auto;
+            }
+        }
+    }
+}

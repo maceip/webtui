@@ -1,0 +1,990 @@
+<!doctype html>
+<html lang="en" data-webtui-theme="dark">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <title>WebTUI Showcase</title>
+        <link rel="stylesheet" href="./css/webtui.css" />
+        <link rel="stylesheet" href="./css/showcase.css" />
+    </head>
+    <body>
+        <input type="checkbox" id="menu-toggle" hidden />
+
+        <div class="app">
+            <header class="app-header">
+                <div class="row">
+                    <label class="menu-toggle-label" for="menu-toggle"><span is-="kbd">≡</span></label>
+                    <h1>WebTUI Showcase</h1>
+                </div>
+                <div class="row">
+                    <a href="https://github.com/webtui/webtui" target="_blank" rel="noopener">GitHub</a>
+                    <button onclick="document.documentElement.dataset.webtuiTheme = document.documentElement.dataset.webtuiTheme === 'dark' ? 'light' : 'dark'" size-="small">Toggle theme</button>
+                </div>
+            </header>
+
+            <div class="app-body">
+                <aside class="sidebar">
+                    <h2>Layout</h2>
+                    <ul>
+                        <li><a href="#card">Card</a></li>
+                        <li><a href="#frame">Frame</a></li>
+                        <li><a href="#empty">Empty</a></li>
+                        <li><a href="#scroll-area">Scroll Area</a></li>
+                        <li><a href="#separator">Separator</a></li>
+                        <li><a href="#view">View</a></li>
+                        <li><a href="#box">Box (utility)</a></li>
+                    </ul>
+
+                    <h2>Form</h2>
+                    <ul>
+                        <li><a href="#button">Button</a></li>
+                        <li><a href="#input">Input</a></li>
+                        <li><a href="#textarea">Textarea</a></li>
+                        <li><a href="#checkbox">Checkbox</a></li>
+                        <li><a href="#checkbox-group">Checkbox Group</a></li>
+                        <li><a href="#radio">Radio</a></li>
+                        <li><a href="#radio-group">Radio Group</a></li>
+                        <li><a href="#switch">Switch</a></li>
+                        <li><a href="#range">Range / Slider</a></li>
+                        <li><a href="#select">Select</a></li>
+                        <li><a href="#combobox">Combobox</a></li>
+                        <li><a href="#autocomplete">Autocomplete</a></li>
+                        <li><a href="#date-picker">Date Picker</a></li>
+                        <li><a href="#calendar">Calendar</a></li>
+                        <li><a href="#number-field">Number Field</a></li>
+                        <li><a href="#otp-field">OTP Field</a></li>
+                        <li><a href="#input-group">Input Group</a></li>
+                        <li><a href="#field">Field</a></li>
+                        <li><a href="#fieldset">Fieldset</a></li>
+                        <li><a href="#form">Form</a></li>
+                        <li><a href="#group">Group</a></li>
+                        <li><a href="#label">Label</a></li>
+                        <li><a href="#meter">Meter</a></li>
+                        <li><a href="#progress">Progress</a></li>
+                    </ul>
+
+                    <h2>Display</h2>
+                    <ul>
+                        <li><a href="#typography">Typography</a></li>
+                        <li><a href="#avatar">Avatar</a></li>
+                        <li><a href="#badge">Badge</a></li>
+                        <li><a href="#kbd">Kbd</a></li>
+                        <li><a href="#skeleton">Skeleton</a></li>
+                        <li><a href="#spinner">Spinner</a></li>
+                        <li><a href="#pre">Pre</a></li>
+                        <li><a href="#table">Table</a></li>
+                    </ul>
+
+                    <h2>Navigation</h2>
+                    <ul>
+                        <li><a href="#breadcrumb">Breadcrumb</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#pagination">Pagination</a></li>
+                        <li><a href="#tabs">Tabs</a></li>
+                        <li><a href="#toolbar">Toolbar</a></li>
+                        <li><a href="#command">Command</a></li>
+                    </ul>
+
+                    <h2>Overlay</h2>
+                    <ul>
+                        <li><a href="#popover">Popover</a></li>
+                        <li><a href="#tooltip">Tooltip</a></li>
+                        <li><a href="#preview-card">Preview Card</a></li>
+                        <li><a href="#accordion">Accordion</a></li>
+                        <li><a href="#collapsible">Collapsible</a></li>
+                        <li><a href="#dialog">Dialog</a></li>
+                        <li><a href="#alert-dialog">Alert Dialog</a></li>
+                        <li><a href="#sheet">Sheet</a></li>
+                        <li><a href="#drawer">Drawer</a></li>
+                        <li><a href="#toast">Toast</a></li>
+                        <li><a href="#alert">Alert</a></li>
+                    </ul>
+
+                    <h2>Toggle</h2>
+                    <ul>
+                        <li><a href="#toggle">Toggle</a></li>
+                        <li><a href="#toggle-group">Toggle Group</a></li>
+                    </ul>
+                </aside>
+
+                <main class="content">
+                    <section id="welcome" class="component">
+                        <div class="component-header">
+                            <h1>WebTUI Showcase</h1>
+                            <p>Modular CSS library that brings the beauty of Terminal UIs to the browser.</p>
+                        </div>
+                        <p is-="typography-block">Pick a component from the sidebar to view it in isolation. The URL fragment routes between components — bookmark or share any view.</p>
+                    </section>
+
+                    <!-- LAYOUT -->
+                    <section id="card" class="component">
+                        <div class="component-header"><h1>Card</h1><p>Container with header, content, and footer slots.</p></div>
+                        <div class="example">
+                            <div class="example-label">Default</div>
+                            <div class="example-stage">
+                                <div is-="card" box-="square" style="max-width: 48ch;">
+                                    <div is-="card-header">
+                                        <div is-="card-title">Account Settings</div>
+                                        <div is-="card-description">Manage your preferences.</div>
+                                    </div>
+                                    <div is-="card-content">
+                                        <p is-="typography-block">Update the email address associated with your account.</p>
+                                    </div>
+                                    <div is-="card-footer">
+                                        <button>Save</button>
+                                        <button variant-="background1">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="frame" class="component">
+                        <div class="component-header"><h1>Frame</h1><p>Container with positioned title overlapping the border.</p></div>
+                        <div class="example">
+                            <div class="example-stage">
+                                <div is-="frame" box-="square">
+                                    <div is-="frame-title">Status</div>
+                                    <p is-="typography-block">All systems operational.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="empty" class="component">
+                        <div class="component-header"><h1>Empty</h1><p>Empty state with icon, title, description, actions.</p></div>
+                        <div class="example">
+                            <div class="example-stage">
+                                <div is-="empty" box-="square">
+                                    <div is-="empty-icon">∅</div>
+                                    <div is-="empty-title">No results found</div>
+                                    <div is-="empty-description">Try adjusting your filters.</div>
+                                    <div is-="empty-actions"><button>Reset</button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="scroll-area" class="component">
+                        <div class="component-header"><h1>Scroll Area</h1><p>Styled scrollbars with terminal feel.</p></div>
+                        <div class="example">
+                            <div class="example-stage">
+                                <div is-="scroll-area" style="max-height: 8lh;">
+                                    <p is-="typography-block">Line 1</p>
+                                    <p is-="typography-block">Line 2</p>
+                                    <p is-="typography-block">Line 3</p>
+                                    <p is-="typography-block">Line 4</p>
+                                    <p is-="typography-block">Line 5</p>
+                                    <p is-="typography-block">Line 6</p>
+                                    <p is-="typography-block">Line 7</p>
+                                    <p is-="typography-block">Line 8</p>
+                                    <p is-="typography-block">Line 9</p>
+                                    <p is-="typography-block">Line 10</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="separator" class="component">
+                        <div class="component-header"><h1>Separator</h1><p>Horizontal/vertical dividers with caps.</p></div>
+                        <div class="example">
+                            <div class="example-stage col">
+                                <div is-="separator"></div>
+                                <div is-="separator" cap-="bisect"></div>
+                                <div is-="separator" cap-="round"></div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="view" class="component">
+                        <div class="component-header"><h1>View</h1><p>Centered terminal-grid-aligned content area.</p></div>
+                        <div class="example">
+                            <div class="example-stage">
+                                <div is-="view" style="height: 8lh; width: 32ch; background: var(--background2);">
+                                    <div is-="view-content">Centered grid-aligned content</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="box" class="component">
+                        <div class="component-header"><h1>Box utility</h1><p>Adds square, round, or double borders to any element.</p></div>
+                        <div class="example">
+                            <div class="example-stage row">
+                                <div box-="square">square</div>
+                                <div box-="round">round</div>
+                                <div box-="double">double</div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- FORM -->
+                    <section id="button" class="component">
+                        <div class="component-header"><h1>Button</h1><p>Native &lt;button&gt; with variants, sizes, and box borders.</p></div>
+                        <div class="example">
+                            <div class="example-label">Variants</div>
+                            <div class="example-stage row">
+                                <button>Default</button>
+                                <button variant-="background1">Subtle</button>
+                                <button box-="square">Outline</button>
+                                <button disabled>Disabled</button>
+                            </div>
+                        </div>
+                        <div class="example">
+                            <div class="example-label">Sizes</div>
+                            <div class="example-stage row">
+                                <button size-="small">Small</button>
+                                <button>Default</button>
+                                <button size-="large">Large</button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="input" class="component">
+                        <div class="component-header"><h1>Input</h1><p>Native input with focus, invalid, disabled states.</p></div>
+                        <div class="example">
+                            <div class="example-stage col">
+                                <input type="text" placeholder="Type something" />
+                                <input type="email" placeholder="Email" required pattern=".+@.+" />
+                                <input type="text" value="Disabled" disabled />
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="textarea" class="component">
+                        <div class="component-header"><h1>Textarea</h1><p>Resizable textarea, with auto-sizing variant.</p></div>
+                        <div class="example">
+                            <div class="example-stage col">
+                                <textarea placeholder="Multiline..."></textarea>
+                                <textarea size-="auto" placeholder="field-sizing: content"></textarea>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="checkbox" class="component">
+                        <div class="component-header"><h1>Checkbox</h1><p>X-glyph terminal-style checkbox with indeterminate state.</p></div>
+                        <div class="example">
+                            <div class="example-stage col">
+                                <label><input type="checkbox" /> Unchecked</label>
+                                <label><input type="checkbox" checked /> Checked</label>
+                                <label><input type="checkbox" id="indet" /> Indeterminate</label>
+                                <script>document.getElementById('indet').indeterminate = true;</script>
+                                <label><input type="checkbox" disabled /> Disabled</label>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="checkbox-group" class="component">
+                        <div class="component-header"><h1>Checkbox Group</h1><p>Container for related checkboxes.</p></div>
+                        <div class="example">
+                            <div class="example-stage">
+                                <div is-="checkbox-group">
+                                    <div is-="group-label">Notifications</div>
+                                    <label><input type="checkbox" /> Email</label>
+                                    <label><input type="checkbox" /> SMS</label>
+                                    <label><input type="checkbox" /> Push</label>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="radio" class="component">
+                        <div class="component-header"><h1>Radio</h1><p>(*) glyph radio button.</p></div>
+                        <div class="example">
+                            <div class="example-stage col">
+                                <label><input type="radio" name="r1" /> Option A</label>
+                                <label><input type="radio" name="r1" checked /> Option B</label>
+                                <label><input type="radio" name="r1" disabled /> Disabled</label>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="radio-group" class="component">
+                        <div class="component-header"><h1>Radio Group</h1><p>Container for radios with label.</p></div>
+                        <div class="example">
+                            <div class="example-stage">
+                                <div is-="radio-group">
+                                    <div is-="group-label">Frequency</div>
+                                    <label><input type="radio" name="freq" checked /> Daily</label>
+                                    <label><input type="radio" name="freq" /> Weekly</label>
+                                    <label><input type="radio" name="freq" /> Monthly</label>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="switch" class="component">
+                        <div class="component-header"><h1>Switch</h1><p>Sliding toggle backed by checkbox.</p></div>
+                        <div class="example">
+                            <div class="example-stage col">
+                                <label><input type="checkbox" is-="switch" /> Off</label>
+                                <label><input type="checkbox" is-="switch" checked /> On</label>
+                                <label><input type="checkbox" is-="switch" bar-="thin" checked /> Thin</label>
+                                <label><input type="checkbox" is-="switch" bar-="line" checked /> Line</label>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="range" class="component">
+                        <div class="component-header"><h1>Range</h1><p>Native range input with thick/line bar variants.</p></div>
+                        <div class="example">
+                            <div class="example-stage col">
+                                <input type="range" />
+                                <input type="range" bar-="thick" />
+                                <input type="range" bar-="line" />
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="select" class="component">
+                        <div class="component-header"><h1>Select</h1><p>Native select with custom indicator.</p></div>
+                        <div class="example">
+                            <div class="example-stage">
+                                <select>
+                                    <option>Apple</option>
+                                    <option>Banana</option>
+                                    <option>Cherry</option>
+                                </select>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="combobox" class="component">
+                        <div class="component-header"><h1>Combobox</h1><p>Details/summary-based combobox with searchable list.</p></div>
+                        <div class="example">
+                            <div class="example-stage">
+                                <details is-="combobox">
+                                    <summary>Choose a fruit</summary>
+                                    <ul is-="combobox-content">
+                                        <li is-="combobox-item">Apple</li>
+                                        <li is-="combobox-item" aria-selected="true">Banana</li>
+                                        <li is-="combobox-item">Cherry</li>
+                                    </ul>
+                                </details>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="autocomplete" class="component">
+                        <div class="component-header"><h1>Autocomplete</h1><p>Native &lt;input list&gt; + &lt;datalist&gt;.</p></div>
+                        <div class="example">
+                            <div class="example-stage">
+                                <input is-="autocomplete" list="frameworks" placeholder="Pick a framework" />
+                                <datalist id="frameworks">
+                                    <option>Astro</option>
+                                    <option>Next.js</option>
+                                    <option>Nuxt</option>
+                                    <option>Remix</option>
+                                    <option>SvelteKit</option>
+                                </datalist>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="date-picker" class="component">
+                        <div class="component-header"><h1>Date Picker</h1><p>Native date inputs styled.</p></div>
+                        <div class="example">
+                            <div class="example-stage col">
+                                <input type="date" is-="date-picker" />
+                                <input type="month" is-="date-picker" />
+                                <input type="time" is-="date-picker" />
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="calendar" class="component">
+                        <div class="component-header"><h1>Calendar</h1><p>Pure CSS calendar grid.</p></div>
+                        <div class="example">
+                            <div class="example-stage">
+                                <div is-="calendar" box-="square">
+                                    <div is-="calendar-header">May 2026</div>
+                                    <div is-="calendar-weekday">M</div>
+                                    <div is-="calendar-weekday">T</div>
+                                    <div is-="calendar-weekday">W</div>
+                                    <div is-="calendar-weekday">T</div>
+                                    <div is-="calendar-weekday">F</div>
+                                    <div is-="calendar-weekday">S</div>
+                                    <div is-="calendar-weekday">S</div>
+                                    <button is-="calendar-day" data-outside>27</button>
+                                    <button is-="calendar-day" data-outside>28</button>
+                                    <button is-="calendar-day" data-outside>29</button>
+                                    <button is-="calendar-day" data-outside>30</button>
+                                    <button is-="calendar-day">1</button>
+                                    <button is-="calendar-day">2</button>
+                                    <button is-="calendar-day">3</button>
+                                    <button is-="calendar-day">4</button>
+                                    <button is-="calendar-day">5</button>
+                                    <button is-="calendar-day">6</button>
+                                    <button is-="calendar-day" aria-current="date">7</button>
+                                    <button is-="calendar-day">8</button>
+                                    <button is-="calendar-day">9</button>
+                                    <button is-="calendar-day">10</button>
+                                    <button is-="calendar-day">11</button>
+                                    <button is-="calendar-day">12</button>
+                                    <button is-="calendar-day">13</button>
+                                    <button is-="calendar-day">14</button>
+                                    <button is-="calendar-day" aria-selected="true">15</button>
+                                    <button is-="calendar-day">16</button>
+                                    <button is-="calendar-day">17</button>
+                                    <button is-="calendar-day">18</button>
+                                    <button is-="calendar-day">19</button>
+                                    <button is-="calendar-day">20</button>
+                                    <button is-="calendar-day">21</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="number-field" class="component">
+                        <div class="component-header"><h1>Number Field</h1><p>Number input with custom steppers.</p></div>
+                        <div class="example">
+                            <div class="example-stage">
+                                <div is-="number-field">
+                                    <button is-="number-field-decrement" data-action="decrement" aria-label="Decrement"></button>
+                                    <input type="number" value="10" min="0" max="100" />
+                                    <button is-="number-field-increment" data-action="increment" aria-label="Increment"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="otp-field" class="component">
+                        <div class="component-header"><h1>OTP Field</h1><p>One-time password input. Char-spaced single input.</p></div>
+                        <div class="example">
+                            <div class="example-stage">
+                                <input is-="otp" type="text" inputmode="numeric" pattern="\d{6}" maxlength="6" placeholder="000000" />
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="input-group" class="component">
+                        <div class="component-header"><h1>Input Group</h1><p>Input with prefix/suffix addons.</p></div>
+                        <div class="example">
+                            <div class="example-stage col">
+                                <div is-="input-group">
+                                    <span is-="input-group-prefix">$</span>
+                                    <input type="number" placeholder="0.00" />
+                                </div>
+                                <div is-="input-group">
+                                    <input type="text" placeholder="username" />
+                                    <span is-="input-group-suffix">@webtui.dev</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="field" class="component">
+                        <div class="component-header"><h1>Field</h1><p>Form field wrapper with label, description, error.</p></div>
+                        <div class="example">
+                            <div class="example-stage">
+                                <div is-="field">
+                                    <label is-="field-label">Email address</label>
+                                    <input type="email" placeholder="you@example.com" />
+                                    <div is-="field-description">We'll never share your email.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="fieldset" class="component">
+                        <div class="component-header"><h1>Fieldset</h1><p>Native fieldset with legend.</p></div>
+                        <div class="example">
+                            <div class="example-stage">
+                                <fieldset>
+                                    <legend>Account</legend>
+                                    <label><input type="checkbox" /> Send weekly digest</label>
+                                    <label><input type="checkbox" /> Two-factor auth</label>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="form" class="component">
+                        <div class="component-header"><h1>Form</h1><p>Form layout container.</p></div>
+                        <div class="example">
+                            <div class="example-stage">
+                                <form>
+                                    <div is-="field"><label is-="field-label">Name</label><input /></div>
+                                    <div is-="field"><label is-="field-label">Email</label><input type="email" /></div>
+                                    <button>Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="group" class="component">
+                        <div class="component-header"><h1>Group</h1><p>Generic container for related controls.</p></div>
+                        <div class="example">
+                            <div class="example-stage">
+                                <div is-="group" direction-="horizontal">
+                                    <button>Save</button>
+                                    <button>Save &amp; New</button>
+                                    <button variant-="background1">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="label" class="component">
+                        <div class="component-header"><h1>Label</h1><p>Native label.</p></div>
+                        <div class="example">
+                            <div class="example-stage col">
+                                <label>Default label</label>
+                                <label variant-="muted">Muted label</label>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="meter" class="component">
+                        <div class="component-header"><h1>Meter</h1><p>Native meter for known-range values.</p></div>
+                        <div class="example">
+                            <div class="example-stage col">
+                                <meter min="0" max="100" low="33" high="66" optimum="100" value="80"></meter>
+                                <meter min="0" max="100" low="33" high="66" optimum="100" value="50"></meter>
+                                <meter min="0" max="100" low="33" high="66" optimum="100" value="20"></meter>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="progress" class="component">
+                        <div class="component-header"><h1>Progress</h1><p>Char-grid-aligned progress bar.</p></div>
+                        <div class="example">
+                            <div class="example-stage col">
+                                <div is-="progress" style="--progress-value: 25;"></div>
+                                <div is-="progress" style="--progress-value: 60;"></div>
+                                <div is-="progress" style="--progress-value: 100;"></div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- DISPLAY -->
+                    <section id="typography" class="component">
+                        <div class="component-header"><h1>Typography</h1><p>Headings, paragraphs, lists, blockquote, code.</p></div>
+                        <div class="example">
+                            <div class="example-stage">
+                                <h1>Heading 1</h1>
+                                <h2>Heading 2</h2>
+                                <p is-="typography-block">A paragraph with <strong>strong</strong>, <a href="#">link</a>, and <code>inline code</code>.</p>
+                                <ul marker-="bullet"><li>Bullet</li><li>Bullet</li></ul>
+                                <ul marker-="tree"><li>Tree</li><li>Tree</li><li>Tree</li></ul>
+                                <blockquote>"Quoted text."</blockquote>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="avatar" class="component">
+                        <div class="component-header"><h1>Avatar</h1><p>Initial-based avatar with size and shape.</p></div>
+                        <div class="example">
+                            <div class="example-stage row">
+                                <span is-="avatar">A</span>
+                                <span is-="avatar" variant-="background1">B</span>
+                                <span is-="avatar" shape-="round">C</span>
+                                <span is-="avatar" size-="large">D</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="badge" class="component">
+                        <div class="component-header"><h1>Badge</h1><p>Inline label with end caps.</p></div>
+                        <div class="example">
+                            <div class="example-stage row">
+                                <span is-="badge">default</span>
+                                <span is-="badge" variant-="foreground1">muted</span>
+                                <span is-="badge" cap-="round round">round</span>
+                                <span is-="badge" cap-="triangle triangle">triangle</span>
+                                <span is-="badge" cap-="ribbon ribbon">ribbon</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="kbd" class="component">
+                        <div class="component-header"><h1>Kbd</h1><p>Keyboard-key visual.</p></div>
+                        <div class="example">
+                            <div class="example-stage row">
+                                <kbd>Ctrl</kbd>
+                                <kbd>+</kbd>
+                                <kbd>K</kbd>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="skeleton" class="component">
+                        <div class="component-header"><h1>Skeleton</h1><p>Shimmering placeholder.</p></div>
+                        <div class="example">
+                            <div class="example-stage col">
+                                <div is-="skeleton"></div>
+                                <div is-="skeleton" style="width: 60%;"></div>
+                                <div is-="skeleton" style="width: 40%;"></div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="spinner" class="component">
+                        <div class="component-header"><h1>Spinner</h1><p>ASCII spinning indicator.</p></div>
+                        <div class="example">
+                            <div class="example-stage row">
+                                <span is-="spinner"></span>
+                                <span is-="spinner" variant-="dots"></span>
+                                <span is-="spinner" variant-="arrows"></span>
+                                <span is-="spinner" variant-="square"></span>
+                                <span is-="spinner" variant-="bar-vertical"></span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="pre" class="component">
+                        <div class="component-header"><h1>Pre</h1><p>Code block with monospace and grid alignment.</p></div>
+                        <div class="example">
+                            <div class="example-stage">
+                                <pre>$ webtui --version
+0.1.7
+$ webtui list
+[ accordion, badge, button, ... ]</pre>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="table" class="component">
+                        <div class="component-header"><h1>Table</h1><p>Char-grid bordered table.</p></div>
+                        <div class="example">
+                            <div class="example-stage">
+                                <table>
+                                    <thead><tr><th>Name</th><th>Role</th><th>Status</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>Alice</td><td>Admin</td><td>Active</td></tr>
+                                        <tr><td>Bob</td><td>Editor</td><td>Pending</td></tr>
+                                        <tr><td>Carol</td><td>Viewer</td><td>Inactive</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- NAVIGATION -->
+                    <section id="breadcrumb" class="component">
+                        <div class="component-header"><h1>Breadcrumb</h1><p>Hierarchical path navigation.</p></div>
+                        <div class="example">
+                            <div class="example-stage col">
+                                <nav is-="breadcrumb">
+                                    <ol>
+                                        <li><a href="#">Home</a></li>
+                                        <li><a href="#">Components</a></li>
+                                        <li>Breadcrumb</li>
+                                    </ol>
+                                </nav>
+                                <nav is-="breadcrumb" separator-="chevron">
+                                    <ol>
+                                        <li><a href="#">Docs</a></li>
+                                        <li><a href="#">Start</a></li>
+                                        <li>Install</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="menu" class="component">
+                        <div class="component-header"><h1>Menu</h1><p>Vertical action list.</p></div>
+                        <div class="example">
+                            <div class="example-stage">
+                                <ul is-="menu" box-="square" style="max-width: 28ch;">
+                                    <li is-="menu-label">File</li>
+                                    <li is-="menu-item">New <kbd>Ctrl+N</kbd></li>
+                                    <li is-="menu-item">Open <kbd>Ctrl+O</kbd></li>
+                                    <li is-="menu-item">Save <kbd>Ctrl+S</kbd></li>
+                                    <li is-="menu-separator"></li>
+                                    <li is-="menu-item" aria-disabled="true">Quit</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="pagination" class="component">
+                        <div class="component-header"><h1>Pagination</h1><p>Page navigation.</p></div>
+                        <div class="example">
+                            <div class="example-stage">
+                                <nav is-="pagination">
+                                    <ul>
+                                        <li><button>‹</button></li>
+                                        <li><button>1</button></li>
+                                        <li><button aria-current="page">2</button></li>
+                                        <li><button>3</button></li>
+                                        <li is-="pagination-ellipsis">…</li>
+                                        <li><button>10</button></li>
+                                        <li><button>›</button></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="tabs" class="component">
+                        <div class="component-header"><h1>Tabs</h1><p>Radio-input-driven CSS-only tabs.</p></div>
+                        <div class="example">
+                            <div class="example-stage">
+                                <div is-="tabs">
+                                    <input type="radio" name="tabs1" id="t1a" checked />
+                                    <input type="radio" name="tabs1" id="t1b" />
+                                    <input type="radio" name="tabs1" id="t1c" />
+                                    <div is-="tabs-list">
+                                        <label for="t1a">Overview</label>
+                                        <label for="t1b">Activity</label>
+                                        <label for="t1c">Settings</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="toolbar" class="component">
+                        <div class="component-header"><h1>Toolbar</h1><p>Horizontal action strip.</p></div>
+                        <div class="example">
+                            <div class="example-stage">
+                                <div is-="toolbar">
+                                    <button is-="toggle">B</button>
+                                    <button is-="toggle">I</button>
+                                    <button is-="toggle">U</button>
+                                    <span is-="toolbar-separator"></span>
+                                    <button is-="toggle">≡</button>
+                                    <button is-="toggle">≣</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="command" class="component">
+                        <div class="component-header"><h1>Command</h1><p>Command palette pattern.</p></div>
+                        <div class="example">
+                            <div class="example-stage">
+                                <div is-="command" box-="square">
+                                    <input is-="command-input" type="search" placeholder="Type a command…" />
+                                    <ul is-="command-list">
+                                        <li is-="command-group-label">Suggestions</li>
+                                        <li is-="command-item">Open file <kbd>Ctrl+O</kbd></li>
+                                        <li is-="command-item" aria-selected="true">Find in files <kbd>Ctrl+Shift+F</kbd></li>
+                                        <li is-="command-item">Toggle theme <kbd>Ctrl+T</kbd></li>
+                                        <li is-="command-separator"></li>
+                                        <li is-="command-group-label">Navigation</li>
+                                        <li is-="command-item">Go to line <kbd>Ctrl+G</kbd></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- OVERLAY -->
+                    <section id="popover" class="component">
+                        <div class="component-header"><h1>Popover</h1><p>Details/summary-driven popover.</p></div>
+                        <div class="example">
+                            <div class="example-stage" style="min-height: 12lh;">
+                                <details is-="popover">
+                                    <summary><button>Open popover</button></summary>
+                                    <div box-="square" style="padding: 1lh 1ch; min-width: 24ch; background: var(--background0);">
+                                        <p is-="typography-block">Popover content goes here.</p>
+                                    </div>
+                                </details>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="tooltip" class="component">
+                        <div class="component-header"><h1>Tooltip</h1><p>Hover/focus-triggered hint.</p></div>
+                        <div class="example">
+                            <div class="example-stage" style="min-height: 8lh;">
+                                <span is-="tooltip">
+                                    <button is-="tooltip-trigger">Hover me</button>
+                                    <span is-="tooltip-content" box-="square" style="padding: 0 1ch; background: var(--background0); white-space: nowrap;">Tooltip text</span>
+                                </span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="preview-card" class="component">
+                        <div class="component-header"><h1>Preview Card</h1><p>Hover to reveal a richer preview.</p></div>
+                        <div class="example">
+                            <div class="example-stage" style="min-height: 12lh;">
+                                <span is-="preview-card">
+                                    <a href="#preview-card" is-="preview-card-trigger">@webtui</a>
+                                    <div is-="preview-card-content" box-="square">
+                                        <div class="row">
+                                            <span is-="avatar">W</span>
+                                            <strong>WebTUI</strong>
+                                        </div>
+                                        <p is-="typography-block">CSS library for terminal-style web UIs.</p>
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="accordion" class="component">
+                        <div class="component-header"><h1>Accordion</h1><p>Native details/summary disclosure.</p></div>
+                        <div class="example">
+                            <div class="example-stage col">
+                                <details is-="accordion" open><summary>What is WebTUI?</summary><p is-="typography-block">A modular CSS library that brings terminal aesthetics to the browser.</p></details>
+                                <details is-="accordion"><summary>Is it production-ready?</summary><p is-="typography-block">Yes — it is pure CSS with no dependencies.</p></details>
+                                <details is-="accordion"><summary>Can I theme it?</summary><p is-="typography-block">Yes — via custom properties or one of the official theme packages.</p></details>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="collapsible" class="component">
+                        <div class="component-header"><h1>Collapsible</h1><p>Alias for accordion (same animations, same API).</p></div>
+                        <div class="example">
+                            <div class="example-stage">
+                                <details is-="collapsible"><summary>Show details</summary><p is-="typography-block">Hidden content revealed on click.</p></details>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="dialog" class="component">
+                        <div class="component-header"><h1>Dialog</h1><p>Native &lt;dialog&gt; with backdrop and starting-style fade.</p></div>
+                        <div class="example">
+                            <div class="example-stage">
+                                <button onclick="document.getElementById('demo-dialog').showModal()">Open dialog</button>
+                                <dialog id="demo-dialog" box-="square">
+                                    <h2>Confirm action</h2>
+                                    <p is-="typography-block">Are you sure you want to continue?</p>
+                                    <div class="row">
+                                        <button onclick="this.closest('dialog').close()">Yes</button>
+                                        <button variant-="background1" onclick="this.closest('dialog').close()">Cancel</button>
+                                    </div>
+                                </dialog>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="alert-dialog" class="component">
+                        <div class="component-header"><h1>Alert Dialog</h1><p>Dialog variant for destructive confirmation.</p></div>
+                        <div class="example">
+                            <div class="example-stage">
+                                <button onclick="document.getElementById('demo-alert').showModal()">Delete account</button>
+                                <dialog id="demo-alert" variant-="alert" box-="square">
+                                    <div is-="alert-dialog-title">Delete account</div>
+                                    <div is-="alert-dialog-description">This action cannot be undone.</div>
+                                    <div is-="alert-dialog-actions">
+                                        <button variant-="background1" onclick="this.closest('dialog').close()">Cancel</button>
+                                        <button onclick="this.closest('dialog').close()">Delete</button>
+                                    </div>
+                                </dialog>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="sheet" class="component">
+                        <div class="component-header"><h1>Sheet</h1><p>Side-anchored full-height dialog.</p></div>
+                        <div class="example">
+                            <div class="example-stage">
+                                <button onclick="document.getElementById('demo-sheet').showModal()">Open sheet</button>
+                                <dialog id="demo-sheet" variant-="sheet" position-="end">
+                                    <div is-="sheet-header">
+                                        <div is-="sheet-title">Filters</div>
+                                        <div is-="sheet-description">Refine your results.</div>
+                                    </div>
+                                    <div is-="sheet-body">
+                                        <p is-="typography-block">Filter content here…</p>
+                                    </div>
+                                    <div is-="sheet-footer">
+                                        <button onclick="this.closest('dialog').close()">Apply</button>
+                                    </div>
+                                </dialog>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="drawer" class="component">
+                        <div class="component-header"><h1>Drawer</h1><p>Side-anchored drawer (sheet variant).</p></div>
+                        <div class="example">
+                            <div class="example-stage">
+                                <button onclick="document.getElementById('demo-drawer').showModal()">Open drawer</button>
+                                <dialog id="demo-drawer" variant-="drawer">
+                                    <div is-="drawer-header">Navigation</div>
+                                    <div is-="drawer-body">
+                                        <ul is-="menu">
+                                            <li is-="menu-item">Dashboard</li>
+                                            <li is-="menu-item">Projects</li>
+                                            <li is-="menu-item">Settings</li>
+                                        </ul>
+                                    </div>
+                                    <div is-="drawer-footer">
+                                        <button onclick="this.closest('dialog').close()">Close</button>
+                                    </div>
+                                </dialog>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="toast" class="component">
+                        <div class="component-header"><h1>Toast</h1><p>Popover-API-driven toast with starting-style.</p></div>
+                        <div class="example">
+                            <div class="example-stage">
+                                <button onclick="document.getElementById('demo-toast').showPopover()">Show toast</button>
+                                <div id="demo-toast" popover is-="toast" variant-="success">
+                                    <div>
+                                        <div is-="toast-title">Saved</div>
+                                        <div is-="toast-description">Your changes have been saved.</div>
+                                    </div>
+                                    <button is-="toast-action" size-="small" onclick="this.closest('[popover]').hidePopover()">Dismiss</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="alert" class="component">
+                        <div class="component-header"><h1>Alert</h1><p>Inline status banner.</p></div>
+                        <div class="example">
+                            <div class="example-stage col">
+                                <div is-="alert" variant-="info"><div><div is-="alert-title">Heads up</div><div is-="alert-description">A new release is available.</div></div></div>
+                                <div is-="alert" variant-="success"><div><div is-="alert-title">Saved</div><div is-="alert-description">Settings updated.</div></div></div>
+                                <div is-="alert" variant-="warning"><div><div is-="alert-title">Careful</div><div is-="alert-description">This action affects production.</div></div></div>
+                                <div is-="alert" variant-="danger"><div><div is-="alert-title">Failed</div><div is-="alert-description">Could not save changes.</div></div></div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- TOGGLE -->
+                    <section id="toggle" class="component">
+                        <div class="component-header"><h1>Toggle</h1><p>Pressable button with on/off state.</p></div>
+                        <div class="example">
+                            <div class="example-stage row">
+                                <button is-="toggle">Off</button>
+                                <button is-="toggle" aria-pressed="true">On</button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="toggle-group" class="component">
+                        <div class="component-header"><h1>Toggle Group</h1><p>Row/column of toggles.</p></div>
+                        <div class="example">
+                            <div class="example-stage">
+                                <div is-="toggle-group">
+                                    <button is-="toggle" aria-pressed="true">Left</button>
+                                    <button is-="toggle">Center</button>
+                                    <button is-="toggle">Right</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+            </div>
+        </div>
+
+        <script>
+            (function () {
+                const sidebar = document.querySelector('.sidebar');
+                const menuToggle = document.getElementById('menu-toggle');
+
+                function syncActive() {
+                    const hash = location.hash || '#welcome';
+                    sidebar.querySelectorAll('a').forEach((a) => {
+                        a.classList.toggle('active', a.getAttribute('href') === hash);
+                    });
+                    if (menuToggle.checked) menuToggle.checked = false;
+                }
+
+                window.addEventListener('hashchange', syncActive);
+                syncActive();
+            })();
+        </script>
+    </body>
+</html>

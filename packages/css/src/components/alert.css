@@ -1,0 +1,62 @@
+@layer components {
+    [is-~='alert'] {
+        --alert-color: var(--foreground0);
+        --alert-background: var(--background1);
+        --alert-prefix: '! ';
+
+        display: flex;
+        align-items: flex-start;
+        gap: 1ch;
+        padding: 1lh 1ch;
+        background-color: var(--alert-background);
+        color: var(--alert-color);
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: var(--line-height);
+
+        &::before {
+            content: var(--alert-prefix);
+            color: var(--alert-color);
+            font-weight: var(--font-weight-bold);
+            white-space: pre;
+        }
+
+        & > [is-~='alert-title'] {
+            font-weight: var(--font-weight-bold);
+            color: var(--alert-color);
+        }
+
+        & > [is-~='alert-description'] {
+            color: var(--foreground1);
+        }
+
+        &[variant-='info'] {
+            --alert-prefix: 'i ';
+            --alert-color: var(--foreground0);
+            --alert-background: var(--background1);
+        }
+
+        &[variant-='success'] {
+            --alert-prefix: '+ ';
+            --alert-color: var(--foreground0);
+            --alert-background: var(--background1);
+        }
+
+        &[variant-='warning'] {
+            --alert-prefix: '! ';
+            --alert-color: var(--foreground0);
+            --alert-background: var(--background2);
+        }
+
+        &[variant-='danger'],
+        &[variant-='error'] {
+            --alert-prefix: 'x ';
+            --alert-color: var(--background0);
+            --alert-background: var(--foreground0);
+        }
+
+        &[size-='small'] {
+            padding: 0 1ch;
+        }
+    }
+}

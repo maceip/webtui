@@ -27,7 +27,7 @@
             --box-border-color: var(--mapped-primary);
         }
 
-        &:focus {
+        &:focus-visible {
             font-weight: bold;
             text-decoration: underline;
         }

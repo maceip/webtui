@@ -1,0 +1,46 @@
+@layer components {
+    [is-~='scroll-area'] {
+        --scroll-thumb: var(--foreground2);
+        --scroll-track: var(--background1);
+
+        overflow: auto;
+        scrollbar-color: var(--scroll-thumb) var(--scroll-track);
+        scrollbar-width: thin;
+        scrollbar-gutter: stable;
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: var(--line-height);
+        max-height: 24lh;
+
+        &::-webkit-scrollbar {
+            width: 1ch;
+            height: 0.5lh;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: var(--scroll-track);
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: var(--scroll-thumb);
+
+            &:hover {
+                background: var(--foreground0);
+            }
+        }
+
+        &::-webkit-scrollbar-corner {
+            background: var(--scroll-track);
+        }
+
+        &[direction-='x'] {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+
+        &[direction-='y'] {
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+    }
+}

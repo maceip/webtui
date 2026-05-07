@@ -1,0 +1,42 @@
+@layer components {
+    [is-~='field'] {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5lh;
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: var(--line-height);
+
+        & > label,
+        & > [is-~='field-label'] {
+            font-weight: var(--font-weight-bold);
+            color: var(--foreground0);
+        }
+
+        & > [is-~='field-description'] {
+            color: var(--foreground2);
+            font-size: var(--font-size);
+        }
+
+        & > [is-~='field-error'] {
+            color: var(--foreground0);
+            text-decoration: underline wavy;
+        }
+
+        &[direction-='horizontal'] {
+            flex-direction: row;
+            align-items: center;
+            gap: 1ch;
+        }
+
+        &:has(:user-invalid) > [is-~='field-error'] {
+            display: block;
+        }
+
+        &:has(:disabled) > label,
+        &:has(:disabled) > [is-~='field-label'] {
+            color: var(--foreground2);
+            text-decoration: line-through;
+        }
+    }
+}

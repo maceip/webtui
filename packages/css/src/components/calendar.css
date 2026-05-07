@@ -1,0 +1,88 @@
+@layer components {
+    /* Pure CSS calendar grid for static rendering.
+       Pair with <input type="date"> for picker behavior, or use
+       this for read-only month displays. */
+    [is-~='calendar'] {
+        --calendar-cell-color: var(--foreground0);
+        --calendar-muted-color: var(--foreground2);
+        --calendar-active-color: var(--background0);
+        --calendar-active-background: var(--foreground0);
+
+        display: inline-grid;
+        grid-template-columns: repeat(7, 4ch);
+        gap: 0;
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: 1lh;
+        background-color: var(--background0);
+        color: var(--calendar-cell-color);
+        padding: 1lh 1ch;
+
+        & > [is-~='calendar-header'] {
+            grid-column: 1 / -1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 1lh;
+            margin-bottom: 0.5lh;
+            font-weight: var(--font-weight-bold);
+        }
+
+        & > [is-~='calendar-weekday'] {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 1lh;
+            color: var(--calendar-muted-color);
+            font-weight: var(--font-weight-bold);
+            text-transform: uppercase;
+            font-size: calc(var(--font-size) * 0.875);
+        }
+
+        & > [is-~='calendar-day'],
+        & button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 1lh;
+            background-color: transparent;
+            color: inherit;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: inherit;
+            line-height: 1lh;
+            font-variant-numeric: tabular-nums;
+
+            &:hover,
+            &:focus-visible {
+                background-color: var(--background1);
+                outline: none;
+            }
+
+            &[aria-selected='true'],
+            &[is-~='calendar-day-selected'] {
+                background-color: var(--calendar-active-background);
+                color: var(--calendar-active-color);
+                font-weight: var(--font-weight-bold);
+            }
+
+            &[aria-current='date'],
+            &[is-~='calendar-day-today'] {
+                text-decoration: underline;
+            }
+
+            &[is-~='calendar-day-outside'],
+            &[data-outside] {
+                color: var(--calendar-muted-color);
+            }
+
+            &:disabled,
+            &[aria-disabled='true'] {
+                color: var(--calendar-muted-color);
+                pointer-events: none;
+                text-decoration: line-through;
+            }
+        }
+    }
+}

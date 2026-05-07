@@ -1,0 +1,35 @@
+@layer components {
+    /* Alert Dialog leverages dialog component — variant-='alert'
+       is defined in dialog.css. This file adds alert-dialog
+       sub-element styles (title/description/actions). */
+    dialog[variant-='alert'],
+    dialog[is-~='alert-dialog'] {
+        --alert-dialog-padding-x: 1ch;
+        --alert-dialog-padding-y: 1lh;
+
+        padding: var(--alert-dialog-padding-y) var(--alert-dialog-padding-x);
+        gap: 1lh;
+
+        & > [is-~='alert-dialog-title'] {
+            font-weight: var(--font-weight-bold);
+            color: var(--foreground0);
+            font-size: var(--font-size);
+            line-height: var(--line-height);
+
+            &::before {
+                content: '! ';
+            }
+        }
+
+        & > [is-~='alert-dialog-description'] {
+            color: var(--foreground1);
+        }
+
+        & > [is-~='alert-dialog-actions'] {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1ch;
+            margin-top: auto;
+        }
+    }
+}

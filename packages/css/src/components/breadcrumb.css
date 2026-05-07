@@ -1,0 +1,69 @@
+@layer components {
+    nav[is-~='breadcrumb'],
+    [is-~='breadcrumb'] {
+        --breadcrumb-separator: '/';
+        --breadcrumb-color: var(--foreground2);
+        --breadcrumb-active-color: var(--foreground0);
+
+        display: inline-flex;
+        align-items: center;
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: var(--line-height);
+
+        & > ol,
+        & > ul {
+            display: inline-flex;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 1ch;
+        }
+
+        & li {
+            display: inline-flex;
+            align-items: center;
+            color: var(--breadcrumb-color);
+
+            &::before {
+                content: '';
+            }
+
+            & + li::before {
+                content: var(--breadcrumb-separator) ' ';
+                color: var(--breadcrumb-color);
+                margin-right: 1ch;
+            }
+
+            & > a {
+                color: var(--breadcrumb-color);
+                text-decoration: none;
+
+                &:hover,
+                &:focus-visible {
+                    text-decoration: underline;
+                    color: var(--breadcrumb-active-color);
+                }
+            }
+
+            &[aria-current],
+            &:last-child {
+                color: var(--breadcrumb-active-color);
+                font-weight: var(--font-weight-bold);
+            }
+        }
+
+        &[separator-='chevron'] {
+            --breadcrumb-separator: '>';
+        }
+
+        &[separator-='arrow'] {
+            --breadcrumb-separator: '→';
+        }
+
+        &[separator-='dot'] {
+            --breadcrumb-separator: '·';
+        }
+    }
+}

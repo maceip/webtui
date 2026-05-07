@@ -1,0 +1,112 @@
+@layer components {
+    /* Command palette pattern. CSS-only chrome.
+       Hosts a search input + list of items. Pair with <dialog> for
+       modal display, or :target/popover-API for show/hide. */
+    [is-~='command'] {
+        --command-color: var(--foreground0);
+        --command-background: var(--background0);
+        --command-muted: var(--foreground2);
+
+        display: flex;
+        flex-direction: column;
+        background-color: var(--command-background);
+        color: var(--command-color);
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: var(--line-height);
+        min-width: 48ch;
+        max-height: 32lh;
+        overflow: hidden;
+
+        & > [is-~='command-input'],
+        & input[type='search'],
+        & input[type='text'][is-~='command-input'] {
+            background-color: var(--background1);
+            color: var(--command-color);
+            border: none;
+            outline: none;
+            padding: 0 1ch;
+            height: 3lh;
+            line-height: 3lh;
+            font-family: inherit;
+            font-size: inherit;
+            width: 100%;
+            min-width: 0;
+
+            &::placeholder {
+                color: var(--command-muted);
+            }
+        }
+
+        & > [is-~='command-list'] {
+            list-style: none;
+            margin: 0;
+            padding: 0.5lh 0;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        & [is-~='command-group-label'] {
+            padding: 0 1ch;
+            color: var(--command-muted);
+            font-size: calc(var(--font-size) * 0.875);
+            text-transform: uppercase;
+            font-weight: var(--font-weight-bold);
+            line-height: 1lh;
+            height: 1lh;
+        }
+
+        & [is-~='command-item'] {
+            display: flex;
+            align-items: center;
+            gap: 1ch;
+            padding: 0 1ch;
+            height: 1lh;
+            line-height: 1lh;
+            cursor: pointer;
+            color: var(--command-color);
+
+            &:hover,
+            &[aria-selected='true'],
+            &:focus-visible {
+                background-color: var(--background1);
+                outline: none;
+            }
+
+            &[aria-disabled='true'],
+            &:disabled {
+                color: var(--command-muted);
+                pointer-events: none;
+            }
+
+            & [is-~='command-shortcut'],
+            & kbd {
+                margin-left: auto;
+                color: var(--command-muted);
+            }
+        }
+
+        & [is-~='command-separator'] {
+            height: 1px;
+            background-color: var(--background2);
+            margin: 0.5lh 0;
+        }
+
+        & [is-~='command-empty'] {
+            padding: 2lh 1ch;
+            text-align: center;
+            color: var(--command-muted);
+        }
+    }
+
+    /* Filter using :has + :not(:placeholder-shown) for "no results"
+       — server/JS still needs to filter the items themselves. */
+    dialog[is-~='command'],
+    [popover][is-~='command'] {
+        margin: 0 auto;
+        top: 8lh;
+        max-width: 64ch;
+        padding: 0;
+        border: solid var(--box-border-width, 2px) var(--box-border-color);
+    }
+}

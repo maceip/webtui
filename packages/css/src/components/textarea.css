@@ -16,6 +16,28 @@
             color: var(--foreground2);
         }
 
+        &:focus-visible {
+            outline: none;
+            text-decoration: underline;
+        }
+
+        &:user-invalid {
+            text-decoration: underline wavy;
+        }
+
+        &:disabled {
+            color: var(--foreground2);
+            text-decoration: line-through;
+            pointer-events: none;
+        }
+
+        &[size-='auto'] {
+            field-sizing: content;
+            min-height: 1lh;
+            padding: 0 1ch;
+            resize: none;
+        }
+
         &:not([size-]) {
             min-height: 2lh;
             padding: 0 1ch;

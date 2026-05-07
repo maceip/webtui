@@ -1,0 +1,58 @@
+@layer components {
+    button[is-~='toggle'],
+    [is-~='toggle'] {
+        --toggle-color: var(--foreground0);
+        --toggle-background: transparent;
+        --toggle-active-color: var(--background0);
+        --toggle-active-background: var(--foreground0);
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 1ch;
+        height: 1lh;
+        background-color: var(--toggle-background);
+        color: var(--toggle-color);
+        border: none;
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: 1lh;
+        cursor: pointer;
+        user-select: none;
+
+        &:hover,
+        &:focus-visible {
+            background-color: var(--background1);
+            outline: none;
+        }
+
+        &:focus-visible {
+            text-decoration: underline;
+        }
+
+        &[aria-pressed='true'],
+        &:checked,
+        &[data-state='on'] {
+            background-color: var(--toggle-active-background);
+            color: var(--toggle-active-color);
+            font-weight: var(--font-weight-bold);
+        }
+
+        &:disabled,
+        &[aria-disabled='true'] {
+            color: var(--foreground2);
+            pointer-events: none;
+            text-decoration: line-through;
+        }
+
+        &[size-='small'] {
+            padding: 0 0.5ch;
+        }
+
+        &[size-='large'] {
+            padding: 0 2ch;
+            height: 3lh;
+            line-height: 3lh;
+        }
+    }
+}

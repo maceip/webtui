@@ -1,0 +1,222 @@
+/* Showcase-specific layout — depends on @webtui/css being loaded first */
+
+:root {
+    --sidebar-width: 28ch;
+    --header-height: 3lh;
+}
+
+html,
+body {
+    height: 100dvh;
+    overflow: hidden;
+}
+
+.app {
+    display: grid;
+    grid-template-rows: var(--header-height) 1fr;
+    height: 100dvh;
+}
+
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2ch;
+    background-color: var(--background0);
+    border-bottom: solid 2px var(--box-border-color);
+}
+
+.app-header h1 {
+    font-weight: var(--font-weight-bold);
+    color: var(--foreground0);
+}
+
+.app-header [is-~='kbd'] {
+    cursor: pointer;
+}
+
+.app-body {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) 1fr;
+    overflow: hidden;
+}
+
+.sidebar {
+    overflow-y: auto;
+    border-right: solid 2px var(--box-border-color);
+    padding: 1lh 2ch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--foreground2) var(--background0);
+}
+
+.sidebar h2 {
+    font-size: calc(var(--font-size) * 0.875);
+    text-transform: uppercase;
+    color: var(--foreground2);
+    margin: 1lh 0 0.5lh;
+    font-weight: var(--font-weight-bold);
+}
+
+.sidebar h2:first-child {
+    margin-top: 0;
+}
+
+.sidebar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar li::before {
+    content: '';
+}
+
+.sidebar a {
+    display: block;
+    padding: 0 1ch;
+    height: 1lh;
+    line-height: 1lh;
+    color: var(--foreground1);
+    text-decoration: none;
+}
+
+.sidebar a:hover,
+.sidebar a:focus-visible {
+    background-color: var(--background1);
+    color: var(--foreground0);
+    outline: none;
+}
+
+.sidebar a.active {
+    background-color: var(--foreground0);
+    color: var(--background0);
+}
+
+.content {
+    overflow-y: auto;
+    padding: 2lh 4ch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--foreground2) var(--background0);
+}
+
+.component {
+    display: none;
+    max-width: 96ch;
+}
+
+.component:target {
+    display: block;
+}
+
+/* Welcome shown when no component is targeted */
+.app-body:not(:has(.component:target)) #welcome {
+    display: block;
+}
+
+.component-header {
+    margin-bottom: 2lh;
+    padding-bottom: 1lh;
+    border-bottom: solid 1px var(--background2);
+}
+
+.component-header h1 {
+    font-size: calc(var(--font-size) * 1.5);
+    line-height: 2lh;
+    color: var(--foreground0);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 0.5lh;
+}
+
+.component-header p {
+    color: var(--foreground2);
+}
+
+.example {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5lh;
+    margin-bottom: 2lh;
+}
+
+.example-label {
+    color: var(--foreground2);
+    font-size: calc(var(--font-size) * 0.875);
+}
+
+.example-stage {
+    padding: 1lh 2ch;
+    background-color: var(--background1);
+    overflow: auto;
+}
+
+.example pre {
+    margin: 0;
+    font-size: calc(var(--font-size) * 0.875);
+    overflow-x: auto;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1ch 2ch;
+    align-items: center;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    gap: 1lh;
+}
+
+/* Highlight currently-selected sidebar link via :target on the section */
+.sidebar a {
+    transition: none;
+}
+
+/* Mobile */
+@media (max-width: 720px) {
+    :root {
+        --sidebar-width: 0;
+    }
+
+    .app-body {
+        grid-template-columns: 1fr;
+        position: relative;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: var(--header-height);
+        left: 0;
+        bottom: 0;
+        width: 24ch;
+        background-color: var(--background0);
+        z-index: 10;
+        transform: translateX(-100%);
+        transition: transform 0.2s ease;
+    }
+
+    body:has(#menu-toggle:checked) .sidebar {
+        transform: translateX(0);
+    }
+
+    .content {
+        padding: 1lh 1ch;
+    }
+}
+
+#menu-toggle {
+    display: none;
+}
+
+.menu-toggle-label {
+    display: none;
+    cursor: pointer;
+    user-select: none;
+}
+
+@media (max-width: 720px) {
+    .menu-toggle-label {
+        display: inline-block;
+    }
+}

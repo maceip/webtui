@@ -1,0 +1,24 @@
+@layer components {
+    [is-~='group'],
+    [is-~='radio-group'],
+    [is-~='checkbox-group'] {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5lh;
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: var(--line-height);
+
+        &[direction-='horizontal'] {
+            flex-direction: row;
+            align-items: center;
+            gap: 1ch;
+            flex-wrap: wrap;
+        }
+
+        & > [is-~='group-label'] {
+            font-weight: var(--font-weight-bold);
+            color: var(--foreground0);
+        }
+    }
+}

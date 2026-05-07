@@ -1,0 +1,69 @@
+@layer components {
+    @property --skeleton-duration {
+        syntax: '<time>';
+        inherits: true;
+        initial-value: 1s;
+    }
+
+    [is-~='skeleton'] {
+        --skeleton-color: var(--background1);
+        --skeleton-highlight: var(--background2);
+        --skeleton-chars: '░▒░';
+
+        display: inline-block;
+        width: 100%;
+        height: 1lh;
+        position: relative;
+        overflow: hidden;
+        color: transparent;
+        background-color: var(--skeleton-color);
+        background-image: linear-gradient(
+            90deg,
+            var(--skeleton-color) 0,
+            var(--skeleton-highlight) 50%,
+            var(--skeleton-color) 100%
+        );
+        background-size: 200% 100%;
+        animation: skeleton-shimmer var(--skeleton-duration) ease-in-out infinite;
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: var(--line-height);
+        user-select: none;
+
+        &[variant-='text'] {
+            height: 1lh;
+            width: 100%;
+        }
+
+        &[variant-='circle'] {
+            border-radius: 50%;
+            width: 3ch;
+            height: 3lh;
+        }
+
+        &[variant-='block'] {
+            height: 4lh;
+        }
+
+        &[size-='small'] {
+            height: 1lh;
+        }
+
+        &[size-='large'] {
+            height: 2lh;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            animation: none;
+        }
+    }
+
+    @keyframes skeleton-shimmer {
+        0% {
+            background-position: 200% 0;
+        }
+        100% {
+            background-position: -200% 0;
+        }
+    }
+}

@@ -1,0 +1,37 @@
+@layer components {
+    [is-~='frame'] {
+        --frame-color: var(--foreground0);
+        --frame-background: transparent;
+
+        display: block;
+        position: relative;
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: var(--line-height);
+        background-color: var(--frame-background);
+        color: var(--frame-color);
+        padding: 1lh 1ch;
+
+        & > [is-~='frame-title'] {
+            position: absolute;
+            top: 0;
+            left: 1ch;
+            transform: translateY(-50%);
+            background-color: var(--background0);
+            padding: 0 1ch;
+            font-weight: var(--font-weight-bold);
+            color: var(--foreground0);
+            line-height: 1lh;
+        }
+
+        & > [is-~='frame-title'][position-='end'] {
+            left: auto;
+            right: 1ch;
+        }
+
+        & > [is-~='frame-title'][position-='center'] {
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+}

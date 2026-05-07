@@ -1,0 +1,46 @@
+@layer components {
+    [is-~='toolbar'] {
+        display: inline-flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1ch;
+        padding: 0 1ch;
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: var(--line-height);
+        background-color: var(--background1);
+        min-height: 1lh;
+        container-type: inline-size;
+        container-name: toolbar;
+
+        & > [is-~='toolbar-separator'] {
+            width: 1px;
+            height: 1lh;
+            background-color: var(--background2);
+            margin: 0 0.5ch;
+        }
+
+        & > [is-~='toolbar-group'] {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5ch;
+        }
+
+        &[direction-='vertical'] {
+            flex-direction: column;
+            align-items: stretch;
+            height: auto;
+            padding: 1lh 0;
+
+            & > [is-~='toolbar-separator'] {
+                width: 100%;
+                height: 1px;
+                margin: 0.5lh 0;
+            }
+        }
+
+        &[size-='large'] {
+            height: 3lh;
+        }
+    }
+}

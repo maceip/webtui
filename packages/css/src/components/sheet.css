@@ -1,0 +1,42 @@
+@layer components {
+    /* Sheet leverages dialog component — variant-='sheet' is
+       defined in dialog.css. This file adds sheet-specific
+       sub-element styles. */
+    dialog[variant-='sheet'],
+    [popover][is-~='sheet'],
+    dialog[is-~='sheet'] {
+        --sheet-padding-x: 1ch;
+        --sheet-padding-y: 1lh;
+
+        & > [is-~='sheet-header'] {
+            padding: var(--sheet-padding-y) var(--sheet-padding-x);
+            border-bottom: solid 1px var(--background2);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5lh;
+        }
+
+        & > [is-~='sheet-title'] {
+            font-weight: var(--font-weight-bold);
+            color: var(--foreground0);
+        }
+
+        & > [is-~='sheet-description'] {
+            color: var(--foreground2);
+        }
+
+        & > [is-~='sheet-body'] {
+            flex: 1;
+            overflow-y: auto;
+            padding: var(--sheet-padding-y) var(--sheet-padding-x);
+        }
+
+        & > [is-~='sheet-footer'] {
+            padding: var(--sheet-padding-y) var(--sheet-padding-x);
+            border-top: solid 1px var(--background2);
+            display: flex;
+            gap: 1ch;
+            justify-content: flex-end;
+        }
+    }
+}

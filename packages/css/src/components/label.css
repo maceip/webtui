@@ -1,0 +1,25 @@
+@layer components {
+    label,
+    [is-~='label'] {
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: var(--line-height);
+        color: var(--foreground0);
+        cursor: pointer;
+        user-select: none;
+
+        &[size-='small'] {
+            font-size: calc(var(--font-size) * 0.875);
+        }
+
+        &[variant-='muted'] {
+            color: var(--foreground2);
+        }
+
+        &:has(:disabled) {
+            color: var(--foreground2);
+            text-decoration: line-through;
+            cursor: not-allowed;
+        }
+    }
+}
