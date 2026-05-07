@@ -53,13 +53,13 @@
         }
     }
 
-    /* Reduced motion — kill non-essential animations */
+    /* Reduced motion — shorten transitions but preserve loading
+       indicators (spinner, progress squiggle, skeleton shimmer,
+       water-meter wave, gauge sweep). Kill scroll-behavior. */
     @media (prefers-reduced-motion: reduce) {
         *,
         *::before,
         *::after {
-            animation-duration: 0.001s !important;
-            animation-iteration-count: 1 !important;
             transition-duration: 0.001s !important;
             scroll-behavior: auto !important;
         }
