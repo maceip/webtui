@@ -218,6 +218,198 @@ body {
     color: var(--foreground2);
 }
 
+/* htop gallery demo */
+.htop-app {
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+    line-height: var(--line-height);
+    color: var(--foreground0);
+    background: var(--background0);
+    border: solid 1px var(--background2);
+    overflow: hidden;
+}
+
+.htop-titlebar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5lh 2ch;
+    background: var(--background1);
+    border-bottom: solid 1px var(--background2);
+    color: var(--foreground0);
+    font-weight: var(--font-weight-bold);
+}
+
+.htop-titlebar i {
+    margin-right: 1ch;
+    color: var(--primary);
+}
+
+.htop-body {
+    display: grid;
+    grid-template-columns: 1fr minmax(28ch, 36ch);
+    gap: 2ch;
+    padding: 1lh 2ch;
+}
+
+.htop-section-label {
+    text-transform: uppercase;
+    color: var(--foreground2);
+    font-weight: var(--font-weight-bold);
+    font-size: calc(var(--font-size) * 0.75);
+    letter-spacing: 0.1ch;
+    margin-bottom: 0.5lh;
+}
+
+.htop-section,
+.htop-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4lh;
+}
+
+.htop-bar-row {
+    display: grid;
+    grid-template-columns: 4ch 1fr 12ch;
+    gap: 1ch;
+    align-items: center;
+    font-variant-numeric: tabular-nums;
+}
+
+.htop-bar-label {
+    color: var(--foreground2);
+    text-align: right;
+}
+
+.htop-bar-value {
+    color: var(--foreground1);
+    text-align: right;
+    font-size: calc(var(--font-size) * 0.875);
+}
+
+/* Tier colors driven by data-tier on the progress element */
+.htop-app [is-~='progress'] {
+    --progress-value-background: var(--success);
+    transition: --progress-value 0.6s ease;
+}
+
+.htop-app [is-~='progress'][data-tier='mid'] {
+    --progress-value-background: var(--warning);
+}
+
+.htop-app [is-~='progress'][data-tier='high'] {
+    --progress-value-background: var(--destructive);
+}
+
+.htop-stat-line {
+    display: flex;
+    align-items: baseline;
+    gap: 1ch;
+    flex-wrap: wrap;
+    color: var(--foreground1);
+}
+
+.htop-stat-line span {
+    color: var(--foreground2);
+}
+
+.htop-stat-line strong {
+    color: var(--foreground0);
+    font-weight: var(--font-weight-bold);
+    font-variant-numeric: tabular-nums;
+}
+
+.htop-table-wrap {
+    padding: 0 2ch 1lh;
+    overflow-x: auto;
+}
+
+.htop-table {
+    width: 100%;
+    border-spacing: 0;
+    font-variant-numeric: tabular-nums;
+}
+
+.htop-table thead tr {
+    background: var(--background1);
+}
+
+.htop-table th {
+    text-align: left;
+    padding: 0.25lh 1ch;
+    color: var(--foreground2);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    font-size: calc(var(--font-size) * 0.875);
+    letter-spacing: 0.05ch;
+    white-space: nowrap;
+}
+
+.htop-table th::before,
+.htop-table th::after,
+.htop-table td::before,
+.htop-table td::after {
+    display: none;
+}
+
+.htop-table td {
+    padding: 0.15lh 1ch;
+    color: var(--foreground1);
+    white-space: nowrap;
+}
+
+.htop-table tbody tr:nth-child(even) {
+    background: color-mix(in srgb, var(--background1) 50%, transparent);
+}
+
+.htop-table .htop-cpu {
+    color: var(--foreground0);
+    font-weight: var(--font-weight-bold);
+}
+
+.htop-table .htop-cpu-mid {
+    color: var(--warning);
+}
+
+.htop-table .htop-cpu-high {
+    color: var(--destructive);
+}
+
+.htop-fkeys {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    background: var(--background1);
+    border-top: solid 1px var(--background2);
+    padding: 0.25lh 0;
+}
+
+.htop-fkey {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5ch;
+    padding: 0.25lh 1ch;
+    color: var(--foreground2);
+    font-size: calc(var(--font-size) * 0.875);
+    border-right: solid 1px var(--background2);
+}
+
+.htop-fkey:last-child {
+    border-right: none;
+}
+
+.htop-fkey kbd {
+    padding: 0 0.5ch;
+    background: var(--background2);
+    color: var(--foreground0);
+}
+
+@media (max-width: 720px) {
+    .htop-body {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* Highlight currently-selected sidebar link via :target on the section */
 .sidebar a {
     transition: none;
