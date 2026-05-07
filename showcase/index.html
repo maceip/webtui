@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="./css/themes/dracula.css" />
         <link rel="stylesheet" href="./css/themes/synthwave.css" />
         <link rel="stylesheet" href="./css/themes/tokyo-night.css" />
+        <link rel="stylesheet" href="https://use.hugeicons.com/font/icons.css" />
         <link rel="stylesheet" href="./css/showcase.css" />
     </head>
     <body>
@@ -102,6 +103,7 @@
                     <ul>
                         <li><a href="#rounded">Rounded</a></li>
                         <li><a href="#elevation">Elevation</a></li>
+                        <li><a href="#icons">Icons</a></li>
                     </ul>
 
                     <h2>Navigation</h2>
@@ -947,6 +949,137 @@ $ webtui list
                                 <div box-="square" elevation-="5" style="padding: 1lh 2ch;">5</div>
                             </div>
                         </div>
+                    </section>
+
+                    <section id="icons" class="component">
+                        <div class="component-header">
+                            <h1>Icons</h1>
+                            <p>WebTUI ships without an icon set, but pairs cleanly with <a href="https://hugeicons.com/" target="_blank" rel="noopener">Hugeicons</a>. Add the stylesheet, then use any icon as <code>&lt;i class="hgi-stroke hgi-NAME"&gt;&lt;/i&gt;</code>. Inherits <code>color</code> and <code>font-size</code>.</p>
+                        </div>
+
+                        <div class="example">
+                            <div class="example-label">Setup</div>
+                            <div class="example-stage">
+                                <pre>&lt;link rel="stylesheet" href="https://use.hugeicons.com/font/icons.css"&gt;
+&lt;i class="hgi-stroke hgi-home-01"&gt;&lt;/i&gt;</pre>
+                            </div>
+                        </div>
+
+                        <div class="example">
+                            <div class="example-label">Variants — stroke / solid / twotone / duotone / sharp / bulk</div>
+                            <div class="example-stage row" style="gap: 3ch; font-size: 2rem; align-items: center;">
+                                <span class="icon-tile"><i class="hgi-stroke hgi-home-01"></i><span class="icon-tile-name">stroke</span></span>
+                                <span class="icon-tile"><i class="hgi-solid hgi-home-01"></i><span class="icon-tile-name">solid</span></span>
+                                <span class="icon-tile"><i class="hgi-twotone hgi-home-01"></i><span class="icon-tile-name">twotone</span></span>
+                                <span class="icon-tile"><i class="hgi-duotone hgi-home-01"></i><span class="icon-tile-name">duotone</span></span>
+                                <span class="icon-tile"><i class="hgi-sharp hgi-home-01"></i><span class="icon-tile-name">sharp</span></span>
+                                <span class="icon-tile"><i class="hgi-bulk hgi-home-01"></i><span class="icon-tile-name">bulk</span></span>
+                            </div>
+                        </div>
+
+                        <div class="example">
+                            <div class="example-label">Sizes — controlled by <code>font-size</code></div>
+                            <div class="example-stage row" style="gap: 2ch; align-items: center;">
+                                <i class="hgi-stroke hgi-search-01" style="font-size: 1rem"></i>
+                                <i class="hgi-stroke hgi-search-01" style="font-size: 1.5rem"></i>
+                                <i class="hgi-stroke hgi-search-01" style="font-size: 2rem"></i>
+                                <i class="hgi-stroke hgi-search-01" style="font-size: 3rem"></i>
+                                <i class="hgi-stroke hgi-search-01" style="font-size: 4rem"></i>
+                            </div>
+                        </div>
+
+                        <div class="example">
+                            <div class="example-label">Color — inherits <code>currentColor</code></div>
+                            <div class="example-stage row" style="gap: 2ch; font-size: 2rem; align-items: center;">
+                                <i class="hgi-stroke hgi-checkmark-circle-02" style="color: var(--success)"></i>
+                                <i class="hgi-stroke hgi-alert-circle" style="color: var(--warning)"></i>
+                                <i class="hgi-stroke hgi-cancel-circle" style="color: var(--destructive)"></i>
+                                <i class="hgi-stroke hgi-information-circle" style="color: var(--info)"></i>
+                                <i class="hgi-stroke hgi-magic-wand-01" style="color: var(--primary)"></i>
+                                <i class="hgi-stroke hgi-favourite" style="color: var(--accent)"></i>
+                            </div>
+                        </div>
+
+                        <div class="example">
+                            <div class="example-label">In WebTUI components</div>
+                            <div class="example-stage col">
+                                <div class="row">
+                                    <button variant-="primary"><i class="hgi-stroke hgi-rocket"></i> Launch</button>
+                                    <button variant-="success" shape-="rounded"><i class="hgi-stroke hgi-checkmark-circle-02"></i> Confirm</button>
+                                    <button variant-="destructive" shape-="rounded"><i class="hgi-stroke hgi-delete-02"></i> Delete</button>
+                                    <button stylize-="glow" shape-="rounded"><i class="hgi-stroke hgi-ai-magic"></i> Ask AI</button>
+                                </div>
+                                <div is-="alert" variant-="info">
+                                    <i class="hgi-stroke hgi-information-circle" style="font-size: 1.25rem; align-self: center;"></i>
+                                    <div>
+                                        <div is-="alert-title">Tip</div>
+                                        <div is-="alert-description">Pair Hugeicons with WebTUI for a polished terminal-style UI.</div>
+                                    </div>
+                                </div>
+                                <div is-="input-group">
+                                    <span is-="input-group-prefix"><i class="hgi-stroke hgi-search-01"></i></span>
+                                    <input type="search" placeholder="Search…" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="example">
+                            <div class="example-label">Sample icon set</div>
+                            <ul class="icon-grid example-stage">
+                                <li><i class="hgi-stroke hgi-home-01"></i><span>home-01</span></li>
+                                <li><i class="hgi-stroke hgi-search-01"></i><span>search-01</span></li>
+                                <li><i class="hgi-stroke hgi-settings-01"></i><span>settings-01</span></li>
+                                <li><i class="hgi-stroke hgi-user"></i><span>user</span></li>
+                                <li><i class="hgi-stroke hgi-dashboard-square-01"></i><span>dashboard-square-01</span></li>
+                                <li><i class="hgi-stroke hgi-folder-01"></i><span>folder-01</span></li>
+                                <li><i class="hgi-stroke hgi-file-01"></i><span>file-01</span></li>
+                                <li><i class="hgi-stroke hgi-download-01"></i><span>download-01</span></li>
+                                <li><i class="hgi-stroke hgi-upload-01"></i><span>upload-01</span></li>
+                                <li><i class="hgi-stroke hgi-edit-01"></i><span>edit-01</span></li>
+                                <li><i class="hgi-stroke hgi-delete-02"></i><span>delete-02</span></li>
+                                <li><i class="hgi-stroke hgi-copy-01"></i><span>copy-01</span></li>
+                                <li><i class="hgi-stroke hgi-floppy-disk"></i><span>floppy-disk</span></li>
+                                <li><i class="hgi-stroke hgi-mail-01"></i><span>mail-01</span></li>
+                                <li><i class="hgi-stroke hgi-message-01"></i><span>message-01</span></li>
+                                <li><i class="hgi-stroke hgi-notification-01"></i><span>notification-01</span></li>
+                                <li><i class="hgi-stroke hgi-play"></i><span>play</span></li>
+                                <li><i class="hgi-stroke hgi-pause"></i><span>pause</span></li>
+                                <li><i class="hgi-stroke hgi-stop"></i><span>stop</span></li>
+                                <li><i class="hgi-stroke hgi-arrow-up-01"></i><span>arrow-up-01</span></li>
+                                <li><i class="hgi-stroke hgi-arrow-down-01"></i><span>arrow-down-01</span></li>
+                                <li><i class="hgi-stroke hgi-arrow-left-01"></i><span>arrow-left-01</span></li>
+                                <li><i class="hgi-stroke hgi-arrow-right-01"></i><span>arrow-right-01</span></li>
+                                <li><i class="hgi-stroke hgi-menu-01"></i><span>menu-01</span></li>
+                                <li><i class="hgi-stroke hgi-cancel-01"></i><span>cancel-01</span></li>
+                                <li><i class="hgi-stroke hgi-tick-01"></i><span>tick-01</span></li>
+                                <li><i class="hgi-stroke hgi-checkmark-circle-02"></i><span>checkmark-circle-02</span></li>
+                                <li><i class="hgi-stroke hgi-alert-circle"></i><span>alert-circle</span></li>
+                                <li><i class="hgi-stroke hgi-information-circle"></i><span>information-circle</span></li>
+                                <li><i class="hgi-stroke hgi-cancel-circle"></i><span>cancel-circle</span></li>
+                                <li><i class="hgi-stroke hgi-favourite"></i><span>favourite</span></li>
+                                <li><i class="hgi-stroke hgi-star"></i><span>star</span></li>
+                                <li><i class="hgi-stroke hgi-bookmark-01"></i><span>bookmark-01</span></li>
+                                <li><i class="hgi-stroke hgi-share-01"></i><span>share-01</span></li>
+                                <li><i class="hgi-stroke hgi-link-01"></i><span>link-01</span></li>
+                                <li><i class="hgi-stroke hgi-calendar-01"></i><span>calendar-01</span></li>
+                                <li><i class="hgi-stroke hgi-clock-01"></i><span>clock-01</span></li>
+                                <li><i class="hgi-stroke hgi-image-01"></i><span>image-01</span></li>
+                                <li><i class="hgi-stroke hgi-camera-01"></i><span>camera-01</span></li>
+                                <li><i class="hgi-stroke hgi-microphone-01"></i><span>microphone-01</span></li>
+                                <li><i class="hgi-stroke hgi-volume-high"></i><span>volume-high</span></li>
+                                <li><i class="hgi-stroke hgi-eye"></i><span>eye</span></li>
+                                <li><i class="hgi-stroke hgi-view-off"></i><span>view-off</span></li>
+                                <li><i class="hgi-stroke hgi-moon-02"></i><span>moon-02</span></li>
+                                <li><i class="hgi-stroke hgi-sun-01"></i><span>sun-01</span></li>
+                                <li><i class="hgi-stroke hgi-rocket"></i><span>rocket</span></li>
+                                <li><i class="hgi-stroke hgi-magic-wand-01"></i><span>magic-wand-01</span></li>
+                                <li><i class="hgi-stroke hgi-ai-magic"></i><span>ai-magic</span></li>
+                            </ul>
+                        </div>
+
+                        <p is-="typography-block" style="margin-top: 1lh; color: var(--foreground2);">
+                            Browse the full set at <a href="https://hugeicons.com/icons" target="_blank" rel="noopener">hugeicons.com/icons</a>.
+                        </p>
                     </section>
 
                     <!-- NAVIGATION -->

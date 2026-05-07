@@ -170,6 +170,54 @@ body {
     align-items: center;
 }
 
+/* Hugeicons showcase — grid of icons with names */
+.icon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(14ch, 1fr));
+    gap: 1lh 1ch;
+    list-style: none;
+    margin: 0;
+    padding: 1lh 1ch;
+}
+
+.icon-grid > li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5lh;
+    padding: 0.5lh 0.5ch;
+    color: var(--foreground0);
+}
+
+.icon-grid > li::before {
+    content: '';
+}
+
+.icon-grid > li > i {
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.icon-grid > li > span {
+    font-size: 0.8rem;
+    color: var(--foreground2);
+    text-align: center;
+    word-break: break-word;
+    line-height: 1.2;
+}
+
+.icon-tile {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4lh;
+}
+
+.icon-tile-name {
+    font-size: 0.75rem;
+    color: var(--foreground2);
+}
+
 /* Highlight currently-selected sidebar link via :target on the section */
 .sidebar a {
     transition: none;
