@@ -154,9 +154,10 @@
             background-color: var(--mapped-primary);
         }
 
-        /* Shape — orthogonal to box- borders */
-        &[shape-='square'],
-        &:not([shape-]) {
+        /* Shape — orthogonal to box- borders. Don't reset
+           border-radius when no shape- is present, so the
+           [rounded-] utility can apply. */
+        &[shape-='square'] {
             border-radius: 0;
         }
 
