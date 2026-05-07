@@ -15,6 +15,7 @@
         --popover-backdrop-color: transparent;
 
         position: relative;
+        isolation: isolate;
 
         summary {
             &:focus {

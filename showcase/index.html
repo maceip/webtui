@@ -864,14 +864,17 @@ $ webtui list
                             <div class="example-label">Tri-zone gauge with needle</div>
                             <div class="example-stage row" style="gap: 4ch; padding: 2lh 2ch;">
                                 <div is-="gauge" style="--gauge-value: 25;">
+                                    <span is-="gauge-hub"></span>
                                     <span is-="gauge-value">25</span>
                                     <span is-="gauge-label">RPM × 1000</span>
                                 </div>
                                 <div is-="gauge" style="--gauge-value: 55;">
+                                    <span is-="gauge-hub"></span>
                                     <span is-="gauge-value">55</span>
                                     <span is-="gauge-label">CPU %</span>
                                 </div>
                                 <div is-="gauge" style="--gauge-value: 88;">
+                                    <span is-="gauge-hub"></span>
                                     <span is-="gauge-value">88</span>
                                     <span is-="gauge-label">Memory %</span>
                                 </div>
@@ -888,27 +891,27 @@ $ webtui list
                     </section>
 
                     <section id="water-meter" class="component">
-                        <div class="component-header"><h1>Water Meter</h1><p>Circular percentage meter with animated sine-wave waterline.</p></div>
+                        <div class="component-header"><h1>Water Meter</h1><p>Circular percentage meter with animated sine-wave waterline. Set <code>--water-value</code> on the container; the component drives wave position automatically.</p></div>
                         <div class="example">
                             <div class="example-stage row" style="gap: 4ch;">
                                 <div is-="water-meter" style="--water-value: 25;">
-                                    <svg viewBox="0 0 300 100" preserveAspectRatio="none" style="position: absolute; inset: 0; top: calc(75% - 20px); width: 300%; height: 100%; left: -100%;">
-                                        <path d="M0,20 Q25,5 50,20 T100,20 T150,20 T200,20 T250,20 T300,20 L300,100 L0,100 Z" />
-                                        <path d="M0,20 Q25,35 50,20 T100,20 T150,20 T200,20 T250,20 T300,20 L300,100 L0,100 Z" />
+                                    <svg viewBox="0 0 200 30" preserveAspectRatio="none">
+                                        <path d="M0,15 Q25,0 50,15 T100,15 T150,15 T200,15 L200,30 L0,30 Z" />
+                                        <path d="M0,15 Q25,30 50,15 T100,15 T150,15 T200,15 L200,30 L0,30 Z" />
                                     </svg>
                                     <div is-="water-value">25%</div>
                                 </div>
                                 <div is-="water-meter" variant-="info" style="--water-value: 65;">
-                                    <svg viewBox="0 0 300 100" preserveAspectRatio="none" style="position: absolute; inset: 0; top: calc(35% - 20px); width: 300%; height: 100%; left: -100%;">
-                                        <path d="M0,20 Q25,5 50,20 T100,20 T150,20 T200,20 T250,20 T300,20 L300,100 L0,100 Z" />
-                                        <path d="M0,20 Q25,35 50,20 T100,20 T150,20 T200,20 T250,20 T300,20 L300,100 L0,100 Z" />
+                                    <svg viewBox="0 0 200 30" preserveAspectRatio="none">
+                                        <path d="M0,15 Q25,0 50,15 T100,15 T150,15 T200,15 L200,30 L0,30 Z" />
+                                        <path d="M0,15 Q25,30 50,15 T100,15 T150,15 T200,15 L200,30 L0,30 Z" />
                                     </svg>
                                     <div is-="water-value">65%</div>
                                 </div>
                                 <div is-="water-meter" variant-="success" size-="large" style="--water-value: 88;">
-                                    <svg viewBox="0 0 300 100" preserveAspectRatio="none" style="position: absolute; inset: 0; top: calc(12% - 20px); width: 300%; height: 100%; left: -100%;">
-                                        <path d="M0,20 Q25,5 50,20 T100,20 T150,20 T200,20 T250,20 T300,20 L300,100 L0,100 Z" />
-                                        <path d="M0,20 Q25,35 50,20 T100,20 T150,20 T200,20 T250,20 T300,20 L300,100 L0,100 Z" />
+                                    <svg viewBox="0 0 200 30" preserveAspectRatio="none">
+                                        <path d="M0,15 Q25,0 50,15 T100,15 T150,15 T200,15 L200,30 L0,30 Z" />
+                                        <path d="M0,15 Q25,30 50,15 T100,15 T150,15 T200,15 L200,30 L0,30 Z" />
                                     </svg>
                                     <div is-="water-value">88%</div>
                                 </div>

@@ -56,6 +56,14 @@
         @media (prefers-reduced-motion: reduce) {
             animation: none;
         }
+
+        /* Pause hook — set play-state:paused on an ancestor or the
+           skeleton itself to halt off-screen instances. Useful with
+           IntersectionObserver: el.style.animationPlayState='paused'. */
+        &[paused-],
+        :where([paused-]) & {
+            animation-play-state: paused;
+        }
     }
 
     @keyframes skeleton-shimmer {

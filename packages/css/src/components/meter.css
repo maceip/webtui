@@ -49,12 +49,6 @@
 
     /* Squiggle mode — only the [is-~='meter'] div variant can be
        CSS-animated. Native <meter>'s value attribute can't be animated. */
-    @property --meter-wave {
-        syntax: '<number>';
-        inherits: false;
-        initial-value: 0;
-    }
-
     @property --meter-value {
         syntax: '<number>';
         inherits: true;

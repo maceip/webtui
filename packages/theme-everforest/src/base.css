@@ -135,5 +135,26 @@
         --foreground0: var(--fg);
         --foreground1: var(--gray2);
         --foreground2: var(--gray1);
+
+        /* Extended palette */
+        --primary: var(--green);
+        --primary-foreground: var(--bg0);
+        --accent: var(--aqua);
+        --accent-foreground: var(--bg0);
+        --destructive: var(--red);
+        --destructive-foreground: var(--fg);
+        --success: var(--green);
+        --warning: var(--yellow);
+        --info: var(--blue);
+
+        --chart-1: var(--green);
+        --chart-2: var(--orange);
+        --chart-3: var(--blue);
+        --chart-4: var(--yellow);
+        --chart-5: var(--purple);
+
+        --gauge-zone-1: var(--green);
+        --gauge-zone-2: var(--yellow);
+        --gauge-zone-3: var(--red);
     }
 }

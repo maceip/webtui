@@ -78,4 +78,27 @@
         --bg0: #ffffff;
         --background0: var(--bg0);
     }
+
+    [data-webtui-theme|='vitesse'] {
+        /* Extended palette */
+        --primary: var(--blue);
+        --primary-foreground: var(--bg0);
+        --accent: var(--purple);
+        --accent-foreground: var(--bg0);
+        --destructive: var(--red);
+        --destructive-foreground: var(--fg0);
+        --success: var(--green);
+        --warning: var(--yellow);
+        --info: var(--aqua);
+
+        --chart-1: var(--blue);
+        --chart-2: var(--red);
+        --chart-3: var(--green);
+        --chart-4: var(--orange);
+        --chart-5: var(--purple);
+
+        --gauge-zone-1: var(--green);
+        --gauge-zone-2: var(--yellow);
+        --gauge-zone-3: var(--red);
+    }
 }

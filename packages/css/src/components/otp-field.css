@@ -5,6 +5,18 @@
         initial-value: 6;
     }
 
+    @property --otp-cell {
+        syntax: '<length>';
+        inherits: true;
+        initial-value: 3ch;
+    }
+
+    @property --otp-pitch {
+        syntax: '<length>';
+        inherits: true;
+        initial-value: 4ch;
+    }
+
     input[is-='otp'],
     [is-~='otp-field'] > input {
         --otp-length: 6;

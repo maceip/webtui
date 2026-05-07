@@ -6,16 +6,6 @@
     [is-~='chart'],
     svg[is-~='chart'] {
         --chart-color: var(--chart-1, var(--accent, var(--foreground0)));
-        --chart-fill-start: color-mix(
-            in srgb,
-            var(--chart-color) 40%,
-            transparent
-        );
-        --chart-fill-end: color-mix(
-            in srgb,
-            var(--chart-color) 0%,
-            transparent
-        );
         --chart-grid: var(--background2);
         --chart-height: 12lh;
         --chart-width: 100%;
@@ -36,17 +26,13 @@
         overflow: visible;
     }
 
-    [is-~='chart'] path[is-~='chart-area'],
-    svg[is-~='chart'] path.chart-area,
-    [is-~='chart'] path.chart-area {
+    [is-~='chart'] .chart-area,
+    [is-~='chart'] [is-~='chart-area'] {
         fill: url(#chart-gradient);
     }
 
-    [is-~='chart'] polyline[is-~='chart-line'],
-    svg[is-~='chart'] polyline.chart-line,
-    [is-~='chart'] polyline.chart-line,
-    svg[is-~='chart'] path.chart-line,
-    [is-~='chart'] path.chart-line {
+    [is-~='chart'] .chart-line,
+    [is-~='chart'] [is-~='chart-line'] {
         fill: none;
         stroke: var(--chart-color);
         stroke-width: 2;
@@ -55,8 +41,8 @@
         vector-effect: non-scaling-stroke;
     }
 
-    [is-~='chart'] line[is-~='chart-grid'],
-    [is-~='chart'] line.chart-grid {
+    [is-~='chart'] .chart-grid,
+    [is-~='chart'] [is-~='chart-grid'] {
         stroke: var(--chart-grid);
         stroke-width: 1;
         stroke-dasharray: 2 2;
@@ -64,8 +50,8 @@
         opacity: 0.5;
     }
 
-    [is-~='chart'] circle[is-~='chart-point'],
-    [is-~='chart'] circle.chart-point {
+    [is-~='chart'] .chart-point,
+    [is-~='chart'] [is-~='chart-point'] {
         fill: var(--chart-color);
         stroke: var(--background0);
         stroke-width: 2;
@@ -79,21 +65,21 @@
     }
 
     /* Animated draw-in: stroke draws, gradient fades in */
-    [is-~='chart'][animate-='draw'] polyline,
-    [is-~='chart'][animate-='draw'] path.chart-line {
+    [is-~='chart'][animate-='draw'] .chart-line,
+    [is-~='chart'][animate-='draw'] [is-~='chart-line'] {
         stroke-dasharray: 2000;
         stroke-dashoffset: 2000;
         animation: chart-stroke 2s ease-out forwards;
     }
 
-    [is-~='chart'][animate-='draw'] path.chart-area,
-    [is-~='chart'][animate-='draw'] path[is-~='chart-area'] {
+    [is-~='chart'][animate-='draw'] .chart-area,
+    [is-~='chart'][animate-='draw'] [is-~='chart-area'] {
         opacity: 0;
         animation: chart-fade 2s ease-out 0.5s forwards;
     }
 
-    [is-~='chart'][animate-='draw'] circle.chart-point,
-    [is-~='chart'][animate-='draw'] circle[is-~='chart-point'] {
+    [is-~='chart'][animate-='draw'] .chart-point,
+    [is-~='chart'][animate-='draw'] [is-~='chart-point'] {
         opacity: 0;
         animation: chart-fade 0.4s ease-out forwards;
     }

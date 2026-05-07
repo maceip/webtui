@@ -1,10 +1,8 @@
 @layer components {
     /* Water-fill circular percentage meter.
-       Circle reveals fill from bottom up. Sine wave on the surface
-       animates horizontally. The numeric reading sits on top.
-
-       Implementation: SVG with a clipped <path> for the wave inside
-       a <circle>. CSS animates the wave's horizontal translate. */
+       The component CSS drives the wave height entirely from
+       --water-value. Authors set the value, optionally override
+       the variant color, and don't write inline positioning. */
 
     @property --water-value {
         syntax: '<number>';
@@ -14,9 +12,10 @@
 
     [is-~='water-meter'] {
         --water-value: 50;
-        --water-color: var(--accent, var(--info, #29b));
+        --water-color: var(--accent, var(--info, var(--foreground0)));
         --water-track: var(--background1);
-        --water-text: var(--foreground0);
+        --water-text-low: var(--foreground0);
+        --water-text-high: var(--background0);
         --water-size: 16ch;
         --water-wave-duration: 3s;
 
@@ -34,28 +33,46 @@
         isolation: isolate;
     }
 
-    [is-~='water-meter'] > svg {
+    /* Solid water bulk — fills bottom-up to var(--water-value)% */
+    [is-~='water-meter']::before {
+        content: '';
         position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: calc(var(--water-value) * 1%);
+        background-color: var(--water-color);
         z-index: 1;
     }
 
-    [is-~='water-meter'] > svg path,
-    [is-~='water-meter'] path[is-~='water-wave'] {
+    /* Wave SVG sits at the top edge of the water bulk.
+       Two stacked paths animate horizontally at different speeds
+       for the dual-wave effect. */
+    [is-~='water-meter'] > svg {
+        position: absolute;
+        left: -50%;
+        right: -50%;
+        width: 200%;
+        height: 1.5lh;
+        bottom: calc(var(--water-value) * 1% - 0.75lh);
+        z-index: 2;
+        overflow: visible;
+        pointer-events: none;
+    }
+
+    [is-~='water-meter'] > svg path {
         fill: var(--water-color);
         animation: water-wave var(--water-wave-duration) linear infinite;
     }
 
-    [is-~='water-meter'] > svg path:nth-of-type(2),
-    [is-~='water-meter'] path[is-~='water-wave-2'] {
-        fill: var(--water-color);
+    [is-~='water-meter'] > svg path:nth-of-type(2) {
         opacity: 0.5;
-        animation: water-wave var(--water-wave-duration) linear infinite reverse;
-        animation-duration: calc(var(--water-wave-duration) * 1.3);
+        animation: water-wave calc(var(--water-wave-duration) * 1.4) linear
+            infinite reverse;
     }
 
+    /* Numeric readout — uses tabular nums + theme-aware color
+       (no mix-blend-mode; predictable across themes) */
     [is-~='water-meter'] > [is-~='water-value'],
     [is-~='water-meter'] > .water-value {
         position: absolute;
@@ -63,12 +80,14 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        color: var(--water-text);
         font-weight: var(--font-weight-bold);
         font-size: calc(var(--water-size) * 0.18);
-        z-index: 2;
         font-variant-numeric: tabular-nums;
-        mix-blend-mode: difference;
+        z-index: 3;
+        color: var(--water-text-low);
+        text-shadow:
+            0 0 0.5ch var(--background0),
+            0 0 0.5ch var(--background0);
     }
 
     [is-~='water-meter'] > [is-~='water-label'] {
@@ -80,13 +99,6 @@
         font-size: calc(var(--font-size) * 0.75);
         z-index: 3;
         white-space: nowrap;
-    }
-
-    /* Border ring */
-    [is-~='water-meter'][box-]::before,
-    [is-~='water-meter'][bordered-] {
-        border: solid var(--box-border-width, 2px) var(--box-border-color);
-        border-radius: 50%;
     }
 
     /* Sizes */
@@ -114,6 +126,9 @@
     }
     [is-~='water-meter'][variant-='info'] {
         --water-color: var(--info);
+    }
+    [is-~='water-meter'][variant-='primary'] {
+        --water-color: var(--primary);
     }
 
     @keyframes water-wave {
