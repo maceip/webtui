@@ -1,0 +1,52 @@
+@layer base {
+    [data-webtui-theme='tokyo-night'] {
+        /* Tokyo Night palette */
+        --tn-bg: #1a1b26;
+        --tn-bg-elevated: #1f2335;
+        --tn-bg-mid: #292e42;
+        --tn-fg: #c0caf5;
+        --tn-fg-dim: #a9b1d6;
+        --tn-comment: #565f89;
+        --tn-blue: #7aa2f7;
+        --tn-cyan: #7dcfff;
+        --tn-purple: #bb9af7;
+        --tn-green: #9ece6a;
+        --tn-red: #f7768e;
+        --tn-orange: #ff9e64;
+        --tn-yellow: #e0af68;
+        --tn-magenta: #ad8ee6;
+        --tn-teal: #73daca;
+
+        --background0: var(--tn-bg);
+        --background1: var(--tn-bg-elevated);
+        --background2: var(--tn-bg-mid);
+        --background3: #3b4261;
+
+        --foreground0: var(--tn-fg);
+        --foreground1: var(--tn-fg-dim);
+        --foreground2: var(--tn-comment);
+
+        --box-border-color: #3b4261;
+
+        /* Extended palette */
+        --primary: var(--tn-blue);
+        --primary-foreground: var(--tn-bg);
+        --accent: var(--tn-purple);
+        --accent-foreground: var(--tn-bg);
+        --destructive: var(--tn-red);
+        --destructive-foreground: var(--tn-fg);
+        --success: var(--tn-green);
+        --warning: var(--tn-yellow);
+        --info: var(--tn-cyan);
+
+        --chart-1: var(--tn-blue);
+        --chart-2: var(--tn-red);
+        --chart-3: var(--tn-green);
+        --chart-4: var(--tn-orange);
+        --chart-5: var(--tn-purple);
+
+        --gauge-zone-1: var(--tn-green);
+        --gauge-zone-2: var(--tn-yellow);
+        --gauge-zone-3: var(--tn-red);
+    }
+}

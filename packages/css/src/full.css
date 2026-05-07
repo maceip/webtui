@@ -6,6 +6,7 @@
 
 /* Utilities */
 @import './utils/box.css';
+@import './utils/effects.css';
 @import './utils/responsive.css';
 
 /* Components */
@@ -78,3 +79,7 @@
 /* Data display */
 @import './components/pre.css';
 @import './components/table.css';
+@import './components/sparkline.css';
+@import './components/chart.css';
+@import './components/gauge.css';
+@import './components/water-meter.css';

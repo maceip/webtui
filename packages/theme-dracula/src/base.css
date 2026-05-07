@@ -1,0 +1,48 @@
+@layer base {
+    [data-webtui-theme='dracula'] {
+        /* Dracula palette */
+        --dracula-bg: #282a36;
+        --dracula-current: #44475a;
+        --dracula-fg: #f8f8f2;
+        --dracula-comment: #6272a4;
+        --dracula-cyan: #8be9fd;
+        --dracula-green: #50fa7b;
+        --dracula-orange: #ffb86c;
+        --dracula-pink: #ff79c6;
+        --dracula-purple: #bd93f9;
+        --dracula-red: #ff5555;
+        --dracula-yellow: #f1fa8c;
+
+        --background0: var(--dracula-bg);
+        --background1: var(--dracula-current);
+        --background2: #383a4a;
+        --background3: var(--dracula-comment);
+
+        --foreground0: var(--dracula-fg);
+        --foreground1: #e0e0d8;
+        --foreground2: var(--dracula-comment);
+
+        --box-border-color: #4a4d62;
+
+        /* Extended palette */
+        --primary: var(--dracula-purple);
+        --primary-foreground: var(--dracula-bg);
+        --accent: var(--dracula-pink);
+        --accent-foreground: var(--dracula-bg);
+        --destructive: var(--dracula-red);
+        --destructive-foreground: var(--dracula-fg);
+        --success: var(--dracula-green);
+        --warning: var(--dracula-yellow);
+        --info: var(--dracula-cyan);
+
+        --chart-1: var(--dracula-purple);
+        --chart-2: var(--dracula-pink);
+        --chart-3: var(--dracula-green);
+        --chart-4: var(--dracula-orange);
+        --chart-5: var(--dracula-cyan);
+
+        --gauge-zone-1: var(--dracula-green);
+        --gauge-zone-2: var(--dracula-yellow);
+        --gauge-zone-3: var(--dracula-red);
+    }
+}

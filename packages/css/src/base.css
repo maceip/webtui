@@ -9,6 +9,29 @@
         --foreground1: #444;
         --foreground2: #888;
 
+        /* Extended palette — overridden by themes */
+        --accent: var(--foreground0);
+        --accent-foreground: var(--background0);
+        --primary: var(--foreground0);
+        --primary-foreground: var(--background0);
+        --destructive: #c33;
+        --destructive-foreground: var(--background0);
+        --success: #2a8;
+        --warning: #d80;
+        --info: #28b;
+
+        /* Chart palette — for sparkline/chart/gauge components */
+        --chart-1: var(--foreground0);
+        --chart-2: var(--foreground1);
+        --chart-3: var(--foreground2);
+        --chart-4: var(--background3);
+        --chart-5: var(--background2);
+
+        /* Gauge zones */
+        --gauge-zone-1: var(--success, #2a8);
+        --gauge-zone-2: var(--warning, #d80);
+        --gauge-zone-3: var(--destructive, #c33);
+
         --font-size: 16px;
         --line-height: 1.3;
 
@@ -31,6 +54,11 @@
         --foreground0: #fff;
         --foreground1: #ccc;
         --foreground2: #999;
+
+        --destructive: #f55;
+        --success: #5e8;
+        --warning: #fa3;
+        --info: #5af;
     }
 
     body,

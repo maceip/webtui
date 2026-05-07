@@ -1,0 +1,142 @@
+@layer components {
+    /* Chart — gradient-under-curve line graph.
+       Renders inline SVG with two children: a <path> for the area
+       (gradient fill) and a <polyline> for the stroke on top. */
+
+    [is-~='chart'],
+    svg[is-~='chart'] {
+        --chart-color: var(--chart-1, var(--accent, var(--foreground0)));
+        --chart-fill-start: color-mix(
+            in srgb,
+            var(--chart-color) 40%,
+            transparent
+        );
+        --chart-fill-end: color-mix(
+            in srgb,
+            var(--chart-color) 0%,
+            transparent
+        );
+        --chart-grid: var(--background2);
+        --chart-height: 12lh;
+        --chart-width: 100%;
+
+        display: block;
+        height: var(--chart-height);
+        width: var(--chart-width);
+        max-width: 100%;
+        overflow: visible;
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+    }
+
+    [is-~='chart'] svg {
+        display: block;
+        height: 100%;
+        width: 100%;
+        overflow: visible;
+    }
+
+    [is-~='chart'] path[is-~='chart-area'],
+    svg[is-~='chart'] path.chart-area,
+    [is-~='chart'] path.chart-area {
+        fill: url(#chart-gradient);
+    }
+
+    [is-~='chart'] polyline[is-~='chart-line'],
+    svg[is-~='chart'] polyline.chart-line,
+    [is-~='chart'] polyline.chart-line,
+    svg[is-~='chart'] path.chart-line,
+    [is-~='chart'] path.chart-line {
+        fill: none;
+        stroke: var(--chart-color);
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        vector-effect: non-scaling-stroke;
+    }
+
+    [is-~='chart'] line[is-~='chart-grid'],
+    [is-~='chart'] line.chart-grid {
+        stroke: var(--chart-grid);
+        stroke-width: 1;
+        stroke-dasharray: 2 2;
+        vector-effect: non-scaling-stroke;
+        opacity: 0.5;
+    }
+
+    [is-~='chart'] circle[is-~='chart-point'],
+    [is-~='chart'] circle.chart-point {
+        fill: var(--chart-color);
+        stroke: var(--background0);
+        stroke-width: 2;
+        vector-effect: non-scaling-stroke;
+    }
+
+    [is-~='chart'] text {
+        font-family: inherit;
+        font-size: 11px;
+        fill: var(--foreground2);
+    }
+
+    /* Animated draw-in: stroke draws, gradient fades in */
+    [is-~='chart'][animate-='draw'] polyline,
+    [is-~='chart'][animate-='draw'] path.chart-line {
+        stroke-dasharray: 2000;
+        stroke-dashoffset: 2000;
+        animation: chart-stroke 2s ease-out forwards;
+    }
+
+    [is-~='chart'][animate-='draw'] path.chart-area,
+    [is-~='chart'][animate-='draw'] path[is-~='chart-area'] {
+        opacity: 0;
+        animation: chart-fade 2s ease-out 0.5s forwards;
+    }
+
+    [is-~='chart'][animate-='draw'] circle.chart-point,
+    [is-~='chart'][animate-='draw'] circle[is-~='chart-point'] {
+        opacity: 0;
+        animation: chart-fade 0.4s ease-out forwards;
+    }
+
+    [is-~='chart'][animate-='draw'] circle:nth-of-type(1) {
+        animation-delay: 1.4s;
+    }
+    [is-~='chart'][animate-='draw'] circle:nth-of-type(2) {
+        animation-delay: 1.55s;
+    }
+    [is-~='chart'][animate-='draw'] circle:nth-of-type(3) {
+        animation-delay: 1.7s;
+    }
+    [is-~='chart'][animate-='draw'] circle:nth-of-type(4) {
+        animation-delay: 1.85s;
+    }
+    [is-~='chart'][animate-='draw'] circle:nth-of-type(n + 5) {
+        animation-delay: 2s;
+    }
+
+    @keyframes chart-stroke {
+        to {
+            stroke-dashoffset: 0;
+        }
+    }
+
+    @keyframes chart-fade {
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* Variant colors */
+    [is-~='chart'][variant-='success'] {
+        --chart-color: var(--success);
+    }
+    [is-~='chart'][variant-='warning'] {
+        --chart-color: var(--warning);
+    }
+    [is-~='chart'][variant-='danger'] {
+        --chart-color: var(--destructive);
+    }
+    [is-~='chart'][variant-='info'] {
+        --chart-color: var(--info);
+    }
+}

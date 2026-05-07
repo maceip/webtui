@@ -1,4 +1,28 @@
 @layer base {
+    [data-webtui-theme|='gruvbox-dark'],
+    [data-webtui-theme='gruvbox'] {
+        /* Extended palette */
+        --primary: var(--gb-green, #b8bb26);
+        --primary-foreground: var(--gb-dark-bg0, #282828);
+        --accent: var(--gb-yellow, #fabd2f);
+        --accent-foreground: var(--gb-dark-bg0, #282828);
+        --destructive: var(--gb-red, #fb4934);
+        --destructive-foreground: var(--gb-dark-fg1, #ebdbb2);
+        --success: var(--gb-green, #b8bb26);
+        --warning: var(--gb-yellow, #fabd2f);
+        --info: var(--gb-blue, #83a598);
+
+        --chart-1: var(--gb-green, #b8bb26);
+        --chart-2: var(--gb-orange, #fe8019);
+        --chart-3: var(--gb-aqua, #8ec07c);
+        --chart-4: var(--gb-yellow, #fabd2f);
+        --chart-5: var(--gb-purple, #d3869b);
+
+        --gauge-zone-1: var(--gb-green, #b8bb26);
+        --gauge-zone-2: var(--gb-yellow, #fabd2f);
+        --gauge-zone-3: var(--gb-red, #fb4934);
+    }
+
     [data-webtui-theme|='gruvbox-dark'] {
         --gb-dark-bg1: #3c3836;
         --gb-dark-bg2: #504945;

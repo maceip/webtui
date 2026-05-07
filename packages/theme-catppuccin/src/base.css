@@ -125,5 +125,26 @@
         --foreground0: var(--text);
         --foreground1: var(--subtext1);
         --foreground2: var(--overlay2);
+
+        /* Extended palette */
+        --primary: var(--mauve);
+        --primary-foreground: var(--base);
+        --accent: var(--mauve);
+        --accent-foreground: var(--base);
+        --destructive: var(--red);
+        --destructive-foreground: var(--text);
+        --success: var(--green);
+        --warning: var(--yellow);
+        --info: var(--sky);
+
+        --chart-1: var(--mauve);
+        --chart-2: var(--red);
+        --chart-3: var(--green);
+        --chart-4: var(--peach);
+        --chart-5: var(--blue);
+
+        --gauge-zone-1: var(--green);
+        --gauge-zone-2: var(--yellow);
+        --gauge-zone-3: var(--red);
     }
 }

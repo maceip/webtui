@@ -34,15 +34,21 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      - name: Build @webtui/css
-        run: bun run --filter @webtui/css build
+      - name: Build all packages
+        run: bun run build
 
       - name: Assemble showcase artifact
         run: |
-          mkdir -p _site
+          mkdir -p _site/css/themes
           cp -r showcase/. _site/
           cp packages/css/dist/full.css _site/css/webtui.css
-          ls -la _site _site/css
+          cp packages/theme-nord/dist/index.css _site/css/themes/nord.css
+          cp packages/theme-gruvbox/dist/index.css _site/css/themes/gruvbox.css
+          cp packages/theme-catppuccin/dist/index.css _site/css/themes/catppuccin.css
+          cp packages/theme-dracula/dist/index.css _site/css/themes/dracula.css
+          cp packages/theme-synthwave/dist/index.css _site/css/themes/synthwave.css
+          cp packages/theme-tokyo-night/dist/index.css _site/css/themes/tokyo-night.css
+          ls -la _site _site/css _site/css/themes
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

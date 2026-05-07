@@ -32,5 +32,38 @@
         --foreground0: var(--nord6);
         --foreground1: var(--nord5);
         --foreground2: var(--nord4);
+
+        /* Extended palette (HSL triplets for hsl() composition) */
+        --theme-primary: 193 44% 67%;
+        --theme-accent: 193 44% 67%;
+        --theme-destructive: 355 52% 65%;
+        --theme-success: 92 28% 65%;
+        --theme-warning: 40 71% 73%;
+        --theme-info: 210 34% 63%;
+        --theme-chart-1: 193 44% 67%;
+        --theme-chart-2: 326 100% 74%;
+        --theme-chart-3: 92 28% 65%;
+        --theme-chart-4: 36 100% 60%;
+        --theme-chart-5: 270 80% 72%;
+
+        --primary: var(--nord8);
+        --primary-foreground: var(--nord0);
+        --accent: var(--nord8);
+        --accent-foreground: var(--nord0);
+        --destructive: var(--nord11);
+        --destructive-foreground: var(--nord6);
+        --success: var(--nord14);
+        --warning: var(--nord13);
+        --info: var(--nord9);
+
+        --chart-1: var(--nord8);
+        --chart-2: var(--nord15);
+        --chart-3: var(--nord14);
+        --chart-4: var(--nord12);
+        --chart-5: var(--nord10);
+
+        --gauge-zone-1: var(--nord14);
+        --gauge-zone-2: var(--nord13);
+        --gauge-zone-3: var(--nord11);
     }
 }

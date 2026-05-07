@@ -1,0 +1,50 @@
+@layer base {
+    [data-webtui-theme='synthwave'] {
+        /* Synthwave '84 palette */
+        --sw-bg: #241b2f;
+        --sw-bg-elevated: #2a2139;
+        --sw-bg-mid: #34294f;
+        --sw-fg: #f8f8f2;
+        --sw-pink: #ff7edb;
+        --sw-pink-hot: #fc28a8;
+        --sw-cyan: #36f9f6;
+        --sw-purple: #b893ce;
+        --sw-yellow: #fede5d;
+        --sw-orange: #ff8b39;
+        --sw-red: #fe4450;
+        --sw-green: #72f1b8;
+        --sw-blue: #6e7adb;
+
+        --background0: var(--sw-bg);
+        --background1: var(--sw-bg-elevated);
+        --background2: var(--sw-bg-mid);
+        --background3: #463a5e;
+
+        --foreground0: var(--sw-fg);
+        --foreground1: #e3dfee;
+        --foreground2: #8a7fa8;
+
+        --box-border-color: var(--sw-pink);
+
+        /* Extended palette */
+        --primary: var(--sw-pink);
+        --primary-foreground: var(--sw-bg);
+        --accent: var(--sw-cyan);
+        --accent-foreground: var(--sw-bg);
+        --destructive: var(--sw-red);
+        --destructive-foreground: var(--sw-fg);
+        --success: var(--sw-green);
+        --warning: var(--sw-yellow);
+        --info: var(--sw-cyan);
+
+        --chart-1: var(--sw-pink);
+        --chart-2: var(--sw-cyan);
+        --chart-3: var(--sw-yellow);
+        --chart-4: var(--sw-purple);
+        --chart-5: var(--sw-red);
+
+        --gauge-zone-1: var(--sw-green);
+        --gauge-zone-2: var(--sw-yellow);
+        --gauge-zone-3: var(--sw-red);
+    }
+}

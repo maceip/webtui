@@ -39,6 +39,13 @@
         "vite": "^6.2.0",
       },
     },
+    "packages/theme-dracula": {
+      "name": "@webtui/theme-dracula",
+      "version": "0.0.1",
+      "devDependencies": {
+        "vite": "^6.2.0",
+      },
+    },
     "packages/theme-everforest": {
       "name": "@webtui/theme-everforest",
       "version": "0.0.4",
@@ -56,6 +63,20 @@
     "packages/theme-nord": {
       "name": "@webtui/theme-nord",
       "version": "0.0.3",
+      "devDependencies": {
+        "vite": "^6.2.0",
+      },
+    },
+    "packages/theme-synthwave": {
+      "name": "@webtui/theme-synthwave",
+      "version": "0.0.1",
+      "devDependencies": {
+        "vite": "^6.2.0",
+      },
+    },
+    "packages/theme-tokyo-night": {
+      "name": "@webtui/theme-tokyo-night",
+      "version": "0.0.1",
       "devDependencies": {
         "vite": "^6.2.0",
       },
@@ -370,11 +391,17 @@
 
     "@webtui/theme-catppuccin": ["@webtui/theme-catppuccin@workspace:packages/theme-catppuccin"],
 
+    "@webtui/theme-dracula": ["@webtui/theme-dracula@workspace:packages/theme-dracula"],
+
     "@webtui/theme-everforest": ["@webtui/theme-everforest@workspace:packages/theme-everforest"],
 
     "@webtui/theme-gruvbox": ["@webtui/theme-gruvbox@workspace:packages/theme-gruvbox"],
 
     "@webtui/theme-nord": ["@webtui/theme-nord@workspace:packages/theme-nord"],
+
+    "@webtui/theme-synthwave": ["@webtui/theme-synthwave@workspace:packages/theme-synthwave"],
+
+    "@webtui/theme-tokyo-night": ["@webtui/theme-tokyo-night@workspace:packages/theme-tokyo-night"],
 
     "@webtui/theme-vitesse": ["@webtui/theme-vitesse@workspace:packages/theme-vitesse"],
 

@@ -1,0 +1,93 @@
+@layer utils {
+    @property --rounded-radius {
+        syntax: '<length>';
+        inherits: false;
+        initial-value: 0;
+    }
+
+    @property --elevation-shadow-color {
+        syntax: '<color>';
+        inherits: true;
+        initial-value: rgba(0, 0, 0, 0.5);
+    }
+
+    /* Rounded corners — opt-in via [rounded-] */
+    [rounded-='small'],
+    [rounded-='sm'] {
+        --rounded-radius: 2px;
+        border-radius: var(--rounded-radius);
+
+        &[box-]::before,
+        &[box-]::after {
+            border-radius: var(--rounded-radius);
+        }
+    }
+
+    [rounded-='default'],
+    [rounded-=''],
+    [rounded-='md'] {
+        --rounded-radius: 4px;
+        border-radius: var(--rounded-radius);
+
+        &[box-]::before,
+        &[box-]::after {
+            border-radius: var(--rounded-radius);
+        }
+    }
+
+    [rounded-='large'],
+    [rounded-='lg'] {
+        --rounded-radius: 8px;
+        border-radius: var(--rounded-radius);
+
+        &[box-]::before,
+        &[box-]::after {
+            border-radius: var(--rounded-radius);
+        }
+    }
+
+    [rounded-='full'] {
+        --rounded-radius: 9999px;
+        border-radius: var(--rounded-radius);
+
+        &[box-]::before,
+        &[box-]::after {
+            border-radius: var(--rounded-radius);
+        }
+    }
+
+    /* Elevation — subtle shadow depths. Terminal aesthetic favors
+       restraint, so even the highest is gentle. */
+    [elevation-='1'] {
+        box-shadow: 0 1px 0 0 var(--elevation-shadow-color);
+    }
+
+    [elevation-='2'] {
+        box-shadow:
+            0 1px 2px 0 var(--elevation-shadow-color),
+            0 1px 0 0 var(--elevation-shadow-color);
+    }
+
+    [elevation-='3'] {
+        box-shadow:
+            0 2px 4px 0 var(--elevation-shadow-color),
+            0 1px 2px 0 var(--elevation-shadow-color);
+    }
+
+    [elevation-='4'] {
+        box-shadow:
+            0 4px 8px 0 var(--elevation-shadow-color),
+            0 2px 4px 0 var(--elevation-shadow-color);
+    }
+
+    [elevation-='5'] {
+        box-shadow:
+            0 8px 16px 0 var(--elevation-shadow-color),
+            0 4px 8px 0 var(--elevation-shadow-color);
+    }
+
+    /* Light theme: lighter shadows */
+    [data-webtui-theme='light'] {
+        --elevation-shadow-color: rgba(0, 0, 0, 0.12);
+    }
+}

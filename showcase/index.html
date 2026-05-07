@@ -5,6 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <title>WebTUI Showcase</title>
         <link rel="stylesheet" href="./css/webtui.css" />
+        <link rel="stylesheet" href="./css/themes/nord.css" />
+        <link rel="stylesheet" href="./css/themes/gruvbox.css" />
+        <link rel="stylesheet" href="./css/themes/catppuccin.css" />
+        <link rel="stylesheet" href="./css/themes/dracula.css" />
+        <link rel="stylesheet" href="./css/themes/synthwave.css" />
+        <link rel="stylesheet" href="./css/themes/tokyo-night.css" />
         <link rel="stylesheet" href="./css/showcase.css" />
     </head>
     <body>
@@ -17,8 +23,17 @@
                     <h1>WebTUI Showcase</h1>
                 </div>
                 <div class="row">
-                    <a href="https://github.com/webtui/webtui" target="_blank" rel="noopener">GitHub</a>
-                    <button onclick="document.documentElement.dataset.webtuiTheme = document.documentElement.dataset.webtuiTheme === 'dark' ? 'light' : 'dark'" size-="small">Toggle theme</button>
+                    <a href="https://github.com/maceip/webtui" target="_blank" rel="noopener">GitHub</a>
+                    <select id="theme-picker" aria-label="Theme">
+                        <option value="dark">Default Dark</option>
+                        <option value="light">Default Light</option>
+                        <option value="nord">Nord</option>
+                        <option value="dracula">Dracula</option>
+                        <option value="synthwave">Synthwave '84</option>
+                        <option value="gruvbox">Gruvbox</option>
+                        <option value="tokyo-night">Tokyo Night</option>
+                        <option value="catppuccin">Catppuccin</option>
+                    </select>
                 </div>
             </header>
 
@@ -73,6 +88,20 @@
                         <li><a href="#spinner">Spinner</a></li>
                         <li><a href="#pre">Pre</a></li>
                         <li><a href="#table">Table</a></li>
+                    </ul>
+
+                    <h2>Visualization</h2>
+                    <ul>
+                        <li><a href="#sparkline">Sparkline</a></li>
+                        <li><a href="#chart">Chart</a></li>
+                        <li><a href="#gauge">Gauge</a></li>
+                        <li><a href="#water-meter">Water Meter</a></li>
+                    </ul>
+
+                    <h2>Utilities</h2>
+                    <ul>
+                        <li><a href="#rounded">Rounded</a></li>
+                        <li><a href="#elevation">Elevation</a></li>
                     </ul>
 
                     <h2>Navigation</h2>
@@ -691,6 +720,184 @@ $ webtui list
                         </div>
                     </section>
 
+                    <!-- VISUALIZATION -->
+                    <section id="sparkline" class="component">
+                        <div class="component-header"><h1>Sparkline</h1><p>Compact inline data viz. Bar variant uses CSS-only with <code>--v</code> per child. Line variant accepts inline SVG.</p></div>
+                        <div class="example">
+                            <div class="example-label">Bar variant (with animate-="draw")</div>
+                            <div class="example-stage row" style="gap: 4ch;">
+                                <div is-="sparkline" variant-="bar" animate-="draw">
+                                    <i style="--v: 30"></i>
+                                    <i style="--v: 50"></i>
+                                    <i style="--v: 80"></i>
+                                    <i style="--v: 60"></i>
+                                    <i style="--v: 90"></i>
+                                    <i style="--v: 45"></i>
+                                    <i style="--v: 70"></i>
+                                    <i style="--v: 95"></i>
+                                </div>
+                                <div is-="sparkline" variant-="bar" size-="small">
+                                    <i style="--v: 60"></i>
+                                    <i style="--v: 80"></i>
+                                    <i style="--v: 40"></i>
+                                    <i style="--v: 70"></i>
+                                    <i style="--v: 100"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="example">
+                            <div class="example-label">Line variant (SVG, animate-="draw")</div>
+                            <div class="example-stage">
+                                <svg is-="sparkline" variant-="line" animate-="draw" viewBox="0 0 100 30" preserveAspectRatio="none" style="width: 32ch; height: 2lh;">
+                                    <polyline points="0,20 10,15 20,18 30,10 40,12 50,5 60,8 70,3 80,6 90,2 100,4" />
+                                    <circle cx="100" cy="4" r="2" />
+                                </svg>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="chart" class="component">
+                        <div class="component-header"><h1>Chart</h1><p>Animated gradient-under-curve line graph using inline SVG. Use <code>animate-="draw"</code> to draw the line in.</p></div>
+                        <div class="example">
+                            <div class="example-label">Gradient under curve</div>
+                            <div class="example-stage">
+                                <div is-="chart" animate-="draw" style="height: 12lh;">
+                                    <svg viewBox="0 0 600 200" preserveAspectRatio="none">
+                                        <defs>
+                                            <linearGradient id="chart-gradient" x1="0" y1="0" x2="0" y2="1">
+                                                <stop offset="0" style="stop-color: var(--chart-color); stop-opacity: 0.4" />
+                                                <stop offset="1" style="stop-color: var(--chart-color); stop-opacity: 0" />
+                                            </linearGradient>
+                                        </defs>
+                                        <line class="chart-grid" x1="0" y1="50" x2="600" y2="50" />
+                                        <line class="chart-grid" x1="0" y1="100" x2="600" y2="100" />
+                                        <line class="chart-grid" x1="0" y1="150" x2="600" y2="150" />
+                                        <path class="chart-area" d="M0,180 L0,120 L60,140 L120,90 L180,110 L240,60 L300,80 L360,40 L420,70 L480,30 L540,50 L600,20 L600,200 Z" />
+                                        <polyline class="chart-line" points="0,120 60,140 120,90 180,110 240,60 300,80 360,40 420,70 480,30 540,50 600,20" />
+                                        <circle class="chart-point" cx="60" cy="140" r="4" />
+                                        <circle class="chart-point" cx="180" cy="110" r="4" />
+                                        <circle class="chart-point" cx="300" cy="80" r="4" />
+                                        <circle class="chart-point" cx="420" cy="70" r="4" />
+                                        <circle class="chart-point" cx="540" cy="50" r="4" />
+                                        <circle class="chart-point" cx="600" cy="20" r="4" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="example">
+                            <div class="example-label">Variants — success / warning / danger</div>
+                            <div class="example-stage col">
+                                <div is-="chart" variant-="success" animate-="draw" style="height: 6lh;">
+                                    <svg viewBox="0 0 400 100" preserveAspectRatio="none">
+                                        <defs><linearGradient id="cg-success" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color: var(--chart-color); stop-opacity: 0.4" /><stop offset="1" style="stop-color: var(--chart-color); stop-opacity: 0" /></linearGradient></defs>
+                                        <path class="chart-area" style="fill: url(#cg-success)" d="M0,100 L0,80 L80,60 L160,30 L240,40 L320,15 L400,5 L400,100 Z" />
+                                        <polyline class="chart-line" points="0,80 80,60 160,30 240,40 320,15 400,5" />
+                                    </svg>
+                                </div>
+                                <div is-="chart" variant-="danger" animate-="draw" style="height: 6lh;">
+                                    <svg viewBox="0 0 400 100" preserveAspectRatio="none">
+                                        <defs><linearGradient id="cg-danger" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color: var(--chart-color); stop-opacity: 0.4" /><stop offset="1" style="stop-color: var(--chart-color); stop-opacity: 0" /></linearGradient></defs>
+                                        <path class="chart-area" style="fill: url(#cg-danger)" d="M0,100 L0,30 L80,40 L160,55 L240,45 L320,70 L400,85 L400,100 Z" />
+                                        <polyline class="chart-line" points="0,30 80,40 160,55 240,45 320,70 400,85" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="gauge" class="component">
+                        <div class="component-header"><h1>Gauge</h1><p>Tachometer-style gauge with tri-color zones. Set <code>--gauge-value</code>, <code>--gauge-low</code>, <code>--gauge-high</code> via inline style.</p></div>
+                        <div class="example">
+                            <div class="example-label">Tri-zone gauge with needle</div>
+                            <div class="example-stage row" style="gap: 4ch; padding: 2lh 2ch;">
+                                <div is-="gauge" style="--gauge-value: 25;">
+                                    <span is-="gauge-value">25</span>
+                                    <span is-="gauge-label">RPM × 1000</span>
+                                </div>
+                                <div is-="gauge" style="--gauge-value: 55;">
+                                    <span is-="gauge-value">55</span>
+                                    <span is-="gauge-label">CPU %</span>
+                                </div>
+                                <div is-="gauge" style="--gauge-value: 88;">
+                                    <span is-="gauge-value">88</span>
+                                    <span is-="gauge-label">Memory %</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="example">
+                            <div class="example-label">Sizes (small / default / large)</div>
+                            <div class="example-stage row" style="gap: 4ch; align-items: flex-end; padding: 2lh 2ch;">
+                                <div is-="gauge" size-="small" style="--gauge-value: 60;"></div>
+                                <div is-="gauge" style="--gauge-value: 60;"></div>
+                                <div is-="gauge" size-="large" style="--gauge-value: 60;"></div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="water-meter" class="component">
+                        <div class="component-header"><h1>Water Meter</h1><p>Circular percentage meter with animated sine-wave waterline.</p></div>
+                        <div class="example">
+                            <div class="example-stage row" style="gap: 4ch;">
+                                <div is-="water-meter" style="--water-value: 25;">
+                                    <svg viewBox="0 0 300 100" preserveAspectRatio="none" style="position: absolute; inset: 0; top: calc(75% - 20px); width: 300%; height: 100%; left: -100%;">
+                                        <path d="M0,20 Q25,5 50,20 T100,20 T150,20 T200,20 T250,20 T300,20 L300,100 L0,100 Z" />
+                                        <path d="M0,20 Q25,35 50,20 T100,20 T150,20 T200,20 T250,20 T300,20 L300,100 L0,100 Z" />
+                                    </svg>
+                                    <div is-="water-value">25%</div>
+                                </div>
+                                <div is-="water-meter" variant-="info" style="--water-value: 65;">
+                                    <svg viewBox="0 0 300 100" preserveAspectRatio="none" style="position: absolute; inset: 0; top: calc(35% - 20px); width: 300%; height: 100%; left: -100%;">
+                                        <path d="M0,20 Q25,5 50,20 T100,20 T150,20 T200,20 T250,20 T300,20 L300,100 L0,100 Z" />
+                                        <path d="M0,20 Q25,35 50,20 T100,20 T150,20 T200,20 T250,20 T300,20 L300,100 L0,100 Z" />
+                                    </svg>
+                                    <div is-="water-value">65%</div>
+                                </div>
+                                <div is-="water-meter" variant-="success" size-="large" style="--water-value: 88;">
+                                    <svg viewBox="0 0 300 100" preserveAspectRatio="none" style="position: absolute; inset: 0; top: calc(12% - 20px); width: 300%; height: 100%; left: -100%;">
+                                        <path d="M0,20 Q25,5 50,20 T100,20 T150,20 T200,20 T250,20 T300,20 L300,100 L0,100 Z" />
+                                        <path d="M0,20 Q25,35 50,20 T100,20 T150,20 T200,20 T250,20 T300,20 L300,100 L0,100 Z" />
+                                    </svg>
+                                    <div is-="water-value">88%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- UTILITIES -->
+                    <section id="rounded" class="component">
+                        <div class="component-header"><h1>Rounded</h1><p>Universal <code>[rounded-]</code> attribute for any element. Values: <code>small</code>, <code>default</code>, <code>large</code>, <code>full</code>.</p></div>
+                        <div class="example">
+                            <div class="example-stage row">
+                                <button>flat</button>
+                                <button rounded-="small">small</button>
+                                <button rounded-="default">default</button>
+                                <button rounded-="large">large</button>
+                                <button rounded-="full">full</button>
+                            </div>
+                        </div>
+                        <div class="example">
+                            <div class="example-label">Works on any element</div>
+                            <div class="example-stage row">
+                                <span is-="badge" rounded-="full">rounded badge</span>
+                                <span is-="avatar" rounded-="full">A</span>
+                                <input rounded-="default" placeholder="rounded input" />
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="elevation" class="component">
+                        <div class="component-header"><h1>Elevation</h1><p>Universal <code>[elevation-]</code> attribute. Values: <code>1</code>–<code>5</code>. Subtle by default — terminal aesthetic.</p></div>
+                        <div class="example">
+                            <div class="example-stage row" style="gap: 3ch;">
+                                <div box-="square" elevation-="1" style="padding: 1lh 2ch;">1</div>
+                                <div box-="square" elevation-="2" style="padding: 1lh 2ch;">2</div>
+                                <div box-="square" elevation-="3" style="padding: 1lh 2ch;">3</div>
+                                <div box-="square" elevation-="4" style="padding: 1lh 2ch;">4</div>
+                                <div box-="square" elevation-="5" style="padding: 1lh 2ch;">5</div>
+                            </div>
+                        </div>
+                    </section>
+
                     <!-- NAVIGATION -->
                     <section id="breadcrumb" class="component">
                         <div class="component-header"><h1>Breadcrumb</h1><p>Hierarchical path navigation.</p></div>
@@ -1026,6 +1233,18 @@ $ webtui list
 
                 window.addEventListener('hashchange', syncActive);
                 syncActive();
+
+                /* Theme picker — persists choice in localStorage */
+                const picker = document.getElementById('theme-picker');
+                const stored = localStorage.getItem('webtui-theme');
+                if (stored) {
+                    document.documentElement.dataset.webtuiTheme = stored;
+                    picker.value = stored;
+                }
+                picker.addEventListener('change', (e) => {
+                    document.documentElement.dataset.webtuiTheme = e.target.value;
+                    localStorage.setItem('webtui-theme', e.target.value);
+                });
             })();
         </script>
     </body>

@@ -1,0 +1,121 @@
+@layer components {
+    /* Sparkline — bar variant uses CSS-only with --v on each child.
+       Line variant uses inline SVG <polyline>. */
+
+    [is-~='sparkline'] {
+        --sparkline-color: var(--chart-1, var(--foreground0));
+        --sparkline-track: transparent;
+        --sparkline-height: 2lh;
+        --sparkline-width: 24ch;
+
+        display: inline-block;
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: var(--line-height);
+        height: var(--sparkline-height);
+        width: var(--sparkline-width);
+        vertical-align: top;
+        background-color: var(--sparkline-track);
+    }
+
+    /* Bar variant */
+    [is-~='sparkline'][variant-='bar'] {
+        display: inline-flex;
+        align-items: flex-end;
+        gap: 1px;
+        padding: 0;
+    }
+
+    [is-~='sparkline'][variant-='bar'] > * {
+        flex: 1;
+        min-width: 1px;
+        height: calc(var(--v, 0) * 1%);
+        min-height: 1px;
+        background-color: var(--sparkline-color);
+    }
+
+    [is-~='sparkline'][variant-='bar'] > [data-active],
+    [is-~='sparkline'][variant-='bar'] > .active {
+        background-color: var(--accent, var(--foreground0));
+    }
+
+    /* Line variant — accepts inline SVG */
+    svg[is-~='sparkline'][variant-='line'],
+    [is-~='sparkline'][variant-='line'] > svg {
+        display: inline-block;
+        height: var(--sparkline-height);
+        width: var(--sparkline-width);
+        overflow: visible;
+    }
+
+    svg[is-~='sparkline'][variant-='line'] polyline,
+    [is-~='sparkline'][variant-='line'] polyline {
+        fill: none;
+        stroke: var(--sparkline-color);
+        stroke-width: 1.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        vector-effect: non-scaling-stroke;
+    }
+
+    svg[is-~='sparkline'][variant-='line'] circle,
+    [is-~='sparkline'][variant-='line'] circle {
+        fill: var(--sparkline-color);
+    }
+
+    /* Sizes */
+    [is-~='sparkline'][size-='small'] {
+        --sparkline-height: 1lh;
+        --sparkline-width: 12ch;
+    }
+
+    [is-~='sparkline'][size-='large'] {
+        --sparkline-height: 4lh;
+        --sparkline-width: 48ch;
+    }
+
+    /* Animated draw-in */
+    [is-~='sparkline'][animate-='draw'] polyline,
+    [is-~='sparkline'][animate-='draw'] path {
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 1000;
+        animation: sparkline-draw 1.5s ease-out forwards;
+    }
+
+    [is-~='sparkline'][animate-='draw'][variant-='bar'] > * {
+        animation: sparkline-bar-rise 0.8s ease-out backwards;
+    }
+
+    [is-~='sparkline'][animate-='draw'][variant-='bar']
+        > *:nth-child(1) {
+        animation-delay: 0.05s;
+    }
+    [is-~='sparkline'][animate-='draw'][variant-='bar']
+        > *:nth-child(2) {
+        animation-delay: 0.1s;
+    }
+    [is-~='sparkline'][animate-='draw'][variant-='bar']
+        > *:nth-child(3) {
+        animation-delay: 0.15s;
+    }
+    [is-~='sparkline'][animate-='draw'][variant-='bar']
+        > *:nth-child(4) {
+        animation-delay: 0.2s;
+    }
+    [is-~='sparkline'][animate-='draw'][variant-='bar']
+        > *:nth-child(n + 5) {
+        animation-delay: calc(0.05s * 5);
+    }
+
+    @keyframes sparkline-draw {
+        to {
+            stroke-dashoffset: 0;
+        }
+    }
+
+    @keyframes sparkline-bar-rise {
+        from {
+            height: 0;
+        }
+    }
+}
