@@ -1,20 +1,14 @@
 @layer components {
     @property --progress-value {
         syntax: '<number>';
-        inherits: false;
+        inherits: true;
         initial-value: 0;
     }
 
     @property --progress-max {
         syntax: '<number>';
-        inherits: false;
+        inherits: true;
         initial-value: 100;
-    }
-
-    @property --progress-wave {
-        syntax: '<number>';
-        inherits: false;
-        initial-value: 0;
     }
 
     [is-~='progress'] {
