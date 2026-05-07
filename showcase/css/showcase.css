@@ -145,8 +145,16 @@ body {
 
 .example-stage {
     padding: 1lh 2ch;
-    background-color: var(--background1);
+    background-color: var(--background0);
+    border: solid 1px var(--background2);
     overflow: auto;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1lh;
 }
 
 .example pre {
@@ -160,12 +168,6 @@ body {
     flex-wrap: wrap;
     gap: 1ch 2ch;
     align-items: center;
-}
-
-.col {
-    display: flex;
-    flex-direction: column;
-    gap: 1lh;
 }
 
 /* Highlight currently-selected sidebar link via :target on the section */

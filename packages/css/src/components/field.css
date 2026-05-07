@@ -2,10 +2,20 @@
     [is-~='field'] {
         display: flex;
         flex-direction: column;
+        align-items: stretch;
         gap: 0.5lh;
         font-family: var(--font-family);
         font-size: var(--font-size);
         line-height: var(--line-height);
+
+        & > input,
+        & > textarea,
+        & > select,
+        & > [is-~='input'],
+        & > [is-~='textarea'] {
+            width: 100%;
+            min-width: 0;
+        }
 
         & > label,
         & > [is-~='field-label'] {

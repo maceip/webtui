@@ -536,23 +536,41 @@
                     </section>
 
                     <section id="meter" class="component">
-                        <div class="component-header"><h1>Meter</h1><p>Native meter for known-range values.</p></div>
+                        <div class="component-header"><h1>Meter</h1><p>Native meter for known-range values. Use <code>animate-="squiggle"</code> on the div variant for sine-wave animation.</p></div>
                         <div class="example">
+                            <div class="example-label">Static (native)</div>
                             <div class="example-stage col">
                                 <meter min="0" max="100" low="33" high="66" optimum="100" value="80"></meter>
                                 <meter min="0" max="100" low="33" high="66" optimum="100" value="50"></meter>
                                 <meter min="0" max="100" low="33" high="66" optimum="100" value="20"></meter>
                             </div>
                         </div>
+                        <div class="example">
+                            <div class="example-label">Squiggle mode (sine wave)</div>
+                            <div class="example-stage col">
+                                <div is-="meter" animate-="squiggle" style="width: 32ch; height: 1lh;"></div>
+                                <div is-="meter" animate-="squiggle" speed-="slow" style="width: 32ch; height: 1lh;"></div>
+                                <div is-="meter" animate-="squiggle" speed-="fast" style="width: 32ch; height: 1lh;"></div>
+                            </div>
+                        </div>
                     </section>
 
                     <section id="progress" class="component">
-                        <div class="component-header"><h1>Progress</h1><p>Char-grid-aligned progress bar.</p></div>
+                        <div class="component-header"><h1>Progress</h1><p>Char-grid-aligned progress bar. Use <code>animate-="squiggle"</code> for sine-wave animation.</p></div>
                         <div class="example">
+                            <div class="example-label">Static</div>
                             <div class="example-stage col">
                                 <div is-="progress" style="--progress-value: 25;"></div>
                                 <div is-="progress" style="--progress-value: 60;"></div>
                                 <div is-="progress" style="--progress-value: 100;"></div>
+                            </div>
+                        </div>
+                        <div class="example">
+                            <div class="example-label">Squiggle mode (sine wave) — speed-="slow" / default / "fast"</div>
+                            <div class="example-stage col">
+                                <div is-="progress" animate-="squiggle" speed-="slow"></div>
+                                <div is-="progress" animate-="squiggle"></div>
+                                <div is-="progress" animate-="squiggle" speed-="fast"></div>
                             </div>
                         </div>
                     </section>
@@ -620,14 +638,27 @@
                     </section>
 
                     <section id="spinner" class="component">
-                        <div class="component-header"><h1>Spinner</h1><p>ASCII spinning indicator.</p></div>
+                        <div class="component-header"><h1>Spinner</h1><p>ASCII spinning indicator with multiple character sets.</p></div>
                         <div class="example">
-                            <div class="example-stage row">
-                                <span is-="spinner"></span>
+                            <div class="example-label">Variants (default, dots, arrows, cross, square, pie, half, bar-vertical, bar-horizontal)</div>
+                            <div class="example-stage row" style="gap: 3ch;">
+                                <span is-="spinner" title="default"></span>
+                                <span is-="spinner" variant-="dots" title="dots"></span>
+                                <span is-="spinner" variant-="arrows" title="arrows"></span>
+                                <span is-="spinner" variant-="cross" title="cross"></span>
+                                <span is-="spinner" variant-="square" title="square"></span>
+                                <span is-="spinner" variant-="pie" title="pie"></span>
+                                <span is-="spinner" variant-="half" title="half"></span>
+                                <span is-="spinner" variant-="bar-vertical" title="bar-vertical"></span>
+                                <span is-="spinner" variant-="bar-horizontal" title="bar-horizontal"></span>
+                            </div>
+                        </div>
+                        <div class="example">
+                            <div class="example-label">Speeds (slow / default / fast)</div>
+                            <div class="example-stage row" style="gap: 3ch;">
+                                <span is-="spinner" variant-="dots" speed-="slow"></span>
                                 <span is-="spinner" variant-="dots"></span>
-                                <span is-="spinner" variant-="arrows"></span>
-                                <span is-="spinner" variant-="square"></span>
-                                <span is-="spinner" variant-="bar-vertical"></span>
+                                <span is-="spinner" variant-="dots" speed-="fast"></span>
                             </div>
                         </div>
                     </section>
@@ -721,15 +752,26 @@ $ webtui list
                     <section id="tabs" class="component">
                         <div class="component-header"><h1>Tabs</h1><p>Radio-input-driven CSS-only tabs.</p></div>
                         <div class="example">
+                            <div class="example-label">Pure CSS (radio + label siblings)</div>
                             <div class="example-stage">
                                 <div is-="tabs">
                                     <input type="radio" name="tabs1" id="t1a" checked />
+                                    <label for="t1a">Overview</label>
                                     <input type="radio" name="tabs1" id="t1b" />
+                                    <label for="t1b">Activity</label>
                                     <input type="radio" name="tabs1" id="t1c" />
+                                    <label for="t1c">Settings</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="example">
+                            <div class="example-label">ARIA (button + tabs-list wrapper)</div>
+                            <div class="example-stage">
+                                <div is-="tabs">
                                     <div is-="tabs-list">
-                                        <label for="t1a">Overview</label>
-                                        <label for="t1b">Activity</label>
-                                        <label for="t1c">Settings</label>
+                                        <button is-="tabs-trigger" aria-selected="true">Overview</button>
+                                        <button is-="tabs-trigger">Activity</button>
+                                        <button is-="tabs-trigger">Settings</button>
                                     </div>
                                 </div>
                             </div>

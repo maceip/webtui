@@ -43,7 +43,7 @@
             margin: 0;
             padding: 0.5lh 0;
             overflow-y: auto;
-            flex: 1;
+            max-height: 24lh;
         }
 
         & [is-~='command-group-label'] {

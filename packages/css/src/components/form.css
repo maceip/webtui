@@ -3,10 +3,15 @@
     [is-~='form'] {
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
         gap: 1lh;
         font-family: var(--font-family);
         font-size: var(--font-size);
         line-height: var(--line-height);
+
+        & > [is-~='field'] {
+            align-self: stretch;
+        }
 
         &[direction-='horizontal'] {
             flex-direction: row;

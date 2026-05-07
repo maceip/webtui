@@ -9,14 +9,11 @@
         font-family: var(--font-family);
         font-size: var(--font-size);
         line-height: var(--line-height);
-        container-type: inline-size;
-        container-name: tabs;
 
         & > [is-~='tabs-list'] {
             display: flex;
             align-items: stretch;
             gap: 0;
-            flex-wrap: wrap;
             list-style: none;
             margin: 0;
             padding: 0;
@@ -24,8 +21,9 @@
         }
 
         & [is-~='tabs-trigger'],
-        & > [is-~='tabs-list'] button,
-        & > [is-~='tabs-list'] a {
+        & [is-~='tabs-list'] button,
+        & [is-~='tabs-list'] a,
+        & [is-~='tabs-list'] label {
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -70,9 +68,11 @@
             }
         }
 
-        /* Radio-input based pure-CSS tabs */
+        /* Radio-input based pure-CSS tabs (flat structure: input + label siblings) */
         & > input[type='radio'] {
-            display: none;
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
         }
 
         & > input[type='radio'] + label {
@@ -85,12 +85,19 @@
             cursor: pointer;
             user-select: none;
             line-height: 1lh;
+            border-bottom: solid var(--box-border-width, 2px) transparent;
+            margin-bottom: -2px;
         }
 
         & > input[type='radio']:checked + label {
             color: var(--tabs-color);
             background-color: var(--tabs-active-background);
             font-weight: var(--font-weight-bold);
+            border-bottom-color: var(--foreground0);
+        }
+
+        & > input[type='radio']:focus-visible + label {
+            text-decoration: underline;
         }
 
         &[direction-='vertical'] {

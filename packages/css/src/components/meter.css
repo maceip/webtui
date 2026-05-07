@@ -46,4 +46,49 @@
             background: var(--meter-even-less-good);
         }
     }
+
+    /* Squiggle mode — only the [is-~='meter'] div variant can be
+       CSS-animated. Native <meter>'s value attribute can't be animated. */
+    @property --meter-wave {
+        syntax: '<number>';
+        inherits: false;
+        initial-value: 0;
+    }
+
+    [is-~='meter'][animate-='squiggle']:not(meter) {
+        --meter-value: calc(50 + sin(var(--meter-wave) * 360deg) * 50);
+
+        appearance: none;
+        background-color: var(--meter-background);
+        position: relative;
+        overflow: hidden;
+        animation: meter-squiggle 3s linear infinite;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: calc(var(--meter-value) * 1%);
+            background-color: var(--meter-optimum);
+        }
+
+        &[speed-='slow'] {
+            animation-duration: 6s;
+        }
+
+        &[speed-='fast'] {
+            animation-duration: 1.5s;
+        }
+    }
+
+    @keyframes meter-squiggle {
+        from {
+            --meter-wave: 0;
+        }
+        to {
+            --meter-wave: 1;
+        }
+    }
 }

@@ -5,13 +5,16 @@
 
         display: flex;
         flex-direction: column;
-        gap: 1lh;
+        align-items: flex-start;
+        gap: 0.5lh;
         font-family: var(--font-family);
         font-size: var(--font-size);
         line-height: var(--line-height);
         padding: 1lh 1ch;
         border: solid var(--box-border-width, 2px) var(--fieldset-border-color);
         margin: 0;
+        width: fit-content;
+        max-width: 100%;
 
         & > legend {
             padding: 0 1ch;

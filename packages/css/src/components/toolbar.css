@@ -1,6 +1,6 @@
 @layer components {
     [is-~='toolbar'] {
-        display: inline-flex;
+        display: flex;
         align-items: center;
         flex-wrap: wrap;
         gap: 1ch;
@@ -10,8 +10,8 @@
         line-height: var(--line-height);
         background-color: var(--background1);
         min-height: 1lh;
-        container-type: inline-size;
-        container-name: toolbar;
+        width: fit-content;
+        max-width: 100%;
 
         & > [is-~='toolbar-separator'] {
             width: 1px;

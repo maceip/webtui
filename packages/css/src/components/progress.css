@@ -9,6 +9,12 @@
         inherits: false;
     }
 
+    @property --progress-wave {
+        syntax: '<number>';
+        inherits: false;
+        initial-value: 0;
+    }
+
     [is-~='progress'] {
         --progress-value: 0;
         --progress-max: 100;
@@ -67,6 +73,29 @@
             white-space: nowrap;
             background-color: var(--progress-empty-background);
             z-index: 0;
+        }
+
+        /* Squiggle mode — animate progress with a sine wave */
+        &[animate-='squiggle'] {
+            --progress-value: calc(50 + sin(var(--progress-wave) * 360deg) * 50);
+            animation: progress-squiggle 3s linear infinite;
+        }
+
+        &[animate-='squiggle'][speed-='slow'] {
+            animation-duration: 6s;
+        }
+
+        &[animate-='squiggle'][speed-='fast'] {
+            animation-duration: 1.5s;
+        }
+    }
+
+    @keyframes progress-squiggle {
+        from {
+            --progress-wave: 0;
+        }
+        to {
+            --progress-wave: 1;
         }
     }
 }
