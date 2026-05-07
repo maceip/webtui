@@ -102,5 +102,179 @@
             --button-primary: var(--background3);
             --button-secondary: var(--foreground0);
         }
+
+        /* Theme-driven variants */
+        &[variant-='primary'] {
+            --button-primary: var(--primary);
+            --button-secondary: var(--primary-foreground);
+            background-image: none;
+            background-color: var(--mapped-primary);
+        }
+
+        &[variant-='secondary'] {
+            --button-primary: var(--background2);
+            --button-secondary: var(--foreground0);
+            background-image: none;
+            background-color: var(--mapped-primary);
+        }
+
+        &[variant-='accent'] {
+            --button-primary: var(--accent);
+            --button-secondary: var(--accent-foreground);
+            background-image: none;
+            background-color: var(--mapped-primary);
+        }
+
+        &[variant-='destructive'],
+        &[variant-='danger'] {
+            --button-primary: var(--destructive);
+            --button-secondary: var(--destructive-foreground);
+            background-image: none;
+            background-color: var(--mapped-primary);
+        }
+
+        &[variant-='success'] {
+            --button-primary: var(--success);
+            --button-secondary: var(--background0);
+            background-image: none;
+            background-color: var(--mapped-primary);
+        }
+
+        &[variant-='warning'] {
+            --button-primary: var(--warning);
+            --button-secondary: var(--background0);
+            background-image: none;
+            background-color: var(--mapped-primary);
+        }
+
+        &[variant-='info'] {
+            --button-primary: var(--info);
+            --button-secondary: var(--background0);
+            background-image: none;
+            background-color: var(--mapped-primary);
+        }
+
+        /* Shape — orthogonal to box- borders */
+        &[shape-='square'],
+        &:not([shape-]) {
+            border-radius: 0;
+        }
+
+        &[shape-='rounded'] {
+            border-radius: 0.5ch;
+        }
+
+        &[shape-='squircle'] {
+            /* Approximates iOS squircle on common aspect ratios */
+            border-radius: clamp(8px, 0.6lh, 24px);
+        }
+
+        /* Outline — alternative to box- */
+        &[outline-='none'] {
+            border: none;
+            outline: none;
+        }
+
+        &[outline-='double'] {
+            background-image: none;
+            background-color: transparent;
+            color: var(--mapped-primary);
+            border: 4px double var(--mapped-primary);
+            padding: 0 1.5ch;
+        }
+
+        /* Stylize — shimmer (sheen sweep across the button) */
+        &[stylize-='shimmer'] {
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        &[stylize-='shimmer']::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                110deg,
+                transparent 0%,
+                transparent 35%,
+                color-mix(in srgb, var(--mapped-secondary) 60%, transparent)
+                    50%,
+                transparent 65%,
+                transparent 100%
+            );
+            transform: translateX(-100%);
+            animation: button-shimmer 2.5s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Stylize — Google AI multicolor circular glow */
+        &[stylize-='glow'] {
+            position: relative;
+            isolation: isolate;
+        }
+
+        &[stylize-='glow']::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: inherit;
+            background: conic-gradient(
+                from var(--button-glow-angle, 0deg),
+                #4285f4 0%,
+                #ea4335 25%,
+                #fbbc04 50%,
+                #34a853 75%,
+                #4285f4 100%
+            );
+            z-index: -1;
+            animation: button-glow-rotate 4s linear infinite;
+        }
+
+        &[stylize-='glow']::after {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: inherit;
+            background: conic-gradient(
+                from var(--button-glow-angle, 0deg),
+                #4285f4 0%,
+                #ea4335 25%,
+                #fbbc04 50%,
+                #34a853 75%,
+                #4285f4 100%
+            );
+            filter: blur(10px);
+            opacity: 0.7;
+            z-index: -2;
+            animation: button-glow-rotate 4s linear infinite;
+            pointer-events: none;
+        }
+    }
+
+    @property --button-glow-angle {
+        syntax: '<angle>';
+        inherits: false;
+        initial-value: 0deg;
+    }
+
+    @keyframes button-shimmer {
+        0% {
+            transform: translateX(-100%);
+        }
+        50%,
+        100% {
+            transform: translateX(100%);
+        }
+    }
+
+    @keyframes button-glow-rotate {
+        from {
+            --button-glow-angle: 0deg;
+        }
+        to {
+            --button-glow-angle: 360deg;
+        }
     }
 }

@@ -1,8 +1,4 @@
 @layer components {
-    /* Tachometer-style gauge with tri-color zones.
-       Half-circle with rotating needle. Pure CSS using conic-gradient
-       and CSS rotation. Zone breakpoints configurable. */
-
     @property --gauge-value {
         syntax: '<number>';
         inherits: true;
@@ -45,15 +41,10 @@
         --gauge-zone-2-color: var(--gauge-zone-2, var(--warning));
         --gauge-zone-3-color: var(--gauge-zone-3, var(--destructive));
         --gauge-needle-color: var(--foreground0);
+        --gauge-needle-width: 0.4ch;
 
-        /* Compute zone arc fractions in conic-gradient terms.
-           Half-circle is 180° starting at 270° (left). */
         --gauge-low-pct: calc(var(--gauge-low) / var(--gauge-max) * 100%);
         --gauge-high-pct: calc(var(--gauge-high) / var(--gauge-max) * 100%);
-        --gauge-value-pct: calc(
-            (var(--gauge-value) - var(--gauge-min)) /
-                (var(--gauge-max) - var(--gauge-min)) * 100%
-        );
         --gauge-needle-deg: calc(
             -90deg + (var(--gauge-value) - var(--gauge-min)) /
                 (var(--gauge-max) - var(--gauge-min)) * 180deg
@@ -62,93 +53,100 @@
         position: relative;
         display: inline-block;
         width: var(--gauge-size);
-        height: calc(var(--gauge-size) / 2);
+        /* extra room below the half-circle for value + label */
+        height: calc(var(--gauge-size) / 2 + 3lh);
         font-family: var(--font-family);
         font-size: var(--font-size);
         line-height: var(--line-height);
         vertical-align: top;
+    }
 
-        /* Half-circle track using conic-gradient masked to top half */
-        background:
-            conic-gradient(
-                from 270deg at 50% 100%,
-                var(--gauge-zone-1-color) 0%,
-                var(--gauge-zone-1-color) calc(var(--gauge-low-pct) / 2),
-                var(--gauge-zone-2-color) calc(var(--gauge-low-pct) / 2),
-                var(--gauge-zone-2-color) calc(var(--gauge-high-pct) / 2),
-                var(--gauge-zone-3-color) calc(var(--gauge-high-pct) / 2),
-                var(--gauge-zone-3-color) 50%,
-                transparent 50%
-            );
+    /* Arc background (tri-color) — pseudo so the parent's children
+       are NOT clipped by the radial mask */
+    [is-~='gauge']::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: calc(var(--gauge-size) / 2);
+        background: conic-gradient(
+            from 270deg at 50% 100%,
+            var(--gauge-zone-1-color) 0%,
+            var(--gauge-zone-1-color) calc(var(--gauge-low-pct) / 2),
+            var(--gauge-zone-2-color) calc(var(--gauge-low-pct) / 2),
+            var(--gauge-zone-2-color) calc(var(--gauge-high-pct) / 2),
+            var(--gauge-zone-3-color) calc(var(--gauge-high-pct) / 2),
+            var(--gauge-zone-3-color) 50%,
+            transparent 50%
+        );
         mask: radial-gradient(
             circle at 50% 100%,
             transparent 0,
-            transparent calc(50% * 0.6),
-            #000 calc(50% * 0.6),
-            #000 50%,
-            transparent 50%
+            transparent 60%,
+            #000 60%,
+            #000 100%
         );
         -webkit-mask: radial-gradient(
             circle at 50% 100%,
             transparent 0,
-            transparent calc(50% * 0.6),
-            #000 calc(50% * 0.6),
-            #000 50%,
-            transparent 50%
+            transparent 60%,
+            #000 60%,
+            #000 100%
         );
+        z-index: 0;
+    }
 
-        /* Needle drawn via ::after rotated based on value */
-        &::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: 0;
-            width: 2px;
-            height: calc(var(--gauge-size) / 2 - 0.5ch);
-            background-color: var(--gauge-needle-color);
-            transform-origin: bottom center;
-            transform: translateX(-50%) rotate(var(--gauge-needle-deg));
-            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
+    /* Needle */
+    [is-~='gauge']::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: calc(var(--gauge-size) / 2);
+        width: var(--gauge-needle-width);
+        height: calc(var(--gauge-size) / 2 - 0.6ch);
+        background-color: var(--gauge-needle-color);
+        border-radius: var(--gauge-needle-width);
+        transform-origin: bottom center;
+        transform: translate(-50%, -100%) rotate(var(--gauge-needle-deg));
+        transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        z-index: 2;
+        box-shadow:
+            0 0 0 0.15ch var(--gauge-needle-color),
+            0 0.4ch 0 0.3ch var(--gauge-needle-color);
+    }
 
-        /* Hub */
-        &::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: 0;
-            width: calc(var(--gauge-size) * 0.12);
-            height: calc(var(--gauge-size) * 0.06);
-            transform: translate(-50%, 50%);
-            background-color: var(--gauge-needle-color);
-            border-radius: 50%;
-            z-index: 2;
-        }
+    /* Hub at the rotation pivot */
+    [is-~='gauge'] [is-~='gauge-hub'],
+    [is-~='gauge']::after {
+        /* hub effect via box-shadow on needle bottom */
+    }
 
-        /* Value label slot */
-        & > [is-~='gauge-value'] {
-            position: absolute;
-            left: 50%;
-            bottom: calc(var(--gauge-size) * 0.1);
-            transform: translateX(-50%);
-            color: var(--foreground0);
-            font-weight: var(--font-weight-bold);
-            font-size: calc(var(--font-size) * 1.25);
-            font-variant-numeric: tabular-nums;
-            line-height: 1;
-            z-index: 3;
-        }
+    /* Value label slot — below the half-circle */
+    [is-~='gauge'] > [is-~='gauge-value'] {
+        position: absolute;
+        left: 50%;
+        top: calc(var(--gauge-size) / 2 + 0.5lh);
+        transform: translateX(-50%);
+        color: var(--foreground0);
+        font-weight: var(--font-weight-bold);
+        font-size: calc(var(--font-size) * 1.5);
+        line-height: 1;
+        font-variant-numeric: tabular-nums;
+        z-index: 3;
+        white-space: nowrap;
+    }
 
-        & > [is-~='gauge-label'] {
-            position: absolute;
-            left: 50%;
-            bottom: calc(var(--gauge-size) * -0.05);
-            transform: translateX(-50%);
-            color: var(--foreground2);
-            font-size: calc(var(--font-size) * 0.875);
-            line-height: 1;
-            white-space: nowrap;
-        }
+    [is-~='gauge'] > [is-~='gauge-label'] {
+        position: absolute;
+        left: 50%;
+        top: calc(var(--gauge-size) / 2 + 2lh);
+        transform: translateX(-50%);
+        color: var(--foreground2);
+        font-size: calc(var(--font-size) * 0.875);
+        line-height: 1;
+        z-index: 3;
+        white-space: nowrap;
     }
 
     /* Sizes */
@@ -171,7 +169,7 @@
 
     @keyframes gauge-sweep {
         from {
-            transform: translateX(-50%) rotate(-90deg);
+            transform: translate(-50%, -100%) rotate(-90deg);
         }
     }
 }

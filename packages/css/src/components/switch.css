@@ -70,8 +70,21 @@
             height: 0.5lh;
         }
 
+        /* Line variant: thin rail with a small pill thumb (slider-style) */
         &[bar-='line']::before {
-            height: var(--switch-thin-track-width);
+            height: 2px;
+        }
+
+        &[bar-='line']::after {
+            height: 0.6lh;
+            width: 1ch;
+            top: calc(50% - 0.3lh);
+            border-radius: 999px;
+        }
+
+        &[bar-='line']:checked::after {
+            left: unset;
+            right: 0;
         }
     }
 

@@ -16,6 +16,27 @@
             color: var(--foreground2);
         }
 
+        &[variant-='primary'] {
+            color: var(--primary);
+        }
+
+        &[variant-='success'] {
+            color: var(--success);
+        }
+
+        &[variant-='warning'] {
+            color: var(--warning);
+        }
+
+        &[variant-='danger'],
+        &[variant-='destructive'] {
+            color: var(--destructive);
+        }
+
+        &[variant-='info'] {
+            color: var(--info);
+        }
+
         &:has(:disabled) {
             color: var(--foreground2);
             text-decoration: line-through;

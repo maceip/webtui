@@ -99,14 +99,47 @@
         }
     }
 
-    /* Filter using :has + :not(:placeholder-shown) for "no results"
-       — server/JS still needs to filter the items themselves. */
-    dialog[is-~='command'],
-    [popover][is-~='command'] {
-        margin: 0 auto;
-        top: 8lh;
-        max-width: 64ch;
+    /* When used as a popover/dialog overlay — centered, hidden by
+       default, no JS needed. Opens via popovertarget=. */
+    [popover][is-~='command'],
+    dialog[is-~='command'] {
+        margin: auto;
+        position: fixed;
+        top: 12vh;
+        left: 50%;
+        transform: translateX(-50%);
+        width: min(64ch, 90vw);
+        min-width: 0;
+        max-height: 70vh;
         padding: 0;
         border: solid var(--box-border-width, 2px) var(--box-border-color);
+        background-color: var(--background0);
+        opacity: 0;
+        transition:
+            opacity 0.15s ease,
+            display 0.15s ease allow-discrete,
+            overlay 0.15s ease allow-discrete;
+    }
+
+    [popover][is-~='command']:popover-open,
+    dialog[is-~='command'][open] {
+        opacity: 1;
+    }
+
+    @starting-style {
+        [popover][is-~='command']:popover-open,
+        dialog[is-~='command'][open] {
+            opacity: 0;
+        }
+    }
+
+    [popover][is-~='command']::backdrop,
+    dialog[is-~='command']::backdrop {
+        background-color: color-mix(
+            in srgb,
+            var(--background0) 60%,
+            transparent
+        );
+        backdrop-filter: blur(4px);
     }
 }

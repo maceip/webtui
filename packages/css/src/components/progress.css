@@ -75,9 +75,10 @@
             z-index: 0;
         }
 
-        /* Squiggle mode — animate progress with a sine wave */
+        /* Squiggle mode — sine-wave keyframes directly on
+           --progress-value. Direct keyframes guarantee pseudo
+           recomputation each frame across all engines. */
         &[animate-='squiggle'] {
-            --progress-value: calc(50 + sin(var(--progress-wave) * 360deg) * 50);
             animation: progress-squiggle 3s linear infinite;
         }
 
@@ -91,11 +92,44 @@
     }
 
     @keyframes progress-squiggle {
-        from {
-            --progress-wave: 0;
+        0% {
+            --progress-value: 50;
         }
-        to {
-            --progress-wave: 1;
+        8.33% {
+            --progress-value: 75;
+        }
+        16.66% {
+            --progress-value: 93;
+        }
+        25% {
+            --progress-value: 100;
+        }
+        33.33% {
+            --progress-value: 93;
+        }
+        41.66% {
+            --progress-value: 75;
+        }
+        50% {
+            --progress-value: 50;
+        }
+        58.33% {
+            --progress-value: 25;
+        }
+        66.66% {
+            --progress-value: 7;
+        }
+        75% {
+            --progress-value: 0;
+        }
+        83.33% {
+            --progress-value: 7;
+        }
+        91.66% {
+            --progress-value: 25;
+        }
+        100% {
+            --progress-value: 50;
         }
     }
 }

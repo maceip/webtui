@@ -249,13 +249,25 @@
 
                     <!-- FORM -->
                     <section id="button" class="component">
-                        <div class="component-header"><h1>Button</h1><p>Native &lt;button&gt; with variants, sizes, and box borders.</p></div>
+                        <div class="component-header"><h1>Button</h1><p>Native &lt;button&gt; with theme-driven variants, sizes, shapes, outlines, and stylizations.</p></div>
                         <div class="example">
-                            <div class="example-label">Variants</div>
+                            <div class="example-label">Theme variants — pick up <code>--primary</code>, <code>--accent</code>, <code>--destructive</code>, etc.</div>
+                            <div class="example-stage row">
+                                <button variant-="primary">Primary</button>
+                                <button variant-="secondary">Secondary</button>
+                                <button variant-="accent">Accent</button>
+                                <button variant-="destructive">Destructive</button>
+                                <button variant-="success">Success</button>
+                                <button variant-="warning">Warning</button>
+                                <button variant-="info">Info</button>
+                            </div>
+                        </div>
+                        <div class="example">
+                            <div class="example-label">Original variants</div>
                             <div class="example-stage row">
                                 <button>Default</button>
                                 <button variant-="background1">Subtle</button>
-                                <button box-="square">Outline</button>
+                                <button box-="square">Outline (box-)</button>
                                 <button disabled>Disabled</button>
                             </div>
                         </div>
@@ -265,6 +277,39 @@
                                 <button size-="small">Small</button>
                                 <button>Default</button>
                                 <button size-="large">Large</button>
+                            </div>
+                        </div>
+                        <div class="example">
+                            <div class="example-label">Shape — <code>shape-="square|rounded|squircle"</code></div>
+                            <div class="example-stage row">
+                                <button variant-="primary" shape-="square">Square</button>
+                                <button variant-="primary" shape-="rounded">Rounded</button>
+                                <button variant-="primary" shape-="squircle">Squircle</button>
+                            </div>
+                        </div>
+                        <div class="example">
+                            <div class="example-label">Outline — <code>outline-="double|none"</code></div>
+                            <div class="example-stage row">
+                                <button outline-="double">Double</button>
+                                <button outline-="double" variant-="primary">Primary double</button>
+                                <button outline-="double" variant-="destructive">Destructive double</button>
+                                <button outline-="none" variant-="primary">No outline</button>
+                            </div>
+                        </div>
+                        <div class="example">
+                            <div class="example-label">Stylize — <code>stylize-="shimmer"</code> (animated sheen)</div>
+                            <div class="example-stage row">
+                                <button variant-="primary" stylize-="shimmer">Shimmer</button>
+                                <button variant-="accent" stylize-="shimmer" shape-="rounded">Shimmer rounded</button>
+                                <button variant-="success" stylize-="shimmer" shape-="squircle">Shimmer squircle</button>
+                            </div>
+                        </div>
+                        <div class="example">
+                            <div class="example-label">Stylize — <code>stylize-="glow"</code> (Google AI multicolor circular glow)</div>
+                            <div class="example-stage row" style="gap: 4ch; padding: 2lh 2ch;">
+                                <button stylize-="glow" shape-="rounded">Ask AI</button>
+                                <button stylize-="glow" shape-="squircle" variant-="primary">Generate</button>
+                                <button stylize-="glow" shape-="rounded" outline-="none">✨ Magic</button>
                             </div>
                         </div>
                     </section>
@@ -555,10 +600,16 @@
                     </section>
 
                     <section id="label" class="component">
-                        <div class="component-header"><h1>Label</h1><p>Native label.</p></div>
+                        <div class="component-header"><h1>Label</h1><p>Native label with 5 colored variants pulled from the theme.</p></div>
                         <div class="example">
+                            <div class="example-label">Variants — <code>variant-="primary|success|warning|danger|info|muted"</code></div>
                             <div class="example-stage col">
                                 <label>Default label</label>
+                                <label variant-="primary">Primary label</label>
+                                <label variant-="success">Success label</label>
+                                <label variant-="warning">Warning label</label>
+                                <label variant-="danger">Danger label</label>
+                                <label variant-="info">Info label</label>
                                 <label variant-="muted">Muted label</label>
                             </div>
                         </div>
@@ -1002,35 +1053,63 @@ $ webtui list
                     </section>
 
                     <section id="command" class="component">
-                        <div class="component-header"><h1>Command</h1><p>Command palette pattern.</p></div>
+                        <div class="component-header"><h1>Command</h1><p>Command palette overlay. Hidden by default, opens via the popover API on click of a trigger button.</p></div>
                         <div class="example">
+                            <div class="example-label">Trigger — click to open command palette</div>
                             <div class="example-stage">
-                                <div is-="command" box-="square">
-                                    <input is-="command-input" type="search" placeholder="Type a command…" />
-                                    <ul is-="command-list">
-                                        <li is-="command-group-label">Suggestions</li>
-                                        <li is-="command-item">Open file <kbd>Ctrl+O</kbd></li>
-                                        <li is-="command-item" aria-selected="true">Find in files <kbd>Ctrl+Shift+F</kbd></li>
-                                        <li is-="command-item">Toggle theme <kbd>Ctrl+T</kbd></li>
-                                        <li is-="command-separator"></li>
-                                        <li is-="command-group-label">Navigation</li>
-                                        <li is-="command-item">Go to line <kbd>Ctrl+G</kbd></li>
-                                    </ul>
-                                </div>
+                                <button popovertarget="demo-command" variant-="primary" shape-="rounded">
+                                    <kbd style="margin-right: 1ch;">⌘ K</kbd> Open command palette
+                                </button>
                             </div>
+                        </div>
+                        <div is-="command" popover id="demo-command">
+                            <input is-="command-input" type="search" placeholder="Type a command…" autofocus />
+                            <ul is-="command-list">
+                                <li is-="command-group-label">Suggestions</li>
+                                <li is-="command-item">Open file <kbd>Ctrl+O</kbd></li>
+                                <li is-="command-item" aria-selected="true">Find in files <kbd>Ctrl+Shift+F</kbd></li>
+                                <li is-="command-item">Toggle theme <kbd>Ctrl+T</kbd></li>
+                                <li is-="command-separator"></li>
+                                <li is-="command-group-label">Navigation</li>
+                                <li is-="command-item">Go to line <kbd>Ctrl+G</kbd></li>
+                                <li is-="command-item">Go to symbol <kbd>Ctrl+P</kbd></li>
+                                <li is-="command-separator"></li>
+                                <li is-="command-group-label">View</li>
+                                <li is-="command-item">Toggle sidebar</li>
+                                <li is-="command-item">Toggle terminal</li>
+                            </ul>
                         </div>
                     </section>
 
                     <!-- OVERLAY -->
                     <section id="popover" class="component">
-                        <div class="component-header"><h1>Popover</h1><p>Details/summary-driven popover.</p></div>
+                        <div class="component-header"><h1>Popover</h1><p>Details/summary-driven popover. Style the summary directly — never put a button inside summary (the click is consumed before details toggles).</p></div>
                         <div class="example">
+                            <div class="example-label">Default — opens below trigger</div>
                             <div class="example-stage" style="min-height: 12lh;">
                                 <details is-="popover">
-                                    <summary><button>Open popover</button></summary>
+                                    <summary is-="button">Open popover</summary>
                                     <div box-="square" style="padding: 1lh 1ch; min-width: 24ch; background: var(--background0);">
                                         <p is-="typography-block">Popover content goes here.</p>
+                                        <p is-="typography-block">Click outside or the trigger to close.</p>
                                     </div>
+                                </details>
+                            </div>
+                        </div>
+                        <div class="example">
+                            <div class="example-label">Position variants</div>
+                            <div class="example-stage row" style="min-height: 12lh; gap: 4ch;">
+                                <details is-="popover" position-="top">
+                                    <summary is-="button">Top</summary>
+                                    <div box-="square" style="padding: 0 1ch; background: var(--background0);">Above</div>
+                                </details>
+                                <details is-="popover" position-="right">
+                                    <summary is-="button">Right</summary>
+                                    <div box-="square" style="padding: 0 1ch; background: var(--background0);">Beside</div>
+                                </details>
+                                <details is-="popover" position-="baseline-right">
+                                    <summary is-="button">Aligned end</summary>
+                                    <div box-="square" style="padding: 0 1ch; background: var(--background0);">Right-aligned</div>
                                 </details>
                             </div>
                         </div>
@@ -1244,6 +1323,24 @@ $ webtui list
                 picker.addEventListener('change', (e) => {
                     document.documentElement.dataset.webtuiTheme = e.target.value;
                     localStorage.setItem('webtui-theme', e.target.value);
+                });
+
+                /* Number-field steppers — wire any [data-action] button
+                   to its sibling number input. Pure showcase utility;
+                   not part of @webtui/css. */
+                document.addEventListener('click', (e) => {
+                    const btn = e.target.closest(
+                        '[data-action="increment"], [data-action="decrement"]'
+                    );
+                    if (!btn) return;
+                    const input = btn.parentElement.querySelector(
+                        'input[type="number"]'
+                    );
+                    if (!input) return;
+                    if (btn.dataset.action === 'increment') input.stepUp();
+                    else input.stepDown();
+                    input.dispatchEvent(new Event('input', { bubbles: true }));
+                    input.dispatchEvent(new Event('change', { bubbles: true }));
                 });
             })();
         </script>

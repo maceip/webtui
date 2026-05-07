@@ -8,7 +8,8 @@
     input[is-='otp'],
     [is-~='otp-field'] > input {
         --otp-length: 6;
-        --otp-cell-width: 3ch;
+        --otp-cell: 3ch; /* visual cell box width */
+        --otp-pitch: 4ch; /* distance between consecutive chars */
 
         appearance: none;
         -webkit-appearance: none;
@@ -18,9 +19,9 @@
         font-size: calc(var(--font-size) * 1.25);
         font-weight: var(--font-weight-bold);
         line-height: 1lh;
-        text-align: center;
-        letter-spacing: var(--otp-cell-width);
-        padding-left: var(--otp-cell-width);
+        text-align: left;
+        letter-spacing: 3ch; /* 1ch char + 3ch spacing = 4ch pitch */
+        padding-left: 1ch; /* center 1ch char in 3ch cell: (3-1)/2 = 1ch */
         padding-right: 0;
         border: none;
         outline: none;
@@ -28,22 +29,23 @@
         background-image: repeating-linear-gradient(
             to right,
             var(--background1) 0,
-            var(--background1) calc(var(--otp-cell-width) * 2 - 0.5ch),
-            transparent calc(var(--otp-cell-width) * 2 - 0.5ch),
-            transparent calc(var(--otp-cell-width) * 2)
+            var(--background1) var(--otp-cell),
+            transparent var(--otp-cell),
+            transparent var(--otp-pitch)
         );
-        background-size: calc(var(--otp-cell-width) * 2) 1lh;
+        background-size: var(--otp-pitch) 1lh;
         background-position: 0 0;
         background-repeat: repeat-x;
-        width: calc(var(--otp-cell-width) * var(--otp-length) * 2);
+        width: calc(var(--otp-pitch) * var(--otp-length));
         min-width: 0;
 
         &:focus-visible {
             outline: solid 1px var(--foreground0);
+            outline-offset: 2px;
         }
 
         &:user-invalid {
-            color: var(--foreground0);
+            color: var(--destructive, var(--foreground0));
             text-decoration: underline wavy;
         }
 

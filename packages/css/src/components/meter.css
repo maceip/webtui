@@ -55,8 +55,14 @@
         initial-value: 0;
     }
 
+    @property --meter-value {
+        syntax: '<number>';
+        inherits: true;
+        initial-value: 50;
+    }
+
     [is-~='meter'][animate-='squiggle']:not(meter) {
-        --meter-value: calc(50 + sin(var(--meter-wave) * 360deg) * 50);
+        --meter-value: 50;
 
         appearance: none;
         background-color: var(--meter-background);
@@ -84,11 +90,44 @@
     }
 
     @keyframes meter-squiggle {
-        from {
-            --meter-wave: 0;
+        0% {
+            --meter-value: 50;
         }
-        to {
-            --meter-wave: 1;
+        8.33% {
+            --meter-value: 75;
+        }
+        16.66% {
+            --meter-value: 93;
+        }
+        25% {
+            --meter-value: 100;
+        }
+        33.33% {
+            --meter-value: 93;
+        }
+        41.66% {
+            --meter-value: 75;
+        }
+        50% {
+            --meter-value: 50;
+        }
+        58.33% {
+            --meter-value: 25;
+        }
+        66.66% {
+            --meter-value: 7;
+        }
+        75% {
+            --meter-value: 0;
+        }
+        83.33% {
+            --meter-value: 7;
+        }
+        91.66% {
+            --meter-value: 25;
+        }
+        100% {
+            --meter-value: 50;
         }
     }
 }
