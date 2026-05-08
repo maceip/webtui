@@ -1,0 +1,119 @@
+@layer components {
+    /* Carousel — native scroll-snap horizontal slider with optional
+       prev/next buttons and dot navigation. Buttons rely on a small
+       JS handler (showcase wires it generically). Swipe works
+       natively via touch scroll. */
+
+    [is-~='carousel'] {
+        --carousel-gap: 1ch;
+        --carousel-slide-width: 100%;
+
+        position: relative;
+        display: block;
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: var(--line-height);
+    }
+
+    [is-~='carousel'] > [is-~='carousel-track'] {
+        display: flex;
+        gap: var(--carousel-gap);
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+        padding: 0;
+        margin: 0;
+    }
+
+    [is-~='carousel'] > [is-~='carousel-track']::-webkit-scrollbar {
+        display: none;
+    }
+
+    [is-~='carousel'] [is-~='carousel-slide'] {
+        flex: 0 0 var(--carousel-slide-width);
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+        min-width: 0;
+    }
+
+    [is-~='carousel'][slides-='2'] {
+        --carousel-slide-width: calc(50% - var(--carousel-gap) / 2);
+    }
+
+    [is-~='carousel'][slides-='3'] {
+        --carousel-slide-width: calc(33.333% - var(--carousel-gap) * 2 / 3);
+    }
+
+    [is-~='carousel'][slides-='4'] {
+        --carousel-slide-width: calc(25% - var(--carousel-gap) * 3 / 4);
+    }
+
+    [is-~='carousel'] > [is-~='carousel-prev'],
+    [is-~='carousel'] > [is-~='carousel-next'] {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 2;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 3ch;
+        height: 3lh;
+        background-color: color-mix(
+            in srgb,
+            var(--background0) 80%,
+            transparent
+        );
+        backdrop-filter: blur(4px);
+        color: var(--foreground0);
+        border: solid 1px var(--background2);
+        cursor: pointer;
+        font-family: inherit;
+        font-size: inherit;
+        line-height: 1;
+    }
+
+    [is-~='carousel'] > [is-~='carousel-prev']:hover,
+    [is-~='carousel'] > [is-~='carousel-next']:hover {
+        background-color: var(--background0);
+    }
+
+    [is-~='carousel'] > [is-~='carousel-prev'] {
+        left: 1ch;
+    }
+
+    [is-~='carousel'] > [is-~='carousel-next'] {
+        right: 1ch;
+    }
+
+    [is-~='carousel'] > [is-~='carousel-dots'] {
+        display: flex;
+        justify-content: center;
+        gap: 1ch;
+        margin-top: 1lh;
+        list-style: none;
+        padding: 0;
+    }
+
+    [is-~='carousel'] [is-~='carousel-dot'] {
+        width: 1ch;
+        height: 1ch;
+        background: var(--background2);
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        border-radius: 50%;
+        transition: background-color 0.2s ease;
+    }
+
+    [is-~='carousel'] [is-~='carousel-dot']:hover {
+        background: var(--foreground2);
+    }
+
+    [is-~='carousel'] [is-~='carousel-dot'][aria-selected='true'],
+    [is-~='carousel'] [is-~='carousel-dot'].active {
+        background: var(--foreground0);
+    }
+}

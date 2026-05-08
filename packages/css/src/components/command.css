@@ -25,13 +25,14 @@
             color: var(--command-color);
             border: none;
             outline: none;
-            padding: 0 1ch;
-            height: 3lh;
-            line-height: 3lh;
+            padding: 0 1.5ch;
+            height: 2lh;
+            line-height: 2lh;
             font-family: inherit;
             font-size: inherit;
             width: 100%;
             min-width: 0;
+            flex-shrink: 0;
 
             &::placeholder {
                 color: var(--command-muted);
@@ -100,17 +101,24 @@
     }
 
     /* When used as a popover/dialog overlay — centered, hidden by
-       default, no JS needed. Opens via popovertarget=. */
+       default, no JS needed. Opens via popovertarget=.
+
+       Explicit inset:auto resets the popover-API browser default
+       (inset:0) which would otherwise stretch the element to fill
+       the viewport. height:fit-content keeps it sized to its
+       contents (input + list). */
     [popover][is-~='command'],
     dialog[is-~='command'] {
-        margin: auto;
         position: fixed;
+        inset: auto;
         top: 12vh;
         left: 50%;
         transform: translateX(-50%);
+        margin: 0;
         width: min(64ch, 90vw);
         min-width: 0;
-        max-height: 70vh;
+        height: fit-content;
+        max-height: min(32lh, 70vh);
         padding: 0;
         border: solid var(--box-border-width, 2px) var(--box-border-color);
         background-color: var(--background0);

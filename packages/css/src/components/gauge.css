@@ -53,8 +53,8 @@
         position: relative;
         display: inline-block;
         width: var(--gauge-size);
-        /* extra room below the half-circle for value + label */
-        height: calc(var(--gauge-size) / 2 + 3lh);
+        /* tight to the half-circle; value/label render inside */
+        height: calc(var(--gauge-size) / 2);
         font-family: var(--font-family);
         font-size: var(--font-size);
         line-height: var(--line-height);
@@ -81,19 +81,24 @@
             var(--gauge-zone-3-color) 50%,
             transparent 50%
         );
+        /* Explicit circle radius (= half the gauge width) so the
+           outer edge clips at the half-circle, not the box corners.
+           Final transparent stop hides anything beyond the radius. */
         mask: radial-gradient(
-            circle at 50% 100%,
+            circle calc(var(--gauge-size) / 2) at 50% 100%,
             transparent 0,
-            transparent 60%,
+            transparent 58%,
             #000 60%,
-            #000 100%
+            #000 99%,
+            transparent 100%
         );
         -webkit-mask: radial-gradient(
-            circle at 50% 100%,
+            circle calc(var(--gauge-size) / 2) at 50% 100%,
             transparent 0,
-            transparent 60%,
+            transparent 58%,
             #000 60%,
-            #000 100%
+            #000 99%,
+            transparent 100%
         );
         z-index: 0;
     }
@@ -129,15 +134,15 @@
         pointer-events: none;
     }
 
-    /* Value label slot — below the half-circle */
+    /* Value + label inside the dial near the hub */
     [is-~='gauge'] > [is-~='gauge-value'] {
         position: absolute;
         left: 50%;
-        top: calc(var(--gauge-size) / 2 + 0.5lh);
+        bottom: 1.1lh;
         transform: translateX(-50%);
         color: var(--foreground0);
         font-weight: var(--font-weight-bold);
-        font-size: calc(var(--font-size) * 1.5);
+        font-size: calc(var(--font-size) * 1.25);
         line-height: 1;
         font-variant-numeric: tabular-nums;
         z-index: 3;
@@ -147,10 +152,10 @@
     [is-~='gauge'] > [is-~='gauge-label'] {
         position: absolute;
         left: 50%;
-        top: calc(var(--gauge-size) / 2 + 2lh);
+        bottom: 0.2lh;
         transform: translateX(-50%);
         color: var(--foreground2);
-        font-size: calc(var(--font-size) * 0.875);
+        font-size: calc(var(--font-size) * 0.75);
         line-height: 1;
         z-index: 3;
         white-space: nowrap;

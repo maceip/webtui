@@ -76,6 +76,11 @@
 @import './components/toggle.css';
 @import './components/toggle-group.css';
 
+/* Motion / depth */
+@import './components/carousel.css';
+@import './components/tilt.css';
+@import './components/live-audio.css';
+
 /* Data display */
 @import './components/pre.css';
 @import './components/table.css';

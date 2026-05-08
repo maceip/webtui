@@ -53,8 +53,8 @@
         left: -50%;
         right: -50%;
         width: 200%;
-        height: 1.5lh;
-        bottom: calc(var(--water-value) * 1% - 0.75lh);
+        height: 2.5lh;
+        bottom: calc(var(--water-value) * 1% - 1.25lh);
         z-index: 2;
         overflow: visible;
         pointer-events: none;

@@ -2,41 +2,62 @@
     [is-~='card'] {
         --card-background: var(--background0);
         --card-color: var(--foreground0);
+        --card-padding-x: 3ch;
+        --card-padding-y: 2lh;
 
         display: flex;
         flex-direction: column;
-        gap: 1lh;
+        gap: 1.5lh;
         background-color: var(--card-background);
         color: var(--card-color);
         font-family: var(--font-family);
         font-size: var(--font-size);
         line-height: var(--line-height);
-        padding: 1lh 1ch;
+        padding: var(--card-padding-y) var(--card-padding-x);
 
         & > [is-~='card-header'] {
             display: flex;
             flex-direction: column;
-            gap: 0.5lh;
+            gap: 0.25lh;
         }
 
         & > [is-~='card-title'] {
             font-weight: var(--font-weight-bold);
             color: var(--foreground0);
+            font-size: calc(var(--font-size) * 1.125);
+            line-height: 1.4;
+            letter-spacing: -0.01ch;
         }
 
         & > [is-~='card-description'] {
             color: var(--foreground2);
+            line-height: 1.5;
         }
 
         & > [is-~='card-content'] {
             flex: 1;
+            min-height: 0;
         }
 
         & > [is-~='card-footer'] {
             display: flex;
             align-items: center;
             gap: 1ch;
-            margin-top: auto;
+            margin-top: 0.5lh;
+        }
+
+        /* Compact density */
+        &[size-='small'] {
+            --card-padding-x: 2ch;
+            --card-padding-y: 1lh;
+            gap: 1lh;
+        }
+
+        /* Spacious density */
+        &[size-='large'] {
+            --card-padding-x: 4ch;
+            --card-padding-y: 2.5lh;
+            gap: 2lh;
         }
 
         &[variant-='background1'] {

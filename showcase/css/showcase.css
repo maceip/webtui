@@ -147,7 +147,8 @@ body {
     padding: 1lh 2ch;
     background-color: var(--background0);
     border: solid 1px var(--background2);
-    overflow: auto;
+    overflow-x: auto;
+    overflow-y: visible;
 }
 
 .col {
@@ -274,6 +275,14 @@ body {
     gap: 1ch;
     align-items: center;
     font-variant-numeric: tabular-nums;
+    background-color: var(--background1);
+    padding: 0 1ch;
+}
+
+/* Bars inside htop rows: empty track is transparent so the row's
+   shade shows uniformly across label + bar + value */
+.htop-app [is-~='progress'] {
+    --progress-empty-background: transparent;
 }
 
 .htop-bar-label {

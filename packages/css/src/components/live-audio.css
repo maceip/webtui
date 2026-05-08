@@ -1,0 +1,93 @@
+@layer components {
+    /* Live audio — mic toggle + bar-graph waveform.
+       JS hooks via [data-live-audio]: clicking the button starts/
+       stops mic capture and updates each bar's --v custom property
+       from the analyser frequency data. */
+
+    [is-~='live-audio'] {
+        --live-audio-color: var(--foreground0);
+        --live-audio-active-color: var(--destructive);
+        --live-audio-bg: transparent;
+
+        display: inline-flex;
+        align-items: center;
+        gap: 1.5ch;
+        padding: 0 1.5ch;
+        height: 3lh;
+        background-color: var(--live-audio-bg);
+        color: var(--live-audio-color);
+        border: solid 2px currentColor;
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: 1;
+        cursor: pointer;
+        transition:
+            color 0.2s ease,
+            background-color 0.2s ease,
+            border-color 0.2s ease;
+    }
+
+    [is-~='live-audio']:hover {
+        background-color: color-mix(
+            in srgb,
+            currentColor 8%,
+            transparent
+        );
+    }
+
+    [is-~='live-audio'][data-active='true'],
+    [is-~='live-audio'][aria-pressed='true'] {
+        color: var(--live-audio-active-color);
+        border-color: var(--live-audio-active-color);
+    }
+
+    [is-~='live-audio'] > [is-~='live-audio-icon'],
+    [is-~='live-audio'] > i:first-child {
+        font-size: 1.5rem;
+        line-height: 1;
+        flex-shrink: 0;
+    }
+
+    [is-~='live-audio'][data-active='true']
+        > [is-~='live-audio-icon'],
+    [is-~='live-audio'][data-active='true'] > i:first-child {
+        animation: live-audio-pulse 1s ease-in-out infinite;
+    }
+
+    [is-~='live-audio-bars'] {
+        display: inline-flex;
+        align-items: center;
+        height: 1.5lh;
+        gap: 2px;
+        min-width: 8ch;
+    }
+
+    [is-~='live-audio-bars'] > i {
+        display: inline-block;
+        width: 3px;
+        height: calc(max(var(--v, 5), 5) * 1%);
+        min-height: 3px;
+        max-height: 100%;
+        background-color: currentColor;
+        border-radius: 2px;
+        transition: height 0.08s ease-out;
+    }
+
+    @keyframes live-audio-pulse {
+        50% {
+            opacity: 0.6;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        [is-~='live-audio'][data-active='true']
+            > [is-~='live-audio-icon'],
+        [is-~='live-audio'][data-active='true'] > i:first-child {
+            animation: none;
+        }
+
+        [is-~='live-audio-bars'] > i {
+            transition: none;
+        }
+    }
+}

@@ -170,6 +170,21 @@
             border-radius: clamp(8px, 0.6lh, 24px);
         }
 
+        /* When the user wants visible rounded corners, the half-bar
+           gradient (which only covers the middle 2/3 of the height)
+           hides the rounding. Force a solid fill so the rounded
+           corners actually show. Skip when using box- or outline-
+           since those have their own rendering. */
+        &:where(
+                [rounded-],
+                [shape-='rounded'],
+                [shape-='squircle']
+            ):not([box-]):not([outline-='double']):not([variant-]) {
+            background-image: none;
+            background-color: var(--mapped-primary);
+            color: var(--mapped-secondary);
+        }
+
         /* Outline — alternative to box- */
         &[outline-='none'] {
             border: none;

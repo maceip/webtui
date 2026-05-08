@@ -1,0 +1,91 @@
+@layer components {
+    /* 3D tilt — responds to mouse movement via a small JS handler
+       that updates --tilt-x and --tilt-y custom properties. CSS
+       provides the perspective and the spring transition. */
+
+    @property --tilt-x {
+        syntax: '<angle>';
+        inherits: true;
+        initial-value: 0deg;
+    }
+
+    @property --tilt-y {
+        syntax: '<angle>';
+        inherits: true;
+        initial-value: 0deg;
+    }
+
+    @property --tilt-glare-x {
+        syntax: '<percentage>';
+        inherits: true;
+        initial-value: 50%;
+    }
+
+    @property --tilt-glare-y {
+        syntax: '<percentage>';
+        inherits: true;
+        initial-value: 50%;
+    }
+
+    [is-~='tilt'] {
+        --tilt-perspective: 1000px;
+        --tilt-spring: 350ms;
+        --tilt-spring-easing: cubic-bezier(0.2, 0.9, 0.2, 1.05);
+        --tilt-max: 12deg;
+
+        display: inline-block;
+        perspective: var(--tilt-perspective);
+        transform-style: preserve-3d;
+    }
+
+    [is-~='tilt'] > [is-~='tilt-inner'],
+    [is-~='tilt'] > * {
+        transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+        transform-style: preserve-3d;
+        transition:
+            transform var(--tilt-spring) var(--tilt-spring-easing);
+        will-change: transform;
+    }
+
+    /* Optional glare — soft white spotlight that follows the cursor */
+    [is-~='tilt'][glare-] {
+        position: relative;
+        overflow: hidden;
+    }
+
+    [is-~='tilt'][glare-]::before {
+        content: '';
+        position: absolute;
+        inset: -50%;
+        background: radial-gradient(
+            circle at var(--tilt-glare-x, 50%) var(--tilt-glare-y, 50%),
+            rgba(255, 255, 255, 0.15) 0%,
+            transparent 40%
+        );
+        pointer-events: none;
+        z-index: 2;
+        transition: opacity var(--tilt-spring) var(--tilt-spring-easing);
+        opacity: 0;
+    }
+
+    [is-~='tilt'][glare-]:hover::before {
+        opacity: 1;
+    }
+
+    /* Strength variants */
+    [is-~='tilt'][size-='small'] {
+        --tilt-max: 6deg;
+    }
+
+    [is-~='tilt'][size-='large'] {
+        --tilt-max: 20deg;
+    }
+
+    /* Reduced motion — disable tilt entirely */
+    @media (prefers-reduced-motion: reduce) {
+        [is-~='tilt'] > * {
+            transform: none !important;
+            transition: none;
+        }
+    }
+}

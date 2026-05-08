@@ -93,9 +93,6 @@
             mask-repeat: repeat-x;
             -webkit-mask-size: var(--squiggle-period) 100%;
             mask-size: var(--squiggle-period) 100%;
-            -webkit-mask-position: 0 50%;
-            mask-position: 0 50%;
-
             filter: drop-shadow(0 0 0.3ch var(--squiggle-color));
             animation: progress-squiggle-pan 1.5s linear infinite;
 
@@ -133,18 +130,16 @@
 
     @keyframes progress-squiggle-pan {
         from {
-            -webkit-mask-position-x: 0;
-            mask-position-x: 0;
+            mask-position: 0 50%;
+            -webkit-mask-position: 0 50%;
         }
         to {
-            -webkit-mask-position-x: var(--squiggle-period);
-            mask-position-x: var(--squiggle-period);
+            mask-position: 8ch 50%;
+            -webkit-mask-position: 8ch 50%;
         }
     }
 
-    @media (prefers-reduced-motion: reduce) {
-        [is-~='progress'][animate-='squiggle'] {
-            animation: none;
-        }
-    }
+    /* Squiggle progress is a loading indicator — keep it animating
+       even with reduce-motion. (Spinners are exempt for the same
+       reason.) No animation override here. */
 }

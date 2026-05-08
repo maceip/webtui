@@ -2,17 +2,20 @@
     [is-~='avatar'] {
         --avatar-color: var(--foreground0);
         --avatar-background: var(--background1);
+        --avatar-size: 2lh;
 
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 3ch;
-        height: 1lh;
+        flex-shrink: 0;
+        width: var(--avatar-size);
+        height: var(--avatar-size);
+        aspect-ratio: 1;
         background-color: var(--avatar-background);
         color: var(--avatar-color);
         font-family: var(--font-family);
         font-size: var(--font-size);
-        line-height: 1lh;
+        line-height: 1;
         font-weight: var(--font-weight-bold);
         text-transform: uppercase;
         overflow: hidden;
@@ -23,16 +26,22 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
         }
 
         &[size-='small'] {
-            width: 2ch;
+            --avatar-size: 1.5lh;
+            font-size: calc(var(--font-size) * 0.75);
         }
 
         &[size-='large'] {
-            width: 6ch;
-            height: 3lh;
-            line-height: 3lh;
+            --avatar-size: 3lh;
+            font-size: calc(var(--font-size) * 1.25);
+        }
+
+        &[size-='xl'] {
+            --avatar-size: 5lh;
+            font-size: calc(var(--font-size) * 2);
         }
 
         &[shape-='round'] {

@@ -141,6 +141,13 @@
                         <li><a href="#toggle">Toggle</a></li>
                         <li><a href="#toggle-group">Toggle Group</a></li>
                     </ul>
+
+                    <h2>Motion</h2>
+                    <ul>
+                        <li><a href="#carousel">Carousel</a></li>
+                        <li><a href="#tilt">Tilt (3D)</a></li>
+                        <li><a href="#live-audio">Live Audio</a></li>
+                    </ul>
                 </aside>
 
                 <main class="content">
@@ -688,13 +695,32 @@
                     </section>
 
                     <section id="avatar" class="component">
-                        <div class="component-header"><h1>Avatar</h1><p>Initial-based avatar with size and shape.</p></div>
+                        <div class="component-header"><h1>Avatar</h1><p>Image- or initial-based avatar with size and shape variants.</p></div>
                         <div class="example">
+                            <div class="example-label">Image-based — sizes (small / default / large / xl)</div>
                             <div class="example-stage row">
-                                <span is-="avatar">A</span>
+                                <span is-="avatar" size-="small"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=faces&auto=format" alt=""></span>
+                                <span is-="avatar"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=faces&auto=format" alt=""></span>
+                                <span is-="avatar" size-="large"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=faces&auto=format" alt=""></span>
+                                <span is-="avatar" size-="xl"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=faces&auto=format" alt=""></span>
+                            </div>
+                        </div>
+                        <div class="example">
+                            <div class="example-label">Round shape</div>
+                            <div class="example-stage row">
+                                <span is-="avatar" shape-="round" size-="small"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=faces&auto=format" alt=""></span>
+                                <span is-="avatar" shape-="round"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=faces&auto=format" alt=""></span>
+                                <span is-="avatar" shape-="round" size-="large"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=faces&auto=format" alt=""></span>
+                                <span is-="avatar" shape-="round" size-="xl"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=faces&auto=format" alt=""></span>
+                            </div>
+                        </div>
+                        <div class="example">
+                            <div class="example-label">Initial fallback (no image)</div>
+                            <div class="example-stage row">
+                                <span is-="avatar">RM</span>
                                 <span is-="avatar" variant-="background1">B</span>
                                 <span is-="avatar" shape-="round">C</span>
-                                <span is-="avatar" size-="large">D</span>
+                                <span is-="avatar" size-="large">DG</span>
                             </div>
                         </div>
                     </section>
@@ -910,23 +936,23 @@ $ webtui list
                         <div class="example">
                             <div class="example-stage row" style="gap: 4ch;">
                                 <div is-="water-meter" style="--water-value: 25;">
-                                    <svg viewBox="0 0 200 30" preserveAspectRatio="none">
-                                        <path d="M0,15 Q25,0 50,15 T100,15 T150,15 T200,15 L200,30 L0,30 Z" />
-                                        <path d="M0,15 Q25,30 50,15 T100,15 T150,15 T200,15 L200,30 L0,30 Z" />
+                                    <svg viewBox="0 0 200 40" preserveAspectRatio="none">
+                                        <path d="M0,18 Q12.5,2 25,18 T50,18 T75,18 T100,18 T125,18 T150,18 T175,18 T200,18 L200,40 L0,40 Z" />
+                                        <path d="M0,18 Q12.5,34 25,18 T50,18 T75,18 T100,18 T125,18 T150,18 T175,18 T200,18 L200,40 L0,40 Z" />
                                     </svg>
                                     <div is-="water-value">25%</div>
                                 </div>
                                 <div is-="water-meter" variant-="info" style="--water-value: 65;">
-                                    <svg viewBox="0 0 200 30" preserveAspectRatio="none">
-                                        <path d="M0,15 Q25,0 50,15 T100,15 T150,15 T200,15 L200,30 L0,30 Z" />
-                                        <path d="M0,15 Q25,30 50,15 T100,15 T150,15 T200,15 L200,30 L0,30 Z" />
+                                    <svg viewBox="0 0 200 40" preserveAspectRatio="none">
+                                        <path d="M0,18 Q12.5,2 25,18 T50,18 T75,18 T100,18 T125,18 T150,18 T175,18 T200,18 L200,40 L0,40 Z" />
+                                        <path d="M0,18 Q12.5,34 25,18 T50,18 T75,18 T100,18 T125,18 T150,18 T175,18 T200,18 L200,40 L0,40 Z" />
                                     </svg>
                                     <div is-="water-value">65%</div>
                                 </div>
                                 <div is-="water-meter" variant-="success" size-="large" style="--water-value: 88;">
-                                    <svg viewBox="0 0 200 30" preserveAspectRatio="none">
-                                        <path d="M0,15 Q25,0 50,15 T100,15 T150,15 T200,15 L200,30 L0,30 Z" />
-                                        <path d="M0,15 Q25,30 50,15 T100,15 T150,15 T200,15 L200,30 L0,30 Z" />
+                                    <svg viewBox="0 0 200 40" preserveAspectRatio="none">
+                                        <path d="M0,18 Q12.5,2 25,18 T50,18 T75,18 T100,18 T125,18 T150,18 T175,18 T200,18 L200,40 L0,40 Z" />
+                                        <path d="M0,18 Q12.5,34 25,18 T50,18 T75,18 T100,18 T125,18 T150,18 T175,18 T200,18 L200,40 L0,40 Z" />
                                     </svg>
                                     <div is-="water-value">88%</div>
                                 </div>
@@ -1213,21 +1239,22 @@ $ webtui list
                                 </button>
                             </div>
                         </div>
-                        <div is-="command" popover id="demo-command">
-                            <input is-="command-input" type="search" placeholder="Type a command…" autofocus />
+                        <div is-="command" popover id="demo-command" data-cmd-palette>
+                            <input is-="command-input" type="search" placeholder="Type a command…" autofocus data-cmd-input />
                             <ul is-="command-list">
-                                <li is-="command-group-label">Suggestions</li>
-                                <li is-="command-item">Open file <kbd>Ctrl+O</kbd></li>
-                                <li is-="command-item" aria-selected="true">Find in files <kbd>Ctrl+Shift+F</kbd></li>
-                                <li is-="command-item">Toggle theme <kbd>Ctrl+T</kbd></li>
+                                <li is-="command-group-label" data-cmd-group>Suggestions</li>
+                                <li is-="command-item" data-cmd-item>Open file <kbd>Ctrl+O</kbd></li>
+                                <li is-="command-item" aria-selected="true" data-cmd-item>Find in files <kbd>Ctrl+Shift+F</kbd></li>
+                                <li is-="command-item" data-cmd-item>Toggle theme <kbd>Ctrl+T</kbd></li>
                                 <li is-="command-separator"></li>
-                                <li is-="command-group-label">Navigation</li>
-                                <li is-="command-item">Go to line <kbd>Ctrl+G</kbd></li>
-                                <li is-="command-item">Go to symbol <kbd>Ctrl+P</kbd></li>
+                                <li is-="command-group-label" data-cmd-group>Navigation</li>
+                                <li is-="command-item" data-cmd-item>Go to line <kbd>Ctrl+G</kbd></li>
+                                <li is-="command-item" data-cmd-item>Go to symbol <kbd>Ctrl+P</kbd></li>
                                 <li is-="command-separator"></li>
-                                <li is-="command-group-label">View</li>
-                                <li is-="command-item">Toggle sidebar</li>
-                                <li is-="command-item">Toggle terminal</li>
+                                <li is-="command-group-label" data-cmd-group>View</li>
+                                <li is-="command-item" data-cmd-item>Toggle sidebar</li>
+                                <li is-="command-item" data-cmd-item>Toggle terminal</li>
+                                <li is-="command-empty" hidden>No commands match.</li>
                             </ul>
                         </div>
                     </section>
@@ -1249,18 +1276,18 @@ $ webtui list
                         </div>
                         <div class="example">
                             <div class="example-label">Position variants</div>
-                            <div class="example-stage row" style="min-height: 12lh; gap: 4ch;">
+                            <div class="example-stage row" style="min-height: 16lh; gap: 4ch;">
                                 <details is-="popover" position-="top">
                                     <summary is-="button">Top</summary>
-                                    <div box-="square" style="padding: 0 1ch; background: var(--background0);">Above</div>
+                                    <div box-="square" style="background: var(--background0); white-space: nowrap;">Above</div>
                                 </details>
                                 <details is-="popover" position-="right">
                                     <summary is-="button">Right</summary>
-                                    <div box-="square" style="padding: 0 1ch; background: var(--background0);">Beside</div>
+                                    <div box-="square" style="background: var(--background0); white-space: nowrap;">Beside</div>
                                 </details>
                                 <details is-="popover" position-="baseline-right">
                                     <summary is-="button">Aligned end</summary>
-                                    <div box-="square" style="padding: 0 1ch; background: var(--background0);">Right-aligned</div>
+                                    <div box-="square" style="background: var(--background0); white-space: nowrap;">Right-aligned</div>
                                 </details>
                             </div>
                         </div>
@@ -1441,6 +1468,107 @@ $ webtui list
                                     <button is-="toggle">Center</button>
                                     <button is-="toggle">Right</button>
                                 </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- MOTION -->
+                    <section id="carousel" class="component">
+                        <div class="component-header">
+                            <h1>Carousel</h1>
+                            <p>Native scroll-snap horizontal slider with prev/next buttons and dot navigation. Touch swipe works natively. Use <code>slides-="2|3|4"</code> to show multiple slides per view.</p>
+                        </div>
+                        <div class="example">
+                            <div class="example-label">Single slide per view</div>
+                            <div class="example-stage">
+                                <div is-="carousel" data-carousel>
+                                    <button is-="carousel-prev" data-carousel-prev aria-label="Previous">‹</button>
+                                    <ul is-="carousel-track" data-carousel-track>
+                                        <li is-="carousel-slide" box-="square" style="height: 8lh; display: flex; align-items: center; justify-content: center; background: var(--background1);">Slide 1</li>
+                                        <li is-="carousel-slide" box-="square" style="height: 8lh; display: flex; align-items: center; justify-content: center; background: var(--background2);">Slide 2</li>
+                                        <li is-="carousel-slide" box-="square" style="height: 8lh; display: flex; align-items: center; justify-content: center; background: var(--background1);">Slide 3</li>
+                                        <li is-="carousel-slide" box-="square" style="height: 8lh; display: flex; align-items: center; justify-content: center; background: var(--background2);">Slide 4</li>
+                                        <li is-="carousel-slide" box-="square" style="height: 8lh; display: flex; align-items: center; justify-content: center; background: var(--background1);">Slide 5</li>
+                                    </ul>
+                                    <button is-="carousel-next" data-carousel-next aria-label="Next">›</button>
+                                    <ul is-="carousel-dots" data-carousel-dots></ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="example">
+                            <div class="example-label">3 slides per view</div>
+                            <div class="example-stage">
+                                <div is-="carousel" slides-="3" data-carousel>
+                                    <button is-="carousel-prev" data-carousel-prev aria-label="Previous">‹</button>
+                                    <ul is-="carousel-track" data-carousel-track>
+                                        <li is-="carousel-slide" box-="square" style="height: 6lh; display: flex; align-items: center; justify-content: center; background: var(--background1);">1</li>
+                                        <li is-="carousel-slide" box-="square" style="height: 6lh; display: flex; align-items: center; justify-content: center; background: var(--background2);">2</li>
+                                        <li is-="carousel-slide" box-="square" style="height: 6lh; display: flex; align-items: center; justify-content: center; background: var(--background1);">3</li>
+                                        <li is-="carousel-slide" box-="square" style="height: 6lh; display: flex; align-items: center; justify-content: center; background: var(--background2);">4</li>
+                                        <li is-="carousel-slide" box-="square" style="height: 6lh; display: flex; align-items: center; justify-content: center; background: var(--background1);">5</li>
+                                        <li is-="carousel-slide" box-="square" style="height: 6lh; display: flex; align-items: center; justify-content: center; background: var(--background2);">6</li>
+                                        <li is-="carousel-slide" box-="square" style="height: 6lh; display: flex; align-items: center; justify-content: center; background: var(--background1);">7</li>
+                                        <li is-="carousel-slide" box-="square" style="height: 6lh; display: flex; align-items: center; justify-content: center; background: var(--background2);">8</li>
+                                        <li is-="carousel-slide" box-="square" style="height: 6lh; display: flex; align-items: center; justify-content: center; background: var(--background1);">9</li>
+                                    </ul>
+                                    <button is-="carousel-next" data-carousel-next aria-label="Next">›</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="tilt" class="component">
+                        <div class="component-header">
+                            <h1>Tilt (3D)</h1>
+                            <p>3D rotation responding to mouse position. CSS provides <code>perspective</code> and spring transition; a small JS handler updates <code>--tilt-x</code> / <code>--tilt-y</code> custom properties from cursor coordinates. Customize via <code>data-tilt-max</code> (default 12deg).</p>
+                        </div>
+                        <div class="example">
+                            <div class="example-label">Hover the cards — rotation factor varies by <code>size-</code></div>
+                            <div class="example-stage row" style="gap: 4ch; padding: 3lh 2ch;">
+                                <div is-="tilt" size-="small" data-tilt>
+                                    <div is-="card" box-="square" style="width: 18ch;">
+                                        <div is-="card-title">Subtle</div>
+                                        <div is-="card-description">size-="small" — 6° max</div>
+                                    </div>
+                                </div>
+                                <div is-="tilt" data-tilt>
+                                    <div is-="card" box-="square" style="width: 18ch;">
+                                        <div is-="card-title">Default</div>
+                                        <div is-="card-description">12° max rotation</div>
+                                    </div>
+                                </div>
+                                <div is-="tilt" size-="large" glare-="" data-tilt>
+                                    <div is-="card" box-="square" style="width: 18ch;">
+                                        <div is-="card-title">Strong + glare</div>
+                                        <div is-="card-description">size-="large" + glare-=""</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="example">
+                            <div class="example-label">Tilt with shimmer button — <code>stylize-="glow"</code></div>
+                            <div class="example-stage row" style="gap: 4ch; padding: 3lh 2ch;">
+                                <div is-="tilt" data-tilt>
+                                    <button stylize-="glow" shape-="rounded" size-="large">Hover and tilt me</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="live-audio" class="component">
+                        <div class="component-header">
+                            <h1>Live Audio</h1>
+                            <p>Mic capture with frequency-bar visualization. Click to start, click again to stop. The CSS component provides the chrome and bar styles; a small JS handler in the showcase wires <code>navigator.mediaDevices.getUserMedia</code> to the bars' <code>--v</code> custom property.</p>
+                        </div>
+                        <div class="example">
+                            <div class="example-label">Click the mic — your browser will prompt for microphone access</div>
+                            <div class="example-stage row" style="gap: 3ch;">
+                                <button is-="live-audio" data-live-audio aria-label="Toggle microphone">
+                                    <i is-="live-audio-icon" class="hgi-stroke hgi-mic-01"></i>
+                                    <span is-="live-audio-bars">
+                                        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                                    </span>
+                                </button>
                             </div>
                         </div>
                     </section>
@@ -1677,6 +1805,207 @@ $ webtui list
                     else input.stepDown();
                     input.dispatchEvent(new Event('input', { bubbles: true }));
                     input.dispatchEvent(new Event('change', { bubbles: true }));
+                });
+
+                /* Command palette autocomplete — filter [data-cmd-item]
+                   based on input query, hide empty groups, show
+                   [is-~='command-empty'] when no matches. */
+                document.querySelectorAll('[data-cmd-input]').forEach((input) => {
+                    const palette = input.closest('[data-cmd-palette]');
+                    if (!palette) return;
+                    const items = palette.querySelectorAll('[data-cmd-item]');
+                    const groups = palette.querySelectorAll('[data-cmd-group]');
+                    const empty = palette.querySelector("[is-~='command-empty']");
+
+                    function filter() {
+                        const q = input.value.trim().toLowerCase();
+                        let visibleCount = 0;
+                        items.forEach((item) => {
+                            const text = item.textContent.toLowerCase();
+                            const match = q === '' || text.includes(q);
+                            item.hidden = !match;
+                            if (match) visibleCount++;
+                        });
+                        // Hide groups whose subsequent items are all hidden
+                        groups.forEach((group) => {
+                            let next = group.nextElementSibling;
+                            let anyVisible = false;
+                            while (next && !next.hasAttribute('data-cmd-group')) {
+                                if (
+                                    next.hasAttribute('data-cmd-item') &&
+                                    !next.hidden
+                                ) {
+                                    anyVisible = true;
+                                    break;
+                                }
+                                next = next.nextElementSibling;
+                            }
+                            group.hidden = !anyVisible;
+                        });
+                        if (empty) empty.hidden = visibleCount > 0;
+                    }
+
+                    input.addEventListener('input', filter);
+                    // Reset on popover open
+                    palette.addEventListener('toggle', () => {
+                        if (palette.matches(':popover-open')) {
+                            input.value = '';
+                            filter();
+                            input.focus();
+                        }
+                    });
+                });
+
+                /* Carousel — prev/next + dot navigation. Tracks
+                   slide width from the first slide and scrolls the
+                   track horizontally. */
+                document.querySelectorAll('[data-carousel]').forEach((root) => {
+                    const track = root.querySelector('[data-carousel-track]');
+                    const prev = root.querySelector('[data-carousel-prev]');
+                    const next = root.querySelector('[data-carousel-next]');
+                    const dotsHost = root.querySelector('[data-carousel-dots]');
+                    if (!track) return;
+                    const slides = Array.from(
+                        track.querySelectorAll("[is-~='carousel-slide']")
+                    );
+
+                    function slideStep() {
+                        const first = slides[0];
+                        if (!first) return 0;
+                        const gap =
+                            parseFloat(getComputedStyle(track).columnGap) || 0;
+                        return first.getBoundingClientRect().width + gap;
+                    }
+
+                    if (prev)
+                        prev.addEventListener('click', () => {
+                            track.scrollBy({
+                                left: -slideStep(),
+                                behavior: 'smooth',
+                            });
+                        });
+                    if (next)
+                        next.addEventListener('click', () => {
+                            track.scrollBy({
+                                left: slideStep(),
+                                behavior: 'smooth',
+                            });
+                        });
+
+                    if (dotsHost && slides.length) {
+                        dotsHost.innerHTML = '';
+                        slides.forEach((slide, i) => {
+                            const dot = document.createElement('button');
+                            dot.setAttribute('is-', 'carousel-dot');
+                            dot.setAttribute(
+                                'aria-label',
+                                'Go to slide ' + (i + 1)
+                            );
+                            if (i === 0) dot.setAttribute('aria-selected', 'true');
+                            dot.addEventListener('click', () => {
+                                slide.scrollIntoView({
+                                    behavior: 'smooth',
+                                    inline: 'start',
+                                    block: 'nearest',
+                                });
+                            });
+                            const li = document.createElement('li');
+                            li.appendChild(dot);
+                            dotsHost.appendChild(li);
+                        });
+                        track.addEventListener('scroll', () => {
+                            const left = track.scrollLeft;
+                            const step = slideStep() || 1;
+                            const idx = Math.round(left / step);
+                            dotsHost
+                                .querySelectorAll("[is-~='carousel-dot']")
+                                .forEach((d, i) => {
+                                    if (i === idx)
+                                        d.setAttribute('aria-selected', 'true');
+                                    else d.removeAttribute('aria-selected');
+                                });
+                        });
+                    }
+                });
+
+                /* Tilt — mouse-tracked 3D rotation. Sets --tilt-x and
+                   --tilt-y from cursor position. data-tilt-max overrides
+                   --tilt-max. */
+                document.querySelectorAll('[data-tilt]').forEach((el) => {
+                    const max =
+                        parseFloat(el.dataset.tiltMax) ||
+                        parseFloat(getComputedStyle(el).getPropertyValue('--tilt-max')) ||
+                        12;
+                    el.addEventListener('mousemove', (e) => {
+                        const rect = el.getBoundingClientRect();
+                        const px = (e.clientX - rect.left) / rect.width;
+                        const py = (e.clientY - rect.top) / rect.height;
+                        const x = (px - 0.5) * 2; // -1..1
+                        const y = (py - 0.5) * 2;
+                        el.style.setProperty('--tilt-y', x * max + 'deg');
+                        el.style.setProperty('--tilt-x', -y * max + 'deg');
+                        el.style.setProperty('--tilt-glare-x', px * 100 + '%');
+                        el.style.setProperty('--tilt-glare-y', py * 100 + '%');
+                    });
+                    el.addEventListener('mouseleave', () => {
+                        el.style.removeProperty('--tilt-x');
+                        el.style.removeProperty('--tilt-y');
+                    });
+                });
+
+                /* Live audio — toggle mic capture, drive bar heights
+                   from analyser frequency data. */
+                document.querySelectorAll('[data-live-audio]').forEach((btn) => {
+                    let stream, ctx, raf;
+                    const bars = btn.querySelectorAll(
+                        "[is-~='live-audio-bars'] > i"
+                    );
+                    btn.addEventListener('click', async () => {
+                        if (stream) {
+                            stream.getTracks().forEach((t) => t.stop());
+                            stream = null;
+                            cancelAnimationFrame(raf);
+                            if (ctx) ctx.close();
+                            ctx = null;
+                            btn.dataset.active = 'false';
+                            bars.forEach((b) => b.style.removeProperty('--v'));
+                            return;
+                        }
+                        try {
+                            stream = await navigator.mediaDevices.getUserMedia({
+                                audio: true,
+                            });
+                            ctx = new (window.AudioContext ||
+                                window.webkitAudioContext)();
+                            const source = ctx.createMediaStreamSource(stream);
+                            const analyser = ctx.createAnalyser();
+                            analyser.fftSize = 128;
+                            analyser.smoothingTimeConstant = 0.7;
+                            source.connect(analyser);
+                            const data = new Uint8Array(
+                                analyser.frequencyBinCount
+                            );
+                            btn.dataset.active = 'true';
+                            const tick = () => {
+                                analyser.getByteFrequencyData(data);
+                                bars.forEach((b, i) => {
+                                    const idx = Math.floor(
+                                        (i / bars.length) * (data.length / 2)
+                                    );
+                                    const v = (data[idx] / 255) * 100;
+                                    b.style.setProperty('--v', v.toFixed(1));
+                                });
+                                raf = requestAnimationFrame(tick);
+                            };
+                            tick();
+                        } catch (err) {
+                            btn.dataset.active = 'false';
+                            console.warn('Microphone access denied', err);
+                            alert(
+                                'Microphone access denied. Please allow access in your browser settings.'
+                            );
+                        }
+                    });
                 });
             })();
         </script>
