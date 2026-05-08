@@ -53,9 +53,9 @@
             height: 2lh;
         }
 
-        @media (prefers-reduced-motion: reduce) {
-            animation: none;
-        }
+        /* Skeleton is a loading indicator (like spinner) — exempt
+           from reduce-motion blanket kill. The shimmer conveys
+           pending state. */
 
         /* Pause hook — set play-state:paused on an ancestor or the
            skeleton itself to halt off-screen instances. Useful with

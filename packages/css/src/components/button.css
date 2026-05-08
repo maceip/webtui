@@ -162,12 +162,12 @@
         }
 
         &[shape-='rounded'] {
-            border-radius: 0.5ch;
+            border-radius: 0.5lh;
         }
 
         &[shape-='squircle'] {
-            /* Approximates iOS squircle on common aspect ratios */
-            border-radius: clamp(8px, 0.6lh, 24px);
+            /* Approximates iOS squircle — pill-ish on tall buttons */
+            border-radius: clamp(12px, 1.2lh, 32px);
         }
 
         /* When the user wants visible rounded corners, the half-bar

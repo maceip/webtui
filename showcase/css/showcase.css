@@ -147,8 +147,10 @@ body {
     padding: 1lh 2ch;
     background-color: var(--background0);
     border: solid 1px var(--background2);
-    overflow-x: auto;
-    overflow-y: visible;
+    /* overflow:visible so popovers/dropdowns escape; per CSS spec,
+       mixing visible + non-visible on opposite axes promotes visible
+       to auto, so we just use visible everywhere. */
+    overflow: visible;
 }
 
 .col {
