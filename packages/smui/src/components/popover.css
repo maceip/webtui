@@ -1,0 +1,28 @@
+@layer components {
+    details[is-~='popover'] {
+        position: relative;
+        display: inline-block;
+        isolation: isolate;
+    }
+
+    details[is-~='popover'] > summary {
+        cursor: pointer;
+        list-style: none;
+    }
+
+    details[is-~='popover'] > summary::-webkit-details-marker {
+        display: none;
+    }
+
+    details[is-~='popover'][open] > summary + * {
+        position: absolute;
+        top: calc(100% + 4px);
+        left: 0;
+        z-index: 5;
+        background-color: hsl(var(--smui-surface-2));
+        color: var(--foreground);
+        padding: 0.5rem 0.75rem;
+        border: 1px solid hsl(var(--smui-border));
+        min-width: 12rem;
+    }
+}

@@ -1,0 +1,73 @@
+@layer components {
+    [is-~='tabs'] {
+        display: flex;
+        flex-direction: column;
+        font-family: var(--font-family);
+    }
+
+    [is-~='tabs'] > [is-~='tabs-list'] {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        border-bottom: 1px solid hsl(var(--smui-border));
+    }
+
+    [is-~='tabs'] [is-~='tabs-trigger'],
+    [is-~='tabs'] [is-~='tabs-list'] button,
+    [is-~='tabs'] [is-~='tabs-list'] label,
+    [is-~='tabs'] [is-~='tabs-list'] a {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        background-color: transparent;
+        color: var(--muted-foreground);
+        font-family: inherit;
+        font-size: calc(var(--font-size) * 0.875);
+        font-weight: var(--font-weight-bold);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        border: none;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        margin-bottom: -1px;
+        text-decoration: none;
+    }
+
+    [is-~='tabs'] [is-~='tabs-trigger']:hover,
+    [is-~='tabs'] [is-~='tabs-list'] button:hover,
+    [is-~='tabs'] [is-~='tabs-list'] a:hover {
+        color: var(--foreground);
+    }
+
+    [is-~='tabs'] [is-~='tabs-trigger'][aria-selected='true'],
+    [is-~='tabs'] [is-~='tabs-trigger'][is-~='tabs-active'] {
+        color: var(--primary);
+        border-bottom-color: var(--primary);
+    }
+
+    [is-~='tabs'] > input[type='radio'] {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    [is-~='tabs'] > input[type='radio'] + label {
+        padding: 0.5rem 1rem;
+        background-color: transparent;
+        color: var(--muted-foreground);
+        font-size: calc(var(--font-size) * 0.875);
+        font-weight: var(--font-weight-bold);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        border: none;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        margin-bottom: -1px;
+    }
+
+    [is-~='tabs'] > input[type='radio']:checked + label {
+        color: var(--primary);
+        border-bottom-color: var(--primary);
+    }
+}

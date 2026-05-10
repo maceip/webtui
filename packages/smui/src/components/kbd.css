@@ -1,0 +1,16 @@
+@layer components {
+    kbd,
+    [is-~='kbd'] {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.125rem 0.5rem;
+        background-color: hsl(var(--smui-surface-2));
+        color: var(--foreground);
+        font-family: var(--font-family);
+        font-size: calc(var(--font-size) * 0.75);
+        line-height: 1.2;
+        font-weight: var(--font-weight-bold);
+        border: 1px solid hsl(var(--smui-border));
+        box-shadow: 0 1px 0 0 hsl(var(--smui-border));
+    }
+}

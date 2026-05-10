@@ -1,0 +1,32 @@
+@layer components {
+    textarea,
+    [is-~='textarea'] {
+        display: inline-block;
+        padding: 6px 8px;
+        min-height: 60px;
+        min-width: 200px;
+        background-color: var(--secondary-bg);
+        color: var(--text);
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: 1.4;
+        border: 1px solid;
+        border-color: var(--border-dark) var(--border-light)
+            var(--border-light) var(--border-dark);
+        outline: none;
+        resize: vertical;
+
+        &::placeholder {
+            color: var(--text-3);
+        }
+
+        &:focus-visible {
+            border-color: var(--accent);
+        }
+
+        &[size-='auto'] {
+            field-sizing: content;
+            resize: none;
+        }
+    }
+}

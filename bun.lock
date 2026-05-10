@@ -17,6 +17,13 @@
         "typescript-eslint": "^8.37.0",
       },
     },
+    "packages/cs": {
+      "name": "@webtui/cs",
+      "version": "0.0.1",
+      "devDependencies": {
+        "vite": "^6.2.0",
+      },
+    },
     "packages/css": {
       "name": "@webtui/css",
       "version": "0.1.7",
@@ -28,6 +35,13 @@
     "packages/plugin-nf": {
       "name": "@webtui/plugin-nf",
       "version": "0.1.2",
+      "devDependencies": {
+        "vite": "^6.2.0",
+      },
+    },
+    "packages/smui": {
+      "name": "@webtui/smui",
+      "version": "0.0.1",
       "devDependencies": {
         "vite": "^6.2.0",
       },
@@ -385,9 +399,13 @@
 
     "@ungap/structured-clone": ["@ungap/structured-clone@1.3.0", "", {}, "sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g=="],
 
+    "@webtui/cs": ["@webtui/cs@workspace:packages/cs"],
+
     "@webtui/css": ["@webtui/css@workspace:packages/css"],
 
     "@webtui/plugin-nf": ["@webtui/plugin-nf@workspace:packages/plugin-nf"],
+
+    "@webtui/smui": ["@webtui/smui@workspace:packages/smui"],
 
     "@webtui/theme-catppuccin": ["@webtui/theme-catppuccin@workspace:packages/theme-catppuccin"],
 

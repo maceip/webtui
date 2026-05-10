@@ -1,0 +1,48 @@
+@layer components {
+    [is-~='badge'] {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.125rem 0.5rem;
+        background-color: hsl(var(--smui-surface-2));
+        color: var(--foreground);
+        font-family: var(--font-family);
+        font-size: calc(var(--font-size) * 0.75);
+        line-height: 1.2;
+        font-weight: var(--font-weight-bold);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        border: 1px solid hsl(var(--smui-border));
+        white-space: nowrap;
+
+        &[variant-='primary'] {
+            background-color: hsl(var(--smui-frost-2) / 0.18);
+            color: hsl(var(--smui-frost-2));
+            border-color: hsl(var(--smui-frost-2) / 0.5);
+        }
+
+        &[variant-='success'] {
+            background-color: hsl(var(--smui-green) / 0.18);
+            color: hsl(var(--smui-green));
+            border-color: hsl(var(--smui-green) / 0.5);
+        }
+
+        &[variant-='warning'] {
+            background-color: hsl(var(--smui-yellow) / 0.18);
+            color: hsl(var(--smui-yellow));
+            border-color: hsl(var(--smui-yellow) / 0.5);
+        }
+
+        &[variant-='danger'],
+        &[variant-='destructive'] {
+            background-color: hsl(var(--smui-red) / 0.18);
+            color: hsl(var(--smui-red));
+            border-color: hsl(var(--smui-red) / 0.5);
+        }
+
+        &[variant-='info'] {
+            background-color: hsl(var(--smui-frost-3) / 0.18);
+            color: hsl(var(--smui-frost-3));
+            border-color: hsl(var(--smui-frost-3) / 0.5);
+        }
+    }
+}

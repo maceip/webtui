@@ -1,0 +1,45 @@
+@layer components {
+    [is-~='card'] {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px 20px;
+        background-color: var(--secondary-bg);
+        color: var(--text);
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: var(--line-height);
+        border: 1px solid;
+        border-color: var(--border-light) var(--border-dark)
+            var(--border-dark) var(--border-light);
+        outline: 1px solid var(--outline, #000);
+        outline-offset: -2px;
+
+        & > [is-~='card-header'] {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-dark);
+        }
+
+        & > [is-~='card-title'] {
+            color: var(--accent);
+            font-weight: var(--font-weight-bold);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        & > [is-~='card-description'] {
+            color: var(--text-3);
+        }
+
+        & > [is-~='card-footer'] {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border-dark);
+        }
+    }
+}

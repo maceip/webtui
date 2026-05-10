@@ -1,0 +1,30 @@
+@layer components {
+    [is-~='toolbar'] {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 4px;
+        padding: 4px 6px;
+        background-color: var(--secondary-bg);
+        color: var(--text);
+        font-family: var(--font-family);
+        border: 1px solid;
+        border-color: var(--border-light) var(--border-dark)
+            var(--border-dark) var(--border-light);
+        width: fit-content;
+        max-width: 100%;
+
+        & > [is-~='toolbar-separator'] {
+            width: 2px;
+            height: 20px;
+            background: linear-gradient(
+                to right,
+                var(--border-dark) 0,
+                var(--border-dark) 1px,
+                var(--border-light) 1px,
+                var(--border-light) 2px
+            );
+            margin: 0 4px;
+        }
+    }
+}

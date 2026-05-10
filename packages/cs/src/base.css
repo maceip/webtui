@@ -1,0 +1,36 @@
+@layer base {
+    /* The upstream cs16.css already defines :root vars and body styles.
+       This file adds WebTUI-compatible aliases so component CSS can
+       reference the same palette names as @webtui/css does. */
+
+    [data-webtui-theme='cs'],
+    [data-webtui-theme='cs16'],
+    :root {
+        --background0: var(--bg, #4a5942);
+        --background1: var(--secondary-bg, #3e4637);
+        --background2: #5a6a50;
+        --background3: var(--border-light, #8c9284);
+
+        --foreground0: var(--text, #dedfd6);
+        --foreground1: var(--secondary-text, #d8ded3);
+        --foreground2: var(--text-3, #a0aa95);
+
+        --primary: var(--accent, #c4b550);
+        --primary-foreground: #292c21;
+        --accent: var(--accent, #c4b550);
+        --accent-foreground: #292c21;
+        --destructive: #b04040;
+        --destructive-foreground: #f0e0e0;
+        --success: #6a8a4a;
+        --warning: var(--accent, #c4b550);
+        --info: #6080a8;
+
+        --box-border-color: var(--border-dark, #292c21);
+
+        --font-family: ArialPixel, system-ui, sans-serif;
+        --font-size: 16px;
+        --line-height: 1.5;
+        --font-weight-bold: 700;
+        --font-weight-normal: 400;
+    }
+}

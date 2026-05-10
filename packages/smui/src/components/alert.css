@@ -1,0 +1,68 @@
+@layer components {
+    [is-~='alert'] {
+        --alert-color: var(--foreground);
+        --alert-bg: hsl(var(--smui-surface-1));
+        --alert-border: hsl(var(--smui-border));
+        --alert-prefix: '!';
+
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: 0.5rem 0.75rem;
+        background-color: var(--alert-bg);
+        color: var(--alert-color);
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: 1.4;
+        border: 1px solid var(--alert-border);
+        border-left-width: 3px;
+
+        &::before {
+            content: var(--alert-prefix);
+            font-weight: var(--font-weight-bold);
+            color: var(--alert-color);
+            min-width: 1ch;
+        }
+
+        & > [is-~='alert-title'] {
+            font-weight: var(--font-weight-bold);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: calc(var(--font-size) * 0.875);
+        }
+
+        & > [is-~='alert-description'] {
+            color: var(--muted-foreground);
+            font-size: calc(var(--font-size) * 0.875);
+        }
+
+        &[variant-='info'] {
+            --alert-prefix: 'i';
+            --alert-color: hsl(var(--smui-frost-3));
+            --alert-border: hsl(var(--smui-frost-3));
+            --alert-bg: hsl(var(--smui-frost-3) / 0.1);
+        }
+
+        &[variant-='success'] {
+            --alert-prefix: '+';
+            --alert-color: hsl(var(--smui-green));
+            --alert-border: hsl(var(--smui-green));
+            --alert-bg: hsl(var(--smui-green) / 0.1);
+        }
+
+        &[variant-='warning'] {
+            --alert-prefix: '!';
+            --alert-color: hsl(var(--smui-yellow));
+            --alert-border: hsl(var(--smui-yellow));
+            --alert-bg: hsl(var(--smui-yellow) / 0.1);
+        }
+
+        &[variant-='danger'],
+        &[variant-='error'] {
+            --alert-prefix: 'x';
+            --alert-color: hsl(var(--smui-red));
+            --alert-border: hsl(var(--smui-red));
+            --alert-bg: hsl(var(--smui-red) / 0.1);
+        }
+    }
+}

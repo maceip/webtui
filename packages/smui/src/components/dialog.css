@@ -1,0 +1,44 @@
+@layer components {
+    dialog,
+    [is-~='dialog'] {
+        padding: 0;
+        background-color: hsl(var(--smui-surface-1));
+        color: var(--foreground);
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: var(--line-height);
+        border: 1px solid hsl(var(--smui-border));
+        max-width: min(560px, 90vw);
+
+        &::backdrop {
+            background-color: hsl(var(--smui-surface-0) / 0.7);
+            backdrop-filter: blur(4px);
+        }
+
+        & > [is-~='dialog-header'],
+        & > header {
+            padding: 0.75rem 1rem;
+            background-color: hsl(var(--smui-surface-2));
+            border-bottom: 1px solid hsl(var(--smui-border));
+            color: var(--foreground);
+            font-weight: var(--font-weight-bold);
+            text-transform: uppercase;
+            font-size: calc(var(--font-size) * 0.875);
+            letter-spacing: 0.08em;
+        }
+
+        & > [is-~='dialog-body'],
+        & > main {
+            padding: 1.25rem;
+        }
+
+        & > [is-~='dialog-footer'],
+        & > footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            border-top: 1px solid hsl(var(--smui-border));
+        }
+    }
+}

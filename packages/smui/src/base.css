@@ -1,0 +1,104 @@
+@layer base {
+    /* Design tokens — Nord-inspired palette, JetBrains Mono, zero radius.
+       Stored as raw HSL triplets so they compose with hsl(... / alpha). */
+
+    :root,
+    [data-webtui-theme='smui'] {
+        --smui-frost-1: 176 25% 65%;
+        --smui-frost-2: 193 44% 67%;
+        --smui-frost-3: 210 34% 63%;
+        --smui-frost-4: 213 32% 52%;
+
+        --smui-green: 92 28% 65%;
+        --smui-yellow: 40 71% 73%;
+        --smui-orange: 14 51% 63%;
+        --smui-red: 355 52% 64%;
+        --smui-purple: 311 24% 63%;
+
+        --smui-surface-0: 213 16% 12%;
+        --smui-surface-1: 217 16% 15.5%;
+        --smui-surface-2: 216 15% 19%;
+        --smui-surface-3: 215 14% 22%;
+
+        --smui-border: 217 17% 28%;
+        --smui-border-hover: 216 12% 37%;
+
+        --background: hsl(var(--smui-surface-0));
+        --foreground: hsl(213 27% 88%);
+        --muted-foreground: hsl(213 14% 65%);
+
+        --primary: hsl(var(--smui-frost-2));
+        --primary-foreground: hsl(var(--smui-surface-0));
+        --accent: hsl(var(--smui-frost-1));
+        --accent-foreground: hsl(var(--smui-surface-0));
+        --destructive: hsl(var(--smui-red));
+        --destructive-foreground: hsl(213 27% 95%);
+        --success: hsl(var(--smui-green));
+        --warning: hsl(var(--smui-yellow));
+        --info: hsl(var(--smui-frost-3));
+
+        /* WebTUI compatibility */
+        --background0: hsl(var(--smui-surface-0));
+        --background1: hsl(var(--smui-surface-1));
+        --background2: hsl(var(--smui-surface-2));
+        --background3: hsl(var(--smui-surface-3));
+        --foreground0: hsl(213 27% 88%);
+        --foreground1: hsl(213 14% 78%);
+        --foreground2: hsl(213 14% 65%);
+
+        --box-border-color: hsl(var(--smui-border));
+
+        --chart-1: hsl(var(--smui-frost-2));
+        --chart-2: hsl(var(--smui-red));
+        --chart-3: hsl(var(--smui-green));
+        --chart-4: hsl(var(--smui-yellow));
+        --chart-5: hsl(var(--smui-purple));
+
+        --gauge-zone-1: hsl(var(--smui-green));
+        --gauge-zone-2: hsl(var(--smui-yellow));
+        --gauge-zone-3: hsl(var(--smui-red));
+
+        --font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo,
+            monospace;
+        --font-size: 14px;
+        --line-height: 1.5;
+        --font-weight-bold: 600;
+        --font-weight-normal: 400;
+        --radius: 0;
+    }
+
+    [data-webtui-theme='smui-light'] {
+        --smui-surface-0: 0 0% 100%;
+        --smui-surface-1: 0 0% 97%;
+        --smui-surface-2: 0 0% 93%;
+        --smui-surface-3: 0 0% 88%;
+        --smui-border: 0 0% 78%;
+
+        --background: hsl(var(--smui-surface-0));
+        --foreground: hsl(213 27% 12%);
+        --muted-foreground: hsl(213 14% 35%);
+
+        --background0: hsl(var(--smui-surface-0));
+        --background1: hsl(var(--smui-surface-1));
+        --background2: hsl(var(--smui-surface-2));
+        --background3: hsl(var(--smui-surface-3));
+        --foreground0: hsl(213 27% 12%);
+        --foreground1: hsl(213 14% 22%);
+        --foreground2: hsl(213 14% 35%);
+    }
+
+    body {
+        background-color: var(--background);
+        color: var(--foreground);
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: var(--line-height);
+    }
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+        border-radius: 0;
+    }
+}

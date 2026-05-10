@@ -1,0 +1,29 @@
+@layer components {
+    details[is-~='popover'] {
+        position: relative;
+        display: inline-block;
+        isolation: isolate;
+    }
+
+    details[is-~='popover'] > summary {
+        cursor: pointer;
+        list-style: none;
+    }
+
+    details[is-~='popover'] > summary::-webkit-details-marker {
+        display: none;
+    }
+
+    details[is-~='popover'][open] > summary + * {
+        position: absolute;
+        top: calc(100% + 4px);
+        left: 0;
+        z-index: 5;
+        background-color: var(--secondary-bg);
+        color: var(--text);
+        padding: 6px 10px;
+        border: 1px solid;
+        border-color: var(--border-light) var(--border-dark)
+            var(--border-dark) var(--border-light);
+    }
+}

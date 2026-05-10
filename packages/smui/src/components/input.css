@@ -1,0 +1,47 @@
+@layer components {
+    input[type='text'],
+    input[type='email'],
+    input[type='password'],
+    input[type='search'],
+    input[type='tel'],
+    input[type='url'],
+    input[type='number'],
+    input[type='date'],
+    input[type='month'],
+    input[type='time'],
+    input[type='week'],
+    input:not([type]),
+    [is-~='input'] {
+        display: inline-block;
+        padding: 0.5rem 0.75rem;
+        min-height: 2.25rem;
+        min-width: 16rem;
+        background-color: hsl(var(--smui-surface-1));
+        color: var(--foreground);
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: 1.2;
+        border: 1px solid hsl(var(--smui-border));
+        outline: none;
+        caret-color: var(--primary);
+
+        &::placeholder {
+            color: var(--muted-foreground);
+        }
+
+        &:focus-visible {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 1px var(--primary);
+        }
+
+        &:user-invalid {
+            border-color: var(--destructive);
+            box-shadow: 0 0 0 1px var(--destructive);
+        }
+
+        &:disabled {
+            opacity: 0.4;
+            pointer-events: none;
+        }
+    }
+}

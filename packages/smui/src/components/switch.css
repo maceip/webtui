@@ -1,0 +1,48 @@
+@layer components {
+    input[type='checkbox'][is-='switch'] {
+        appearance: none;
+        -webkit-appearance: none;
+        display: inline-block;
+        position: relative;
+        width: 2.5rem;
+        height: 1.25rem;
+        background-color: hsl(var(--smui-surface-2));
+        border: 1px solid hsl(var(--smui-border));
+        vertical-align: middle;
+        cursor: pointer;
+        transition: background-color 0.15s ease;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 1px;
+            left: 1px;
+            width: calc(1.25rem - 4px);
+            height: calc(1.25rem - 4px);
+            background-color: var(--muted-foreground);
+            transition:
+                left 0.15s ease,
+                background-color 0.15s ease;
+        }
+
+        &:checked {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        &:checked::after {
+            left: calc(1.25rem + 1px);
+            background-color: var(--primary-foreground);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        &:disabled {
+            opacity: 0.4;
+            pointer-events: none;
+        }
+    }
+}

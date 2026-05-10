@@ -1,0 +1,47 @@
+@layer components {
+    dialog,
+    [is-~='dialog'] {
+        padding: 0;
+        background-color: var(--secondary-bg);
+        color: var(--text);
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: var(--line-height);
+        border: 1px solid;
+        border-color: var(--border-light) var(--border-dark)
+            var(--border-dark) var(--border-light);
+        outline: 1px solid var(--outline, #000);
+        outline-offset: -2px;
+        max-width: min(560px, 90vw);
+
+        &::backdrop {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        & > [is-~='dialog-header'],
+        & > header {
+            padding: 6px 12px;
+            background-color: var(--bg);
+            border-bottom: 1px solid var(--border-dark);
+            color: var(--accent);
+            font-weight: var(--font-weight-bold);
+            text-transform: uppercase;
+            font-size: calc(var(--font-size) * 0.875);
+            letter-spacing: 0.05em;
+        }
+
+        & > [is-~='dialog-body'],
+        & > main {
+            padding: 16px 20px;
+        }
+
+        & > [is-~='dialog-footer'],
+        & > footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            padding: 10px 12px;
+            border-top: 1px solid var(--border-dark);
+        }
+    }
+}

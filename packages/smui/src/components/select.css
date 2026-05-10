@@ -1,0 +1,41 @@
+@layer components {
+    select,
+    [is-~='select'] {
+        appearance: none;
+        -webkit-appearance: none;
+        padding: 0.5rem 2rem 0.5rem 0.75rem;
+        min-height: 2.25rem;
+        background-color: hsl(var(--smui-surface-1));
+        color: var(--foreground);
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: 1.2;
+        border: 1px solid hsl(var(--smui-border));
+        outline: none;
+        cursor: pointer;
+        background-image:
+            linear-gradient(
+                45deg,
+                transparent 50%,
+                var(--foreground) 50%
+            ),
+            linear-gradient(135deg, var(--foreground) 50%, transparent 50%);
+        background-position:
+            calc(100% - 0.9rem) 50%,
+            calc(100% - 0.55rem) 50%;
+        background-size:
+            0.4rem 0.4rem,
+            0.4rem 0.4rem;
+        background-repeat: no-repeat;
+
+        &:focus-visible {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 1px var(--primary);
+        }
+
+        & option {
+            background-color: hsl(var(--smui-surface-1));
+            color: var(--foreground);
+        }
+    }
+}

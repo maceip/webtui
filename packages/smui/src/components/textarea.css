@@ -1,0 +1,32 @@
+@layer components {
+    textarea,
+    [is-~='textarea'] {
+        display: inline-block;
+        padding: 0.5rem 0.75rem;
+        min-height: 4rem;
+        min-width: 16rem;
+        background-color: hsl(var(--smui-surface-1));
+        color: var(--foreground);
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: 1.5;
+        border: 1px solid hsl(var(--smui-border));
+        outline: none;
+        resize: vertical;
+        caret-color: var(--primary);
+
+        &::placeholder {
+            color: var(--muted-foreground);
+        }
+
+        &:focus-visible {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 1px var(--primary);
+        }
+
+        &[size-='auto'] {
+            field-sizing: content;
+            resize: none;
+        }
+    }
+}

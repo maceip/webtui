@@ -1,0 +1,39 @@
+@layer components {
+    label,
+    [is-~='label'] {
+        font-family: var(--font-family);
+        font-size: calc(var(--font-size) * 0.75);
+        line-height: 1.2;
+        color: var(--foreground);
+        font-weight: var(--font-weight-bold);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        cursor: pointer;
+        user-select: none;
+
+        &[variant-='muted'] {
+            color: var(--muted-foreground);
+        }
+
+        &[variant-='primary'] {
+            color: var(--primary);
+        }
+
+        &[variant-='success'] {
+            color: var(--success);
+        }
+
+        &[variant-='warning'] {
+            color: var(--warning);
+        }
+
+        &[variant-='danger'],
+        &[variant-='destructive'] {
+            color: var(--destructive);
+        }
+
+        &[variant-='info'] {
+            color: var(--info);
+        }
+    }
+}

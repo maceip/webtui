@@ -1,0 +1,16 @@
+@layer components {
+    kbd,
+    [is-~='kbd'] {
+        display: inline-block;
+        padding: 0 6px;
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: var(--font-family);
+        font-size: calc(var(--font-size) * 0.875);
+        line-height: 1.4;
+        border: 1px solid;
+        border-color: var(--border-light) var(--border-dark)
+            var(--border-dark) var(--border-light);
+        text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);
+    }
+}

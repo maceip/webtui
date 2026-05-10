@@ -1,0 +1,22 @@
+@layer components {
+    [is-~='toolbar'] {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.25rem;
+        padding: 0.25rem 0.5rem;
+        background-color: hsl(var(--smui-surface-1));
+        color: var(--foreground);
+        font-family: var(--font-family);
+        border: 1px solid hsl(var(--smui-border));
+        width: fit-content;
+        max-width: 100%;
+
+        & > [is-~='toolbar-separator'] {
+            width: 1px;
+            align-self: stretch;
+            background-color: hsl(var(--smui-border));
+            margin: 0 0.25rem;
+        }
+    }
+}

@@ -1,0 +1,32 @@
+@layer components {
+    label,
+    [is-~='label'] {
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: var(--line-height);
+        color: var(--text);
+        cursor: pointer;
+        user-select: none;
+
+        &[variant-='muted'] {
+            color: var(--text-3);
+        }
+
+        &[variant-='primary'] {
+            color: var(--accent);
+        }
+
+        &[variant-='success'] {
+            color: var(--success);
+        }
+
+        &[variant-='warning'] {
+            color: var(--warning);
+        }
+
+        &[variant-='danger'],
+        &[variant-='destructive'] {
+            color: var(--destructive);
+        }
+    }
+}

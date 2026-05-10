@@ -1,0 +1,49 @@
+@layer components {
+    @property --progress-value {
+        syntax: '<number>';
+        inherits: true;
+        initial-value: 0;
+    }
+
+    @property --progress-max {
+        syntax: '<number>';
+        inherits: true;
+        initial-value: 100;
+    }
+
+    [is-~='progress'] {
+        --progress-value: 0;
+        --progress-max: 100;
+
+        display: inline-block;
+        width: 100%;
+        height: 18px;
+        background-color: var(--secondary-bg);
+        border: 1px solid;
+        border-color: var(--border-dark) var(--border-light)
+            var(--border-light) var(--border-dark);
+        position: relative;
+        overflow: hidden;
+        vertical-align: middle;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: calc(
+                (var(--progress-value) / var(--progress-max)) * 100%
+            );
+            background-color: var(--accent);
+            background-image: repeating-linear-gradient(
+                90deg,
+                var(--accent) 0,
+                var(--accent) 8px,
+                var(--secondary-accent) 8px,
+                var(--secondary-accent) 10px
+            );
+            transition: width 0.2s ease;
+        }
+    }
+}

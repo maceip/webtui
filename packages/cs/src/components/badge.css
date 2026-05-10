@@ -1,0 +1,40 @@
+@layer components {
+    [is-~='badge'] {
+        display: inline-flex;
+        align-items: center;
+        padding: 1px 8px;
+        background-color: var(--secondary-bg);
+        color: var(--text);
+        font-family: var(--font-family);
+        font-size: calc(var(--font-size) * 0.875);
+        line-height: 1.4;
+        border: 1px solid var(--border-dark);
+        white-space: nowrap;
+
+        &[variant-='primary'] {
+            background-color: var(--accent);
+            color: var(--primary-foreground);
+        }
+
+        &[variant-='success'] {
+            background-color: var(--success);
+            color: var(--text);
+        }
+
+        &[variant-='warning'] {
+            background-color: var(--warning);
+            color: var(--primary-foreground);
+        }
+
+        &[variant-='danger'],
+        &[variant-='destructive'] {
+            background-color: var(--destructive);
+            color: var(--destructive-foreground);
+        }
+
+        &[variant-='info'] {
+            background-color: var(--info);
+            color: var(--text);
+        }
+    }
+}

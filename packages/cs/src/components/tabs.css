@@ -1,0 +1,64 @@
+@layer components {
+    [is-~='tabs'] {
+        display: flex;
+        flex-direction: column;
+        font-family: var(--font-family);
+    }
+
+    [is-~='tabs'] > [is-~='tabs-list'] {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        border-bottom: 1px solid var(--border-dark);
+    }
+
+    [is-~='tabs'] [is-~='tabs-trigger'],
+    [is-~='tabs'] [is-~='tabs-list'] button,
+    [is-~='tabs'] [is-~='tabs-list'] label {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 14px;
+        background-color: var(--bg);
+        color: var(--text-3);
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        border: 1px solid;
+        border-color: var(--border-light) var(--border-dark)
+            transparent var(--border-light);
+        border-bottom: none;
+        cursor: pointer;
+        margin-bottom: -1px;
+    }
+
+    [is-~='tabs'] [is-~='tabs-trigger'][aria-selected='true'],
+    [is-~='tabs'] [is-~='tabs-trigger'][is-~='tabs-active'] {
+        background-color: var(--secondary-bg);
+        color: var(--accent);
+    }
+
+    [is-~='tabs'] > input[type='radio'] {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    [is-~='tabs'] > input[type='radio'] + label {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 14px;
+        background-color: var(--bg);
+        color: var(--text-3);
+        border: 1px solid;
+        border-color: var(--border-light) var(--border-dark)
+            transparent var(--border-light);
+        border-bottom: none;
+        cursor: pointer;
+        margin-bottom: -1px;
+    }
+
+    [is-~='tabs'] > input[type='radio']:checked + label {
+        background-color: var(--secondary-bg);
+        color: var(--accent);
+    }
+}

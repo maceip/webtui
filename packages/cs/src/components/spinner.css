@@ -1,0 +1,53 @@
+@layer components {
+    [is-~='spinner'] {
+        --spinner-chars: '/-\\|';
+        --spinner-steps: 4;
+        --spinner-duration: 1s;
+
+        display: inline-block;
+        width: 1ch;
+        height: 1.4em;
+        overflow: hidden;
+        position: relative;
+        vertical-align: middle;
+        color: var(--accent);
+        font-family: var(--font-family);
+
+        &::before {
+            content: var(--spinner-chars);
+            position: absolute;
+            top: 0;
+            left: 0;
+            white-space: nowrap;
+            animation: cs-spinner-pan var(--spinner-duration)
+                steps(var(--spinner-steps)) infinite;
+        }
+
+        &[variant-='dots'] {
+            --spinner-steps: 8;
+            --spinner-chars: '⣷⣯⣟⡿⢿⣻⣽⣾';
+        }
+
+        &[variant-='arrows'] {
+            --spinner-steps: 8;
+            --spinner-chars: '←↖↑↗→↘↓↙';
+        }
+
+        &[speed-='slow'] {
+            --spinner-duration: 2s;
+        }
+
+        &[speed-='fast'] {
+            --spinner-duration: 0.5s;
+        }
+    }
+
+    @keyframes cs-spinner-pan {
+        from {
+            translate: 0;
+        }
+        to {
+            translate: -100%;
+        }
+    }
+}

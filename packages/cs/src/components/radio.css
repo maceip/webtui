@@ -1,0 +1,45 @@
+@layer components {
+    input[type='radio'] {
+        appearance: none;
+        -webkit-appearance: none;
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        background-color: var(--secondary-bg);
+        border: 1px solid;
+        border-color: var(--border-dark) var(--border-light)
+            var(--border-light) var(--border-dark);
+        border-radius: 50%;
+        position: relative;
+        vertical-align: middle;
+        cursor: pointer;
+
+        &:checked::after {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent);
+            border-radius: 50%;
+        }
+
+        &:focus-visible {
+            outline: 1px solid var(--accent);
+            outline-offset: 1px;
+        }
+
+        &:disabled {
+            background-color: var(--bg);
+            pointer-events: none;
+        }
+    }
+
+    label:has(input[type='radio']) {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+    }
+}

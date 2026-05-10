@@ -1,0 +1,42 @@
+@layer components {
+    table {
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: 1.4;
+        color: var(--text);
+        background-color: var(--secondary-bg);
+        border: 1px solid;
+        border-color: var(--border-dark) var(--border-light)
+            var(--border-light) var(--border-dark);
+        border-spacing: 0;
+        width: 100%;
+    }
+
+    table thead tr {
+        background-color: var(--bg);
+    }
+
+    table th {
+        text-align: left;
+        padding: 6px 10px;
+        color: var(--accent);
+        font-weight: var(--font-weight-bold);
+        text-transform: uppercase;
+        font-size: calc(var(--font-size) * 0.875);
+        letter-spacing: 0.05em;
+        border-bottom: 1px solid var(--border-dark);
+    }
+
+    table td {
+        padding: 4px 10px;
+        border-bottom: 1px solid var(--bg);
+    }
+
+    table tbody tr:hover {
+        background-color: var(--bg);
+    }
+
+    table tbody tr:last-child td {
+        border-bottom: none;
+    }
+}

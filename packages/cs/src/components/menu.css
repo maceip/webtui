@@ -1,0 +1,67 @@
+@layer components {
+    [is-~='menu'] {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        margin: 0;
+        padding: 4px;
+        background-color: var(--secondary-bg);
+        color: var(--text);
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        border: 1px solid;
+        border-color: var(--border-light) var(--border-dark)
+            var(--border-dark) var(--border-light);
+        min-width: 160px;
+    }
+
+    [is-~='menu'] [is-~='menu-item'],
+    [is-~='menu'] > li > a,
+    [is-~='menu'] > li > button {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 4px 10px;
+        color: var(--text);
+        background-color: transparent;
+        border: none;
+        text-decoration: none;
+        font: inherit;
+        text-align: left;
+        cursor: pointer;
+        width: 100%;
+
+        &:hover,
+        &:focus-visible {
+            background-color: var(--bg);
+            color: var(--accent);
+            outline: none;
+        }
+
+        &:disabled,
+        &[aria-disabled='true'] {
+            color: var(--disabled-text);
+            pointer-events: none;
+        }
+    }
+
+    [is-~='menu'] [is-~='menu-separator'] {
+        height: 2px;
+        background: linear-gradient(
+            to bottom,
+            var(--border-dark) 0,
+            var(--border-dark) 1px,
+            var(--border-light) 1px,
+            var(--border-light) 2px
+        );
+        margin: 4px 0;
+    }
+
+    [is-~='menu'] [is-~='menu-label'] {
+        padding: 4px 10px;
+        color: var(--text-3);
+        text-transform: uppercase;
+        font-size: calc(var(--font-size) * 0.875);
+        font-weight: var(--font-weight-bold);
+    }
+}
