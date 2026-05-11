@@ -1,0 +1,62 @@
+@layer components {
+    nav[is-~='pagination'],
+    [is-~='pagination'] {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        font-family: var(--font-family);
+
+        & ul,
+        & ol {
+            display: inline-flex;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 0.125rem;
+        }
+
+        & a,
+        & button,
+        & [is-~='pagination-item'] {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 2rem;
+            height: 2rem;
+            padding: 0 0.5rem;
+            color: var(--foreground);
+            background-color: transparent;
+            border: 1px solid hsl(var(--smui-border));
+            text-decoration: none;
+            cursor: pointer;
+            font: inherit;
+            font-size: calc(var(--font-size) * 0.875);
+
+            &:hover {
+                background-color: hsl(var(--smui-surface-2));
+                color: var(--primary);
+                border-color: hsl(var(--smui-border-hover));
+            }
+
+            &[aria-current='page'],
+            &[is-~='pagination-active'] {
+                background-color: var(--primary);
+                color: var(--primary-foreground);
+                border-color: var(--primary);
+            }
+
+            &:disabled,
+            &[aria-disabled='true'] {
+                opacity: 0.4;
+                pointer-events: none;
+            }
+        }
+
+        & [is-~='pagination-ellipsis'] {
+            color: var(--muted-foreground);
+            min-width: 1.5rem;
+            text-align: center;
+        }
+    }
+}

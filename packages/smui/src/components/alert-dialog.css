@@ -1,0 +1,39 @@
+@layer components {
+    dialog[variant-='alert'],
+    dialog[is-~='alert-dialog'] {
+        padding: 1.25rem;
+        max-width: 28rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        border-left: 3px solid var(--destructive);
+
+        &::backdrop {
+            background-color: hsl(var(--smui-surface-0) / 0.8);
+            backdrop-filter: blur(4px);
+        }
+
+        & > [is-~='alert-dialog-title'] {
+            color: var(--destructive);
+            font-weight: var(--font-weight-bold);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+
+            &::before {
+                content: '! ';
+            }
+        }
+
+        & > [is-~='alert-dialog-description'] {
+            color: var(--foreground);
+            line-height: 1.5;
+        }
+
+        & > [is-~='alert-dialog-actions'] {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+    }
+}

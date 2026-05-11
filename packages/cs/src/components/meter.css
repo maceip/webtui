@@ -1,0 +1,32 @@
+@layer components {
+    meter,
+    [is-~='meter'] {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 200px;
+        height: 14px;
+        background-color: var(--secondary-bg);
+        border: 1px solid;
+        border-color: var(--border-dark) var(--border-light)
+            var(--border-light) var(--border-dark);
+        vertical-align: middle;
+
+        &::-webkit-meter-bar {
+            background: var(--secondary-bg);
+            border: none;
+            height: 12px;
+        }
+        &::-webkit-meter-optimum-value {
+            background: var(--success);
+        }
+        &::-webkit-meter-suboptimum-value {
+            background: var(--warning);
+        }
+        &::-webkit-meter-even-less-good-value {
+            background: var(--destructive);
+        }
+        &::-moz-meter-bar {
+            background: var(--success);
+        }
+    }
+}

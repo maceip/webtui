@@ -1,0 +1,29 @@
+@layer components {
+    input[is-='otp'],
+    [is-~='otp-field'] > input {
+        --otp-cell: 2.2ch;
+        --otp-pitch: 3ch;
+        font-family: var(--font-family);
+        font-size: calc(var(--font-size) * 1.25);
+        font-weight: var(--font-weight-bold);
+        background-color: transparent;
+        color: var(--accent);
+        text-align: left;
+        letter-spacing: 1.5ch;
+        padding-left: 0.75ch;
+        border: none;
+        outline: none;
+        caret-color: var(--accent);
+        background-image: repeating-linear-gradient(
+            to right,
+            var(--secondary-bg) 0,
+            var(--secondary-bg) var(--otp-cell),
+            transparent var(--otp-cell),
+            transparent var(--otp-pitch)
+        );
+        background-size: var(--otp-pitch) 100%;
+        background-repeat: repeat-x;
+        height: 32px;
+        width: calc(var(--otp-pitch) * 6);
+    }
+}

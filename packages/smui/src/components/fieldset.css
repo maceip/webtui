@@ -1,0 +1,23 @@
+@layer components {
+    fieldset,
+    [is-~='fieldset'] {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        padding: 1rem 1.25rem;
+        background-color: hsl(var(--smui-surface-1));
+        border: 1px solid hsl(var(--smui-border));
+        margin: 0;
+        font-family: var(--font-family);
+
+        & > legend {
+            padding: 0 0.5rem;
+            color: var(--muted-foreground);
+            font-weight: var(--font-weight-bold);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: calc(var(--font-size) * 0.75);
+        }
+    }
+}

@@ -1,0 +1,43 @@
+@layer components {
+    input[type='range'],
+    [is-~='slider'] {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 12rem;
+        height: 1.25rem;
+        background: transparent;
+        outline: none;
+        vertical-align: middle;
+
+        &::-webkit-slider-runnable-track {
+            height: 2px;
+            background: hsl(var(--smui-border));
+        }
+        &::-webkit-slider-thumb {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 0.75rem;
+            height: 1.25rem;
+            background: var(--primary);
+            border: none;
+            margin-top: -0.65rem;
+            cursor: pointer;
+        }
+        &::-moz-range-track {
+            height: 2px;
+            background: hsl(var(--smui-border));
+        }
+        &::-moz-range-thumb {
+            width: 0.75rem;
+            height: 1.25rem;
+            background: var(--primary);
+            border: none;
+            border-radius: 0;
+            cursor: pointer;
+        }
+        &:focus-visible::-webkit-slider-thumb {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+    }
+}

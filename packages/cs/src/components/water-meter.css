@@ -1,0 +1,95 @@
+@layer components {
+    [is-~='water-meter'] {
+        --water-value: 50;
+        --water-color: var(--info);
+        --water-size: 120px;
+
+        position: relative;
+        display: inline-block;
+        width: var(--water-size);
+        height: var(--water-size);
+        background-color: var(--secondary-bg);
+        border: 1px solid;
+        border-color: var(--border-dark) var(--border-light)
+            var(--border-light) var(--border-dark);
+        border-radius: 50%;
+        overflow: hidden;
+        isolation: isolate;
+    }
+
+    [is-~='water-meter']::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: calc(var(--water-value) * 1%);
+        background-color: var(--water-color);
+        z-index: 1;
+    }
+
+    [is-~='water-meter'] > svg {
+        position: absolute;
+        left: -50%;
+        right: -50%;
+        width: 200%;
+        height: 40px;
+        bottom: calc(var(--water-value) * 1% - 20px);
+        z-index: 2;
+        overflow: visible;
+        pointer-events: none;
+    }
+
+    [is-~='water-meter'] > svg path {
+        fill: var(--water-color);
+        animation: cs-water-wave 3s linear infinite;
+    }
+
+    [is-~='water-meter'] > svg path:nth-of-type(2) {
+        opacity: 0.5;
+        animation-duration: 4s;
+        animation-direction: reverse;
+    }
+
+    [is-~='water-meter'] > [is-~='water-value'] {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text);
+        font-family: var(--font-family);
+        font-weight: var(--font-weight-bold);
+        font-size: calc(var(--water-size) * 0.18);
+        z-index: 3;
+        text-shadow:
+            0 0 4px var(--bg),
+            0 0 4px var(--bg);
+    }
+
+    [is-~='water-meter'][variant-='success'] {
+        --water-color: var(--success);
+    }
+    [is-~='water-meter'][variant-='warning'] {
+        --water-color: var(--warning);
+    }
+    [is-~='water-meter'][variant-='danger'] {
+        --water-color: var(--destructive);
+    }
+
+    [is-~='water-meter'][size-='small'] {
+        --water-size: 80px;
+    }
+    [is-~='water-meter'][size-='large'] {
+        --water-size: 180px;
+    }
+
+    @keyframes cs-water-wave {
+        from {
+            transform: translateX(0);
+        }
+        to {
+            transform: translateX(-25%);
+        }
+    }
+}

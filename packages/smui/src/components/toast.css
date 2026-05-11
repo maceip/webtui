@@ -1,0 +1,81 @@
+@layer components {
+    [is-~='toast'],
+    [popover][is-~='toast'] {
+        position: fixed;
+        bottom: 1rem;
+        right: 1rem;
+        margin: 0;
+        padding: 0.75rem 1rem;
+        background-color: hsl(var(--smui-surface-2));
+        color: var(--foreground);
+        font-family: var(--font-family);
+        border: 1px solid hsl(var(--smui-border));
+        border-left-width: 3px;
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        min-width: 18rem;
+        max-width: 26rem;
+        opacity: 0;
+        translate: 0 1rem;
+        transition:
+            opacity 0.2s ease,
+            translate 0.2s ease,
+            display 0.2s ease allow-discrete,
+            overlay 0.2s ease allow-discrete;
+
+        &:popover-open {
+            opacity: 1;
+            translate: 0 0;
+        }
+        @starting-style {
+            &:popover-open {
+                opacity: 0;
+                translate: 0 1rem;
+            }
+        }
+
+        &::before {
+            content: '!';
+            font-weight: var(--font-weight-bold);
+            color: var(--primary);
+        }
+
+        & > [is-~='toast-title'] {
+            font-weight: var(--font-weight-bold);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: calc(var(--font-size) * 0.875);
+        }
+
+        & > [is-~='toast-description'] {
+            color: var(--muted-foreground);
+            font-size: calc(var(--font-size) * 0.875);
+        }
+
+        &[variant-='success'] {
+            border-left-color: var(--success);
+            &::before {
+                content: '+';
+                color: var(--success);
+            }
+        }
+
+        &[variant-='warning'] {
+            border-left-color: var(--warning);
+            &::before {
+                content: '!';
+                color: var(--warning);
+            }
+        }
+
+        &[variant-='danger'],
+        &[variant-='error'] {
+            border-left-color: var(--destructive);
+            &::before {
+                content: 'x';
+                color: var(--destructive);
+            }
+        }
+    }
+}

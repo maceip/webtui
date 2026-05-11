@@ -1,0 +1,34 @@
+@layer components {
+    [is-~='frame'] {
+        position: relative;
+        padding: 1.5rem;
+        background-color: hsl(var(--smui-surface-1));
+        color: var(--foreground);
+        font-family: var(--font-family);
+        border: 1px solid hsl(var(--smui-border));
+
+        & > [is-~='frame-title'] {
+            position: absolute;
+            top: 0;
+            left: 1rem;
+            transform: translateY(-50%);
+            padding: 0 0.5rem;
+            background-color: var(--background);
+            color: var(--muted-foreground);
+            font-weight: var(--font-weight-bold);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: calc(var(--font-size) * 0.75);
+            line-height: 1;
+        }
+
+        & > [is-~='frame-title'][position-='end'] {
+            left: auto;
+            right: 1rem;
+        }
+        & > [is-~='frame-title'][position-='center'] {
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+}

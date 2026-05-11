@@ -1,0 +1,51 @@
+@layer components {
+    [is-~='number-field'] {
+        display: inline-flex;
+        align-items: stretch;
+        font-family: var(--font-family);
+        border: 1px solid hsl(var(--smui-border));
+        background-color: hsl(var(--smui-surface-1));
+        height: 2.25rem;
+
+        & > input[type='number'] {
+            flex: 1;
+            border: none;
+            background: transparent;
+            padding: 0 0.5rem;
+            min-width: 4rem;
+            text-align: center;
+            color: var(--foreground);
+            font-family: inherit;
+            appearance: textfield;
+            -moz-appearance: textfield;
+        }
+        & > input[type='number']::-webkit-inner-spin-button,
+        & > input[type='number']::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            appearance: none;
+            margin: 0;
+        }
+
+        & > button,
+        & > [data-action] {
+            width: 2rem;
+            background-color: hsl(var(--smui-surface-2));
+            color: var(--foreground);
+            border: none;
+            border-left: 1px solid hsl(var(--smui-border));
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: var(--font-weight-bold);
+
+            &:first-child {
+                border-left: none;
+                border-right: 1px solid hsl(var(--smui-border));
+            }
+
+            &:hover {
+                background-color: hsl(var(--smui-surface-3));
+                color: var(--primary);
+            }
+        }
+    }
+}

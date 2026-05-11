@@ -1,0 +1,88 @@
+@layer components {
+    [is-~='carousel'] {
+        --carousel-gap: 8px;
+        --carousel-slide-width: 100%;
+        position: relative;
+        display: block;
+        font-family: var(--font-family);
+    }
+
+    [is-~='carousel'] > [is-~='carousel-track'] {
+        display: flex;
+        gap: var(--carousel-gap);
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    [is-~='carousel'] > [is-~='carousel-track']::-webkit-scrollbar {
+        display: none;
+    }
+
+    [is-~='carousel'] [is-~='carousel-slide'] {
+        flex: 0 0 var(--carousel-slide-width);
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+        min-width: 0;
+    }
+
+    [is-~='carousel'][slides-='2'] {
+        --carousel-slide-width: calc(50% - var(--carousel-gap) / 2);
+    }
+    [is-~='carousel'][slides-='3'] {
+        --carousel-slide-width: calc(33.333% - var(--carousel-gap) * 2 / 3);
+    }
+    [is-~='carousel'][slides-='4'] {
+        --carousel-slide-width: calc(25% - var(--carousel-gap) * 3 / 4);
+    }
+
+    [is-~='carousel'] > [is-~='carousel-prev'],
+    [is-~='carousel'] > [is-~='carousel-next'] {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 2;
+        width: 28px;
+        height: 28px;
+        background-color: var(--bg);
+        color: var(--text);
+        border: 1px solid;
+        border-color: var(--border-light) var(--border-dark)
+            var(--border-dark) var(--border-light);
+        cursor: pointer;
+        font: inherit;
+    }
+
+    [is-~='carousel'] > [is-~='carousel-prev'] {
+        left: 4px;
+    }
+    [is-~='carousel'] > [is-~='carousel-next'] {
+        right: 4px;
+    }
+
+    [is-~='carousel'] > [is-~='carousel-dots'] {
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+        margin-top: 8px;
+        list-style: none;
+        padding: 0;
+    }
+
+    [is-~='carousel'] [is-~='carousel-dot'] {
+        width: 8px;
+        height: 8px;
+        background: var(--border-dark);
+        border: 1px solid var(--border-light);
+        padding: 0;
+        cursor: pointer;
+    }
+
+    [is-~='carousel'] [is-~='carousel-dot'][aria-selected='true'] {
+        background: var(--accent);
+    }
+}

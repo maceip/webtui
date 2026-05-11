@@ -1,0 +1,24 @@
+@layer components {
+    input[type='date'][is-~='date-picker'],
+    input[type='month'][is-~='date-picker'],
+    input[type='time'][is-~='date-picker'],
+    input[type='week'][is-~='date-picker'],
+    input[type='datetime-local'][is-~='date-picker'],
+    [is-~='date-picker'] > input {
+        padding: 4px 8px;
+        min-height: 26px;
+        background-color: var(--secondary-bg);
+        color: var(--text);
+        font-family: var(--font-family);
+        border: 1px solid;
+        border-color: var(--border-dark) var(--border-light)
+            var(--border-light) var(--border-dark);
+        outline: none;
+        cursor: pointer;
+
+        &::-webkit-calendar-picker-indicator {
+            filter: invert(0.7);
+            cursor: pointer;
+        }
+    }
+}

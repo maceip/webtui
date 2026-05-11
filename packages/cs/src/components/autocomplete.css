@@ -1,0 +1,50 @@
+@layer components {
+    input[is-~='autocomplete'],
+    [is-~='autocomplete'] > input {
+        padding: 4px 8px;
+        min-height: 26px;
+        background-color: var(--secondary-bg);
+        color: var(--text);
+        font-family: var(--font-family);
+        border: 1px solid;
+        border-color: var(--border-dark) var(--border-light)
+            var(--border-light) var(--border-dark);
+        outline: none;
+    }
+
+    [is-~='autocomplete'] {
+        position: relative;
+        display: inline-block;
+        font-family: var(--font-family);
+    }
+
+    [is-~='autocomplete-list'] {
+        position: absolute;
+        top: calc(100% + 2px);
+        left: 0;
+        right: 0;
+        max-height: 200px;
+        overflow-y: auto;
+        background-color: var(--secondary-bg);
+        border: 1px solid;
+        border-color: var(--border-light) var(--border-dark)
+            var(--border-dark) var(--border-light);
+        list-style: none;
+        margin: 0;
+        padding: 2px;
+        z-index: 10;
+
+        & > li,
+        & > [is-~='autocomplete-item'] {
+            padding: 3px 8px;
+            color: var(--text);
+            cursor: pointer;
+
+            &:hover,
+            &[aria-selected='true'] {
+                background-color: var(--bg);
+                color: var(--accent);
+            }
+        }
+    }
+}

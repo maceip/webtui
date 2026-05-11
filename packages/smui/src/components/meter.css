@@ -1,0 +1,29 @@
+@layer components {
+    meter,
+    [is-~='meter'] {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 12rem;
+        height: 0.625rem;
+        background-color: hsl(var(--smui-surface-2));
+        border: 1px solid hsl(var(--smui-border));
+        vertical-align: middle;
+
+        &::-webkit-meter-bar {
+            background: hsl(var(--smui-surface-2));
+            border: none;
+        }
+        &::-webkit-meter-optimum-value {
+            background: var(--success);
+        }
+        &::-webkit-meter-suboptimum-value {
+            background: var(--warning);
+        }
+        &::-webkit-meter-even-less-good-value {
+            background: var(--destructive);
+        }
+        &::-moz-meter-bar {
+            background: var(--success);
+        }
+    }
+}

@@ -1,0 +1,19 @@
+@layer components {
+    [is-~='scroll-area'] {
+        overflow: auto;
+        max-height: 280px;
+        scrollbar-color: var(--bg) var(--scrollbar-track);
+        scrollbar-width: thin;
+        font-family: var(--font-family);
+        color: var(--text);
+        border: 1px solid var(--border-dark);
+
+        &[direction-='x'] {
+            overflow: auto hidden;
+        }
+
+        &[direction-='y'] {
+            overflow: hidden auto;
+        }
+    }
+}

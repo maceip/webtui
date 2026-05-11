@@ -1,0 +1,37 @@
+@layer components {
+    [is-~='frame'] {
+        position: relative;
+        padding: 16px 20px;
+        background-color: var(--secondary-bg);
+        color: var(--text);
+        font-family: var(--font-family);
+        border: 1px solid;
+        border-color: var(--border-light) var(--border-dark)
+            var(--border-dark) var(--border-light);
+
+        & > [is-~='frame-title'] {
+            position: absolute;
+            top: 0;
+            left: 16px;
+            transform: translateY(-50%);
+            padding: 0 8px;
+            background-color: var(--bg);
+            color: var(--accent);
+            font-weight: var(--font-weight-bold);
+            text-transform: uppercase;
+            font-size: calc(var(--font-size) * 0.875);
+            letter-spacing: 0.05em;
+            line-height: 1;
+        }
+
+        & > [is-~='frame-title'][position-='end'] {
+            left: auto;
+            right: 16px;
+        }
+
+        & > [is-~='frame-title'][position-='center'] {
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+}

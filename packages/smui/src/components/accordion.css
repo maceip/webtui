@@ -1,0 +1,45 @@
+@layer components {
+    details[is-~='accordion'],
+    details[is-~='collapsible'] {
+        background-color: hsl(var(--smui-surface-1));
+        color: var(--foreground);
+        font-family: var(--font-family);
+        border: 1px solid hsl(var(--smui-border));
+        margin-bottom: 0.25rem;
+
+        & > summary {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            background-color: hsl(var(--smui-surface-2));
+            cursor: pointer;
+            list-style: none;
+            user-select: none;
+            color: var(--foreground);
+            font-weight: var(--font-weight-bold);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: calc(var(--font-size) * 0.875);
+        }
+
+        & > summary::-webkit-details-marker {
+            display: none;
+        }
+
+        & > summary::before {
+            content: '▶';
+            color: var(--muted-foreground);
+            font-size: 0.7em;
+            transition: transform 0.15s ease;
+        }
+
+        &[open] > summary::before {
+            transform: rotate(90deg);
+        }
+
+        &[open] > :not(summary) {
+            padding: 0.75rem 1rem;
+        }
+    }
+}

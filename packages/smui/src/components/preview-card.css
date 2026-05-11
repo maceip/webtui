@@ -1,0 +1,31 @@
+@layer components {
+    [is-~='preview-card'] {
+        position: relative;
+        display: inline-block;
+
+        & > [is-~='preview-card-content'] {
+            opacity: 0;
+            visibility: hidden;
+            position: absolute;
+            top: calc(100% + 6px);
+            left: 0;
+            min-width: 16rem;
+            background-color: hsl(var(--smui-surface-2));
+            color: var(--foreground);
+            font-family: var(--font-family);
+            padding: 0.75rem 1rem;
+            border: 1px solid hsl(var(--smui-border));
+            z-index: 10;
+            transition:
+                opacity 0.15s ease,
+                visibility 0.15s ease;
+            transition-delay: 0.3s;
+        }
+
+        &:hover > [is-~='preview-card-content'],
+        &:focus-within > [is-~='preview-card-content'] {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}

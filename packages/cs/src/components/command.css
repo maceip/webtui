@@ -1,0 +1,89 @@
+@layer components {
+    [is-~='command'] {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--secondary-bg);
+        color: var(--text);
+        font-family: var(--font-family);
+        border: 1px solid;
+        border-color: var(--border-light) var(--border-dark)
+            var(--border-dark) var(--border-light);
+        outline: 1px solid var(--outline, #000);
+        outline-offset: -2px;
+        min-width: 360px;
+
+        & > [is-~='command-input'],
+        & input[type='search'] {
+            background-color: var(--bg);
+            color: var(--text);
+            border: none;
+            border-bottom: 1px solid var(--border-dark);
+            padding: 6px 12px;
+            font-family: inherit;
+            font-size: var(--font-size);
+            outline: none;
+            width: 100%;
+
+            &::placeholder {
+                color: var(--text-3);
+            }
+        }
+
+        & > [is-~='command-list'] {
+            list-style: none;
+            margin: 0;
+            padding: 4px;
+            max-height: 280px;
+            overflow-y: auto;
+        }
+
+        & [is-~='command-group-label'] {
+            padding: 4px 8px;
+            color: var(--text-3);
+            text-transform: uppercase;
+            font-size: calc(var(--font-size) * 0.75);
+            letter-spacing: 0.08em;
+            font-weight: var(--font-weight-bold);
+        }
+
+        & [is-~='command-item'] {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 10px;
+            color: var(--text);
+            cursor: pointer;
+
+            &:hover,
+            &[aria-selected='true'] {
+                background-color: var(--bg);
+                color: var(--accent);
+            }
+
+            & kbd,
+            & [is-~='command-shortcut'] {
+                margin-left: auto;
+                color: var(--text-3);
+            }
+        }
+
+        & [is-~='command-separator'] {
+            height: 1px;
+            background-color: var(--border-dark);
+            margin: 4px 0;
+        }
+    }
+
+    [popover][is-~='command'],
+    dialog[is-~='command'] {
+        position: fixed;
+        inset: auto;
+        top: 12vh;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
+        width: min(560px, 90vw);
+        height: fit-content;
+        padding: 0;
+    }
+}

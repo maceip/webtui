@@ -1,0 +1,31 @@
+@layer components {
+    [is-~='scroll-area'] {
+        overflow: auto;
+        max-height: 20rem;
+        scrollbar-color: hsl(var(--smui-border)) hsl(var(--smui-surface-1));
+        scrollbar-width: thin;
+        font-family: var(--font-family);
+        color: var(--foreground);
+
+        &::-webkit-scrollbar {
+            width: 0.5rem;
+            height: 0.5rem;
+        }
+        &::-webkit-scrollbar-track {
+            background: hsl(var(--smui-surface-1));
+        }
+        &::-webkit-scrollbar-thumb {
+            background: hsl(var(--smui-border));
+        }
+        &::-webkit-scrollbar-thumb:hover {
+            background: hsl(var(--smui-border-hover));
+        }
+
+        &[direction-='x'] {
+            overflow: auto hidden;
+        }
+        &[direction-='y'] {
+            overflow: hidden auto;
+        }
+    }
+}

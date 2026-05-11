@@ -1,0 +1,110 @@
+@layer components {
+    [is-~='gauge'] {
+        --gauge-value: 0;
+        --gauge-max: 100;
+        --gauge-low: 33;
+        --gauge-high: 66;
+        --gauge-size: 7.5rem;
+        --gauge-needle-deg: calc(
+            -90deg + (var(--gauge-value) / var(--gauge-max)) * 180deg
+        );
+
+        position: relative;
+        display: inline-block;
+        width: var(--gauge-size);
+        height: calc(var(--gauge-size) / 2);
+        font-family: var(--font-family);
+        isolation: isolate;
+    }
+
+    [is-~='gauge']::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: conic-gradient(
+            from 270deg at 50% 100%,
+            var(--success) 0%,
+            var(--success) calc(var(--gauge-low) / 2 * 1%),
+            var(--warning) calc(var(--gauge-low) / 2 * 1%),
+            var(--warning) calc(var(--gauge-high) / 2 * 1%),
+            var(--destructive) calc(var(--gauge-high) / 2 * 1%),
+            var(--destructive) 50%,
+            transparent 50%
+        );
+        mask: radial-gradient(
+            circle calc(var(--gauge-size) / 2) at 50% 100%,
+            transparent 0,
+            transparent 58%,
+            #000 60%,
+            #000 99%,
+            transparent 100%
+        );
+        -webkit-mask: radial-gradient(
+            circle calc(var(--gauge-size) / 2) at 50% 100%,
+            transparent 0,
+            transparent 58%,
+            #000 60%,
+            #000 99%,
+            transparent 100%
+        );
+    }
+
+    [is-~='gauge']::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        width: 4px;
+        height: calc(var(--gauge-size) / 2 - 0.5rem);
+        background-color: var(--foreground);
+        transform-origin: bottom center;
+        transform: translate(-50%, 0) rotate(var(--gauge-needle-deg));
+        transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        z-index: 2;
+    }
+
+    [is-~='gauge'] > [is-~='gauge-value'] {
+        position: absolute;
+        left: 50%;
+        bottom: 1.1rem;
+        transform: translateX(-50%);
+        color: var(--foreground);
+        font-weight: var(--font-weight-bold);
+        font-size: calc(var(--font-size) * 1.25);
+        z-index: 3;
+    }
+
+    [is-~='gauge'] > [is-~='gauge-label'] {
+        position: absolute;
+        left: 50%;
+        bottom: 0.25rem;
+        transform: translateX(-50%);
+        color: var(--muted-foreground);
+        font-size: calc(var(--font-size) * 0.7);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        z-index: 3;
+    }
+
+    [is-~='gauge'] > [is-~='gauge-hub'] {
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        width: 0.625rem;
+        height: 0.625rem;
+        background-color: var(--foreground);
+        border-radius: 50%;
+        transform: translate(-50%, 50%);
+        z-index: 2;
+    }
+
+    [is-~='gauge'][size-='small'] {
+        --gauge-size: 5rem;
+    }
+    [is-~='gauge'][size-='large'] {
+        --gauge-size: 12rem;
+    }
+}

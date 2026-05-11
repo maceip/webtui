@@ -1,0 +1,38 @@
+@layer components {
+    [is-~='empty'] {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 32px 24px;
+        text-align: center;
+        color: var(--text-3);
+        font-family: var(--font-family);
+        min-height: 140px;
+
+        & > [is-~='empty-icon'] {
+            font-size: 2em;
+            color: var(--text-3);
+            opacity: 0.6;
+        }
+
+        & > [is-~='empty-title'] {
+            color: var(--text);
+            font-weight: var(--font-weight-bold);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        & > [is-~='empty-description'] {
+            color: var(--text-3);
+            max-width: 40ch;
+        }
+
+        & > [is-~='empty-actions'] {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+    }
+}

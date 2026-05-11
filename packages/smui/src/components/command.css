@@ -1,0 +1,85 @@
+@layer components {
+    [is-~='command'] {
+        display: flex;
+        flex-direction: column;
+        background-color: hsl(var(--smui-surface-1));
+        color: var(--foreground);
+        font-family: var(--font-family);
+        border: 1px solid hsl(var(--smui-border));
+        min-width: 24rem;
+
+        & > [is-~='command-input'],
+        & input[type='search'] {
+            background-color: hsl(var(--smui-surface-2));
+            color: var(--foreground);
+            border: none;
+            border-bottom: 1px solid hsl(var(--smui-border));
+            padding: 0.625rem 1rem;
+            font-family: inherit;
+            font-size: var(--font-size);
+            outline: none;
+            width: 100%;
+
+            &::placeholder {
+                color: var(--muted-foreground);
+            }
+        }
+
+        & > [is-~='command-list'] {
+            list-style: none;
+            margin: 0;
+            padding: 0.25rem;
+            max-height: 20rem;
+            overflow-y: auto;
+        }
+
+        & [is-~='command-group-label'] {
+            padding: 0.375rem 0.75rem;
+            color: var(--muted-foreground);
+            text-transform: uppercase;
+            font-size: calc(var(--font-size) * 0.75);
+            letter-spacing: 0.08em;
+            font-weight: var(--font-weight-bold);
+        }
+
+        & [is-~='command-item'] {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.375rem 0.75rem;
+            color: var(--foreground);
+            cursor: pointer;
+
+            &:hover,
+            &[aria-selected='true'] {
+                background-color: hsl(var(--smui-surface-3));
+                color: var(--primary);
+            }
+
+            & kbd,
+            & [is-~='command-shortcut'] {
+                margin-left: auto;
+                color: var(--muted-foreground);
+            }
+        }
+
+        & [is-~='command-separator'] {
+            height: 1px;
+            background-color: hsl(var(--smui-border));
+            margin: 0.25rem 0;
+        }
+    }
+
+    [popover][is-~='command'],
+    dialog[is-~='command'] {
+        position: fixed;
+        inset: auto;
+        top: 12vh;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
+        width: min(36rem, 90vw);
+        height: fit-content;
+        padding: 0;
+    }
+}

@@ -1,0 +1,72 @@
+@layer components {
+    [is-~='toast'],
+    [popover][is-~='toast'] {
+        position: fixed;
+        bottom: 16px;
+        right: 16px;
+        margin: 0;
+        padding: 10px 14px;
+        background-color: var(--secondary-bg);
+        color: var(--text);
+        font-family: var(--font-family);
+        border: 1px solid;
+        border-color: var(--border-light) var(--border-dark)
+            var(--border-dark) var(--border-light);
+        outline: 1px solid var(--outline, #000);
+        outline-offset: -2px;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        min-width: 280px;
+        max-width: 420px;
+        opacity: 0;
+        translate: 0 1lh;
+        transition:
+            opacity 0.2s ease,
+            translate 0.2s ease,
+            display 0.2s ease allow-discrete,
+            overlay 0.2s ease allow-discrete;
+
+        &:popover-open {
+            opacity: 1;
+            translate: 0 0;
+        }
+
+        @starting-style {
+            &:popover-open {
+                opacity: 0;
+                translate: 0 1lh;
+            }
+        }
+
+        &::before {
+            content: '!';
+            font-weight: var(--font-weight-bold);
+            color: var(--accent);
+        }
+
+        & > [is-~='toast-title'] {
+            font-weight: var(--font-weight-bold);
+        }
+
+        & > [is-~='toast-description'] {
+            color: var(--text-3);
+        }
+
+        &[variant-='success']::before {
+            content: '+';
+            color: var(--success);
+        }
+
+        &[variant-='warning']::before {
+            content: '!';
+            color: var(--warning);
+        }
+
+        &[variant-='danger']::before,
+        &[variant-='error']::before {
+            content: 'x';
+            color: var(--destructive);
+        }
+    }
+}

@@ -1,0 +1,41 @@
+@layer components {
+    [is-~='input-group'] {
+        display: inline-flex;
+        align-items: stretch;
+        font-family: var(--font-family);
+        border: 1px solid;
+        border-color: var(--border-dark) var(--border-light)
+            var(--border-light) var(--border-dark);
+        background-color: var(--secondary-bg);
+        height: 26px;
+
+        & > input,
+        & > select,
+        & > [is-~='input'] {
+            flex: 1;
+            min-width: 0;
+            border: none;
+            background: transparent;
+            padding: 0 8px;
+            height: 100%;
+        }
+
+        & > [is-~='input-group-prefix'],
+        & > [is-~='input-group-suffix'],
+        & > [is-~='input-group-addon'] {
+            display: inline-flex;
+            align-items: center;
+            padding: 0 8px;
+            background-color: var(--bg);
+            color: var(--text-3);
+            border: 1px solid var(--border-dark);
+            border-width: 0 1px 0 0;
+            white-space: nowrap;
+            font-size: calc(var(--font-size) * 0.875);
+        }
+
+        & > [is-~='input-group-suffix'] {
+            border-width: 0 0 0 1px;
+        }
+    }
+}

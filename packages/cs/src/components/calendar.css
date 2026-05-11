@@ -1,0 +1,69 @@
+@layer components {
+    [is-~='calendar'] {
+        display: inline-grid;
+        grid-template-columns: repeat(7, 32px);
+        gap: 1px;
+        background-color: var(--bg);
+        padding: 8px;
+        font-family: var(--font-family);
+        color: var(--text);
+        border: 1px solid;
+        border-color: var(--border-light) var(--border-dark)
+            var(--border-dark) var(--border-light);
+
+        & > [is-~='calendar-header'] {
+            grid-column: 1 / -1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--accent);
+            font-weight: var(--font-weight-bold);
+            text-transform: uppercase;
+            padding-bottom: 4px;
+            margin-bottom: 4px;
+            border-bottom: 1px solid var(--border-dark);
+        }
+
+        & > [is-~='calendar-weekday'] {
+            text-align: center;
+            color: var(--text-3);
+            font-size: calc(var(--font-size) * 0.75);
+            text-transform: uppercase;
+            padding: 2px;
+        }
+
+        & > [is-~='calendar-day'],
+        & button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 26px;
+            background: transparent;
+            color: var(--text);
+            border: 1px solid transparent;
+            cursor: pointer;
+            font-family: inherit;
+
+            &:hover {
+                border-color: var(--border-dark);
+                color: var(--accent);
+            }
+
+            &[aria-selected='true'],
+            &[is-~='calendar-day-selected'] {
+                background-color: var(--accent);
+                color: var(--primary-foreground);
+            }
+
+            &[aria-current='date'] {
+                outline: 1px dotted var(--accent);
+            }
+
+            &[is-~='calendar-day-outside'],
+            &[data-outside] {
+                color: var(--text-3);
+            }
+        }
+    }
+}

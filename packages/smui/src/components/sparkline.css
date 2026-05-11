@@ -1,0 +1,42 @@
+@layer components {
+    [is-~='sparkline'] {
+        --sparkline-color: var(--primary);
+        display: inline-block;
+        width: 8rem;
+        height: 2rem;
+        vertical-align: middle;
+    }
+
+    [is-~='sparkline'][variant-='bar'] {
+        display: inline-flex;
+        align-items: flex-end;
+        gap: 1px;
+    }
+
+    [is-~='sparkline'][variant-='bar'] > * {
+        flex: 1;
+        min-width: 1px;
+        height: calc(var(--v, 0) * 1%);
+        min-height: 1px;
+        background-color: var(--sparkline-color);
+    }
+
+    svg[is-~='sparkline'][variant-='line'] polyline {
+        fill: none;
+        stroke: var(--sparkline-color);
+        stroke-width: 1.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        vector-effect: non-scaling-stroke;
+    }
+
+    [is-~='sparkline'][size-='small'] {
+        width: 4rem;
+        height: 1.25rem;
+    }
+
+    [is-~='sparkline'][size-='large'] {
+        width: 16rem;
+        height: 4rem;
+    }
+}

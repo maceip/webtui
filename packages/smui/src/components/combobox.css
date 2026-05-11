@@ -1,0 +1,60 @@
+@layer components {
+    details[is-~='combobox'] {
+        position: relative;
+        display: inline-block;
+        font-family: var(--font-family);
+    }
+
+    details[is-~='combobox'] > summary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        padding: 0.5rem 0.75rem;
+        min-width: 12rem;
+        min-height: 2.25rem;
+        background-color: hsl(var(--smui-surface-1));
+        color: var(--foreground);
+        border: 1px solid hsl(var(--smui-border));
+        cursor: pointer;
+        list-style: none;
+    }
+
+    details[is-~='combobox'] > summary::-webkit-details-marker {
+        display: none;
+    }
+
+    details[is-~='combobox'] > summary::after {
+        content: '▼';
+        color: var(--muted-foreground);
+        font-size: 0.7em;
+    }
+
+    details[is-~='combobox'][open] > [is-~='combobox-content'] {
+        position: absolute;
+        top: calc(100% + 2px);
+        left: 0;
+        right: 0;
+        background-color: hsl(var(--smui-surface-2));
+        border: 1px solid hsl(var(--smui-border));
+        list-style: none;
+        margin: 0;
+        padding: 0.25rem;
+        max-height: 14rem;
+        overflow-y: auto;
+        z-index: 10;
+    }
+
+    details[is-~='combobox'] [is-~='combobox-item'],
+    details[is-~='combobox'] > [is-~='combobox-content'] > li {
+        padding: 0.375rem 0.75rem;
+        color: var(--foreground);
+        cursor: pointer;
+
+        &:hover,
+        &[aria-selected='true'] {
+            background-color: hsl(var(--smui-surface-3));
+            color: var(--primary);
+        }
+    }
+}
