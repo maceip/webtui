@@ -4,13 +4,15 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <title>WebTUI Showcase</title>
-        <link rel="stylesheet" href="./css/webtui.css" />
-        <link rel="stylesheet" href="./css/themes/nord.css" />
-        <link rel="stylesheet" href="./css/themes/gruvbox.css" />
-        <link rel="stylesheet" href="./css/themes/catppuccin.css" />
-        <link rel="stylesheet" href="./css/themes/dracula.css" />
-        <link rel="stylesheet" href="./css/themes/synthwave.css" />
-        <link rel="stylesheet" href="./css/themes/tokyo-night.css" />
+        <link rel="stylesheet" href="./css/webtui.css" data-stylesheet="webtui" />
+        <link rel="stylesheet" href="./css/themes/nord.css" data-stylesheet="theme" />
+        <link rel="stylesheet" href="./css/themes/gruvbox.css" data-stylesheet="theme" />
+        <link rel="stylesheet" href="./css/themes/catppuccin.css" data-stylesheet="theme" />
+        <link rel="stylesheet" href="./css/themes/dracula.css" data-stylesheet="theme" />
+        <link rel="stylesheet" href="./css/themes/synthwave.css" data-stylesheet="theme" />
+        <link rel="stylesheet" href="./css/themes/tokyo-night.css" data-stylesheet="theme" />
+        <link rel="stylesheet" href="./css/cs.css" data-stylesheet="package-cs" disabled />
+        <link rel="stylesheet" href="./css/smui.css" data-stylesheet="package-smui" disabled />
         <link rel="stylesheet" href="https://use.hugeicons.com/font/icons.css" />
         <link rel="stylesheet" href="./css/showcase.css" />
     </head>
@@ -26,14 +28,20 @@
                 <div class="row">
                     <a href="https://github.com/maceip/webtui" target="_blank" rel="noopener">GitHub</a>
                     <select id="theme-picker" aria-label="Theme">
-                        <option value="dark">Default Dark</option>
-                        <option value="light">Default Light</option>
-                        <option value="nord">Nord</option>
-                        <option value="dracula">Dracula</option>
-                        <option value="synthwave">Synthwave '84</option>
-                        <option value="gruvbox">Gruvbox</option>
-                        <option value="tokyo-night">Tokyo Night</option>
-                        <option value="catppuccin">Catppuccin</option>
+                        <optgroup label="@webtui/css themes">
+                            <option value="dark">Default Dark</option>
+                            <option value="light">Default Light</option>
+                            <option value="nord">Nord</option>
+                            <option value="dracula">Dracula</option>
+                            <option value="synthwave">Synthwave '84</option>
+                            <option value="gruvbox">Gruvbox</option>
+                            <option value="tokyo-night">Tokyo Night</option>
+                            <option value="catppuccin">Catppuccin</option>
+                        </optgroup>
+                        <optgroup label="Alternate packages">
+                            <option value="cs">@webtui/cs (CS16)</option>
+                            <option value="smui">@webtui/smui (Terminal)</option>
+                        </optgroup>
                     </select>
                 </div>
             </header>
@@ -1753,15 +1761,49 @@ $ webtui list
                 window.addEventListener('hashchange', syncActive);
                 syncActive();
 
-                /* Theme picker — persists choice in localStorage */
+                /* Theme picker — persists choice in localStorage.
+
+                   The cs and smui packages replace @webtui/css entirely
+                   (not just color tokens), so when one of them is
+                   active we disable the webtui base + theme overrides
+                   and enable only the chosen package stylesheet. */
                 const picker = document.getElementById('theme-picker');
+                const sheets = {
+                    webtui: document.querySelector(
+                        '[data-stylesheet="webtui"]'
+                    ),
+                    theme: Array.from(
+                        document.querySelectorAll('[data-stylesheet="theme"]')
+                    ),
+                    cs: document.querySelector(
+                        '[data-stylesheet="package-cs"]'
+                    ),
+                    smui: document.querySelector(
+                        '[data-stylesheet="package-smui"]'
+                    ),
+                };
+
+                function applyTheme(name) {
+                    const isPackage = name === 'cs' || name === 'smui';
+                    sheets.webtui.disabled = isPackage;
+                    sheets.theme.forEach((l) => {
+                        l.disabled = isPackage;
+                    });
+                    sheets.cs.disabled = name !== 'cs';
+                    sheets.smui.disabled = name !== 'smui';
+                    document.documentElement.dataset.webtuiTheme = name;
+                }
+
                 const stored = localStorage.getItem('webtui-theme');
                 if (stored) {
-                    document.documentElement.dataset.webtuiTheme = stored;
                     picker.value = stored;
+                    applyTheme(stored);
+                } else {
+                    applyTheme('dark');
                 }
+
                 picker.addEventListener('change', (e) => {
-                    document.documentElement.dataset.webtuiTheme = e.target.value;
+                    applyTheme(e.target.value);
                     localStorage.setItem('webtui-theme', e.target.value);
                 });
 

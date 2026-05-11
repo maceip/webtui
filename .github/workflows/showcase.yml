@@ -48,6 +48,8 @@ jobs:
           cp packages/theme-dracula/dist/index.css _site/css/themes/dracula.css
           cp packages/theme-synthwave/dist/index.css _site/css/themes/synthwave.css
           cp packages/theme-tokyo-night/dist/index.css _site/css/themes/tokyo-night.css
+          cp packages/cs/dist/full.css _site/css/cs.css
+          cp packages/smui/dist/full.css _site/css/smui.css
           ls -la _site _site/css _site/css/themes
 
       - name: Upload Pages artifact
