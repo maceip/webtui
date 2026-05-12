@@ -47,5 +47,17 @@
             border-color: var(--border-dark) var(--border-light)
                 var(--border-light) var(--border-dark);
         }
+
+        & > button[data-action='decrement']:empty::after,
+        & > [is-~='number-field-decrement']:empty::after {
+            content: '−';
+            font-weight: var(--font-weight-bold);
+        }
+
+        & > button[data-action='increment']:empty::after,
+        & > [is-~='number-field-increment']:empty::after {
+            content: '+';
+            font-weight: var(--font-weight-bold);
+        }
     }
 }

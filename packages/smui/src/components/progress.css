@@ -49,5 +49,60 @@
         &[variant-='destructive']::before {
             background-color: var(--destructive);
         }
+
+        /* Squiggle mode */
+        &[animate-='squiggle'] {
+            --squiggle-color: var(--primary);
+            --squiggle-period: 2rem;
+
+            height: 0.875rem;
+            background-color: var(--squiggle-color);
+            border-color: transparent;
+            overflow: visible;
+
+            -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 30' preserveAspectRatio='none'><path d='M0,15 Q25,3 50,15 T100,15' fill='none' stroke='black' stroke-width='5' stroke-linecap='round'/></svg>");
+            mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 30' preserveAspectRatio='none'><path d='M0,15 Q25,3 50,15 T100,15' fill='none' stroke='black' stroke-width='5' stroke-linecap='round'/></svg>");
+            -webkit-mask-repeat: repeat-x;
+            mask-repeat: repeat-x;
+            -webkit-mask-size: var(--squiggle-period) 100%;
+            mask-size: var(--squiggle-period) 100%;
+
+            filter: drop-shadow(0 0 4px var(--squiggle-color));
+            animation: smui-progress-squiggle-pan 1.5s linear infinite;
+
+            &::before,
+            &::after {
+                display: none;
+            }
+        }
+
+        &[animate-='squiggle'][speed-='slow'] {
+            animation-duration: 3s;
+        }
+        &[animate-='squiggle'][speed-='fast'] {
+            animation-duration: 0.75s;
+        }
+
+        &[animate-='squiggle'][variant-='success'] {
+            --squiggle-color: var(--success);
+        }
+        &[animate-='squiggle'][variant-='warning'] {
+            --squiggle-color: var(--warning);
+        }
+        &[animate-='squiggle'][variant-='danger'],
+        &[animate-='squiggle'][variant-='destructive'] {
+            --squiggle-color: var(--destructive);
+        }
+    }
+
+    @keyframes smui-progress-squiggle-pan {
+        from {
+            mask-position: 0 50%;
+            -webkit-mask-position: 0 50%;
+        }
+        to {
+            mask-position: 2rem 50%;
+            -webkit-mask-position: 2rem 50%;
+        }
     }
 }

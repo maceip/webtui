@@ -47,5 +47,15 @@
                 color: var(--primary);
             }
         }
+
+        & > button[data-action='decrement']:empty::after,
+        & > [is-~='number-field-decrement']:empty::after {
+            content: '−';
+        }
+
+        & > button[data-action='increment']:empty::after,
+        & > [is-~='number-field-increment']:empty::after {
+            content: '+';
+        }
     }
 }

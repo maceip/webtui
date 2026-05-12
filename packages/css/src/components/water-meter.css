@@ -17,7 +17,7 @@
         --water-text-low: var(--foreground0);
         --water-text-high: var(--background0);
         --water-size: 16ch;
-        --water-wave-duration: 3s;
+        --water-wave-duration: 6s;
 
         position: relative;
         display: inline-block;
@@ -66,8 +66,8 @@
     }
 
     [is-~='water-meter'] > svg path:nth-of-type(2) {
-        opacity: 0.5;
-        animation: water-wave calc(var(--water-wave-duration) * 1.4) linear
+        opacity: 0.4;
+        animation: water-wave calc(var(--water-wave-duration) * 1.3) linear
             infinite reverse;
     }
 

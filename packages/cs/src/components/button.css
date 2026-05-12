@@ -55,15 +55,58 @@
         }
 
         &[variant-='primary'] {
-            background-color: var(--accent);
-            color: var(--primary-foreground);
+            background-color: var(--accent, #c4b550);
+            color: var(--primary-foreground, #292c21);
+            text-shadow: none;
+            border-color: #e0d680 #5a5320 #5a5320 #e0d680;
+        }
+
+        &[variant-='secondary'] {
+            background-color: var(--secondary-bg, #3e4637);
+            color: var(--text, #dedfd6);
+        }
+
+        &[variant-='accent'] {
+            background-color: var(--secondary-accent, #958831);
+            color: #fff;
             text-shadow: none;
         }
 
         &[variant-='destructive'],
         &[variant-='danger'] {
-            background-color: var(--destructive);
-            color: var(--destructive-foreground);
+            background-color: var(--destructive, #b04040);
+            color: var(--destructive-foreground, #f0e0e0);
+            border-color: #c87070 #602020 #602020 #c87070;
+            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        &[variant-='success'] {
+            background-color: var(--success, #6a8a4a);
+            color: #fff;
+            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        &[variant-='warning'] {
+            background-color: var(--warning, #c4b550);
+            color: #292c21;
+            text-shadow: none;
+        }
+
+        &[variant-='info'] {
+            background-color: var(--info, #6080a8);
+            color: #fff;
+            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        &[variant-='ghost'] {
+            background-color: transparent;
+            border-color: transparent;
+            outline-color: transparent;
+        }
+
+        &[variant-='ghost']:hover {
+            background-color: var(--secondary-bg);
+            border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
         }
     }
 }

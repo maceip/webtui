@@ -946,22 +946,22 @@ $ webtui list
                             <div class="example-stage row" style="gap: 4ch;">
                                 <div is-="water-meter" style="--water-value: 25;">
                                     <svg viewBox="0 0 200 40" preserveAspectRatio="none">
-                                        <path d="M0,20 C25,8 50,8 75,20 S125,32 150,20 S200,8 200,20 L200,40 L0,40 Z" />
-                                        <path d="M0,22 C30,12 60,32 100,22 S160,12 200,22 L200,40 L0,40 Z" />
+                                        <path d="M0,20 Q12.5,14 25,20 T50,20 T75,20 T100,20 T125,20 T150,20 T175,20 T200,20 L200,40 L0,40 Z" />
+                                        <path d="M0,22 Q12.5,28 25,22 T50,22 T75,22 T100,22 T125,22 T150,22 T175,22 T200,22 L200,40 L0,40 Z" />
                                     </svg>
                                     <div is-="water-value">25%</div>
                                 </div>
                                 <div is-="water-meter" variant-="info" style="--water-value: 65;">
                                     <svg viewBox="0 0 200 40" preserveAspectRatio="none">
-                                        <path d="M0,20 C25,8 50,8 75,20 S125,32 150,20 S200,8 200,20 L200,40 L0,40 Z" />
-                                        <path d="M0,22 C30,12 60,32 100,22 S160,12 200,22 L200,40 L0,40 Z" />
+                                        <path d="M0,20 Q12.5,14 25,20 T50,20 T75,20 T100,20 T125,20 T150,20 T175,20 T200,20 L200,40 L0,40 Z" />
+                                        <path d="M0,22 Q12.5,28 25,22 T50,22 T75,22 T100,22 T125,22 T150,22 T175,22 T200,22 L200,40 L0,40 Z" />
                                     </svg>
                                     <div is-="water-value">65%</div>
                                 </div>
                                 <div is-="water-meter" variant-="success" size-="large" style="--water-value: 88;">
                                     <svg viewBox="0 0 200 40" preserveAspectRatio="none">
-                                        <path d="M0,20 C25,8 50,8 75,20 S125,32 150,20 S200,8 200,20 L200,40 L0,40 Z" />
-                                        <path d="M0,22 C30,12 60,32 100,22 S160,12 200,22 L200,40 L0,40 Z" />
+                                        <path d="M0,20 Q12.5,14 25,20 T50,20 T75,20 T100,20 T125,20 T150,20 T175,20 T200,20 L200,40 L0,40 Z" />
+                                        <path d="M0,22 Q12.5,28 25,22 T50,22 T75,22 T100,22 T125,22 T150,22 T175,22 T200,22 L200,40 L0,40 Z" />
                                     </svg>
                                     <div is-="water-value">88%</div>
                                 </div>
@@ -2053,6 +2053,48 @@ $ webtui list
                                 });
                         });
                     }
+
+                    /* Drag-to-scroll — pointer events handle both
+                       mouse and touch. Native scroll-snap takes over
+                       on pointer release for slide alignment. */
+                    track.style.cursor = 'grab';
+                    track.style.userSelect = 'none';
+                    let dragging = false;
+                    let dragStartX = 0;
+                    let dragStartScroll = 0;
+                    let prevSnap = '';
+
+                    track.addEventListener('pointerdown', (e) => {
+                        if (e.button !== undefined && e.button !== 0) return;
+                        dragging = true;
+                        dragStartX = e.clientX;
+                        dragStartScroll = track.scrollLeft;
+                        prevSnap = track.style.scrollSnapType;
+                        track.style.scrollSnapType = 'none';
+                        track.style.cursor = 'grabbing';
+                        track.setPointerCapture(e.pointerId);
+                    });
+
+                    track.addEventListener('pointermove', (e) => {
+                        if (!dragging) return;
+                        e.preventDefault();
+                        const dx = e.clientX - dragStartX;
+                        track.scrollLeft = dragStartScroll - dx;
+                    });
+
+                    const endDrag = (e) => {
+                        if (!dragging) return;
+                        dragging = false;
+                        track.style.cursor = 'grab';
+                        track.style.scrollSnapType = prevSnap || '';
+                        if (e && e.pointerId !== undefined) {
+                            try { track.releasePointerCapture(e.pointerId); }
+                            catch {}
+                        }
+                    };
+                    track.addEventListener('pointerup', endDrag);
+                    track.addEventListener('pointercancel', endDrag);
+                    track.addEventListener('pointerleave', endDrag);
                 });
 
                 /* Tilt — mouse-tracked 3D rotation. Sets --tilt-x and

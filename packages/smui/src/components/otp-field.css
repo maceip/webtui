@@ -1,7 +1,7 @@
 @layer components {
     input[is-='otp'],
     [is-~='otp-field'] > input {
-        --otp-cell: 2.2ch;
+        --otp-cell: 2.5ch;
         --otp-pitch: 3ch;
         font-family: var(--font-family);
         font-size: calc(var(--font-size) * 1.5);
@@ -9,8 +9,9 @@
         background-color: transparent;
         color: var(--primary);
         text-align: left;
-        letter-spacing: 1.5ch;
-        padding-left: 0.75ch;
+        letter-spacing: 2ch;
+        padding-left: 1ch;
+        padding-right: 0;
         border: none;
         outline: none;
         caret-color: var(--primary);
@@ -22,9 +23,12 @@
             transparent var(--otp-pitch)
         );
         background-size: var(--otp-pitch) 100%;
+        background-position: 0 0;
         background-repeat: repeat-x;
-        height: 2.5rem;
+        min-width: 0;
         width: calc(var(--otp-pitch) * 6);
+        height: 2.75rem;
+        line-height: 2.75rem;
 
         &:focus-visible {
             outline: 2px solid var(--primary);
