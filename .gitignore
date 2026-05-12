@@ -47,3 +47,6 @@ _site
 test-results
 playwright-report
 playwright/.cache
+
+# Visual review screenshots (output of tests/visual-review.spec.ts)
+screenshots/
