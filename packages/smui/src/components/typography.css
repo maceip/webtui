@@ -1,0 +1,100 @@
+@layer components {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: var(--font-family);
+        color: var(--foreground);
+        font-weight: var(--font-weight-bold);
+        line-height: 1.2;
+        letter-spacing: -0.01em;
+    }
+
+    h1 {
+        font-size: calc(var(--font-size) * 2);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+    h2 {
+        font-size: calc(var(--font-size) * 1.5);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+    h3 {
+        font-size: calc(var(--font-size) * 1.25);
+    }
+    h4,
+    h5,
+    h6 {
+        font-size: var(--font-size);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+    }
+
+    p,
+    li,
+    blockquote {
+        font-family: var(--font-family);
+        font-size: var(--font-size);
+        line-height: var(--line-height);
+        color: var(--foreground);
+    }
+
+    a {
+        color: var(--primary);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+        text-decoration-color: hsl(var(--smui-frost-2) / 0.4);
+
+        &:hover {
+            text-decoration-color: currentColor;
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+    }
+
+    strong,
+    b {
+        color: var(--foreground);
+        font-weight: var(--font-weight-bold);
+    }
+
+    em,
+    i {
+        color: var(--foreground);
+        font-style: italic;
+    }
+
+    ul,
+    ol {
+        margin-left: 1.5em;
+        padding-left: 0;
+
+        & li {
+            margin-bottom: 0.25em;
+        }
+    }
+
+    ul {
+        list-style-type: square;
+    }
+
+    blockquote {
+        padding-left: 1em;
+        border-left: 3px solid var(--primary);
+        color: var(--muted-foreground);
+        font-style: normal;
+    }
+
+    hr:not([is-~='separator']) {
+        border: none;
+        height: 1px;
+        background-color: hsl(var(--smui-border));
+        margin: 1em 0;
+    }
+}

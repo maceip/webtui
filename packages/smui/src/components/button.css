@@ -1,5 +1,8 @@
 @layer components {
-    button[is-~='button'],
+    button,
+    input[type='button'],
+    input[type='submit'],
+    input[type='reset'],
     [is-~='button'] {
         display: inline-flex;
         align-items: center;

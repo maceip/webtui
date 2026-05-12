@@ -6,6 +6,9 @@
 
 @import './base.css';
 
+/* Typography first so component rules can override where needed */
+@import './components/typography.css';
+
 /* Form primitives */
 @import './components/button.css';
 @import './components/badge.css';
