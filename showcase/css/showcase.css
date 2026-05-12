@@ -7,21 +7,29 @@
 
 html,
 body {
-    height: 100dvh;
-    overflow: hidden;
+    min-height: 100dvh;
+    overflow-x: hidden;
 }
+
+/* Natural body scroll — header + sidebar are sticky, .content
+   flows in document, so popovers/dropdowns/tooltips escape into
+   the viewport rather than being clipped by ancestor overflow. */
 
 .app {
     display: grid;
     grid-template-rows: var(--header-height) 1fr;
-    height: 100dvh;
+    min-height: 100dvh;
 }
 
 .app-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 2ch;
+    height: var(--header-height);
     background-color: var(--background0);
     border-bottom: solid 2px var(--box-border-color);
 }
@@ -38,10 +46,13 @@ body {
 .app-body {
     display: grid;
     grid-template-columns: var(--sidebar-width) 1fr;
-    overflow: hidden;
+    align-items: start;
 }
 
 .sidebar {
+    position: sticky;
+    top: var(--header-height);
+    max-height: calc(100dvh - var(--header-height));
     overflow-y: auto;
     border-right: solid 2px var(--box-border-color);
     padding: 1lh 2ch;
@@ -93,10 +104,10 @@ body {
 }
 
 .content {
-    overflow-y: auto;
+    /* No overflow — popovers/tooltips/dropdowns escape into the
+       document viewport. The body provides the scroll. */
     padding: 2lh 4ch;
-    scrollbar-width: thin;
-    scrollbar-color: var(--foreground2) var(--background0);
+    min-width: 0;
 }
 
 .component {
