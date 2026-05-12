@@ -8,12 +8,13 @@
     [is-~='separator'] {
         --separator-bg-fallback: var(--separator-background, transparent);
 
-        display: inline-flex;
+        display: flex;
         position: relative;
 
         &[direction-='x'],
         &[direction-='horizontal'],
         &:not([direction-]) {
+            width: 100%;
             height: 1lh;
             background-image: linear-gradient(
                 0deg,

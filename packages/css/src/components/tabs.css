@@ -10,6 +10,14 @@
         font-size: var(--font-size);
         line-height: var(--line-height);
 
+        /* Flat pattern: when radios are direct children (no tabs-list
+           wrapper), flow horizontally so the triggers form a single row. */
+        &:has(> input[type='radio']) {
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: stretch;
+        }
+
         & > [is-~='tabs-list'] {
             display: flex;
             align-items: stretch;

@@ -93,5 +93,7 @@
 @import './components/hud.css';
 
 /* Vendored upstream — kept last so its inlined rules don't
-   block subsequent @import resolution */
-@import './upstream/cs16.css';
+   block subsequent @import resolution. Imported into the `base`
+   layer so its `* { padding: 0 }` reset can't override our
+   layered component rules in `utils`/`components`. */
+@import './upstream/cs16.css' layer(base);

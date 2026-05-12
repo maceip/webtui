@@ -2,6 +2,16 @@
     /* Command palette pattern. CSS-only chrome.
        Hosts a search input + list of items. Pair with <dialog> for
        modal display, or :target/popover-API for show/hide. */
+    /* When [popover] is closed, the UA rule sets display:none with
+       specificity (0,0,2,0); our display: flex (0,0,1,0) would lose,
+       but only because the UA rule binds [popover]:not(:popover-open).
+       Add an explicit display:none override at matching specificity so
+       this works even when authors stack our [is-~='command'] declaration
+       on rules at higher specificity. */
+    [is-~='command'][popover]:not(:popover-open) {
+        display: none;
+    }
+
     [is-~='command'] {
         --command-color: var(--foreground0);
         --command-background: var(--background0);

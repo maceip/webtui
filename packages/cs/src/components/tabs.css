@@ -3,6 +3,14 @@
         display: flex;
         flex-direction: column;
         font-family: var(--font-family);
+
+        /* Flat pattern: radios are direct children (no tabs-list
+           wrapper). Flow horizontally so triggers share a row. */
+        &:has(> input[type='radio']) {
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: stretch;
+        }
     }
 
     [is-~='tabs'] > [is-~='tabs-list'] {

@@ -6,6 +6,7 @@
         display: inline-block;
         position: relative;
         width: 3ch;
+        height: 1lh;
         min-width: initial;
         vertical-align: text-top;
         color: var(--foreground2);

@@ -47,8 +47,11 @@
             height: 1lh;
         }
 
-        &:not([size-]):not([box-]),
-        &[size-='default']:not([box-]) {
+        /* Half-bar gradient wrapped in :where() so its specificity
+           is just `button` (0,0,0,1) — keeps later [variant-=...]
+           rules at (0,0,1,1) able to override background. */
+        &:where(:not([size-]):not([box-])),
+        &:where([size-='default']:not([box-])) {
             background-color: transparent;
             background-image: linear-gradient(
                 to bottom,
