@@ -1,6 +1,10 @@
 @layer components {
     dialog,
     [is-~='dialog'] {
+        /* Restore UA modal centering — the vendored cs16.css reset
+           (`* { margin: 0 }`) clobbers UA's `dialog:modal { margin: auto }`
+           even when imported into layer(base). */
+        margin: auto;
         padding: 0;
         background-color: var(--secondary-bg);
         color: var(--text);
