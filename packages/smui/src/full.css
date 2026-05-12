@@ -1,6 +1,7 @@
 @layer base, utils, components;
 
 @import './base.css';
+@import './utils/box.css';
 @import './utils/effects.css';
 
 /* Typography first so component rules can override where needed */

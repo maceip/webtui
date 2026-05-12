@@ -1,0 +1,48 @@
+@layer utils {
+    /* box-= utility — beveled bordered container in the CS chrome.
+       Mirrors the @webtui/css [box-='square|round|double'] API so
+       showcase markup that uses box-= keeps its chrome when the cs
+       theme is active. */
+
+    [box-='square'],
+    [box-='round'],
+    [box-='double'] {
+        position: relative;
+        isolation: isolate;
+        padding: 8px 12px;
+        border: 1px solid;
+        border-color: var(--border-light, #8c9284)
+            var(--border-dark, #292c21) var(--border-dark, #292c21)
+            var(--border-light, #8c9284);
+    }
+
+    [box-='round'] {
+        border-radius: 4px;
+    }
+
+    /* Double — outer beveled + inner outline */
+    [box-='double'] {
+        outline: 1px solid var(--border-dark, #292c21);
+        outline-offset: 2px;
+    }
+
+    /* Shear variants — remove vertical or horizontal padding */
+    [box-='square'][shear-='both'],
+    [box-='round'][shear-='both'],
+    [box-='double'][shear-='both'] {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    [box-='square'][shear-='top'],
+    [box-='round'][shear-='top'],
+    [box-='double'][shear-='top'] {
+        padding-top: 0;
+    }
+
+    [box-='square'][shear-='bottom'],
+    [box-='round'][shear-='bottom'],
+    [box-='double'][shear-='bottom'] {
+        padding-bottom: 0;
+    }
+}

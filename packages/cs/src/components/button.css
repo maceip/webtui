@@ -109,4 +109,31 @@
             border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
         }
     }
+
+    /* Buttons inside grouped contexts (tabs, toolbar, menus, etc.)
+       drop the standalone black outline so adjacent buttons read as
+       a single coherent control strip rather than fragmented blocks. */
+    :is(
+            [is-~='tabs'],
+            [is-~='tabs-list'],
+            [is-~='toolbar'],
+            [is-~='menu'],
+            [is-~='pagination'],
+            [is-~='command'],
+            [is-~='toggle-group'],
+            [is-~='breadcrumb']
+        ) button,
+    :is(
+            [is-~='tabs'],
+            [is-~='tabs-list'],
+            [is-~='toolbar'],
+            [is-~='menu'],
+            [is-~='pagination'],
+            [is-~='command'],
+            [is-~='toggle-group'],
+            [is-~='breadcrumb']
+        ) [is-~='button'] {
+        outline: none;
+        outline-offset: 0;
+    }
 }

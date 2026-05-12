@@ -1,17 +1,35 @@
 @layer components {
     dialog[variant-='sheet'],
     dialog[is-~='sheet'] {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: auto;
+        width: min(28rem, 90vw);
+        max-width: 90vw;
         height: 100dvh;
-        max-height: 100dvh;
-        max-width: min(28rem, 90vw);
+        max-height: 100vh;
         margin: 0;
-        inset: 0 auto 0 0;
         padding: 0;
         display: flex;
         flex-direction: column;
+        background-color: hsl(var(--smui-surface-1));
+        color: var(--foreground);
+        font-family: var(--font-family);
+        border: none;
+        border-right: 1px solid hsl(var(--smui-border));
+
+        &::backdrop {
+            background-color: hsl(var(--smui-surface-0) / 0.8);
+            backdrop-filter: blur(4px);
+        }
 
         &[position-='end'] {
-            inset: 0 0 0 auto;
+            left: auto;
+            right: 0;
+            border-right: none;
+            border-left: 1px solid hsl(var(--smui-border));
         }
 
         & > [is-~='sheet-header'] {
@@ -24,8 +42,18 @@
             letter-spacing: 0.08em;
         }
 
+        & > [is-~='sheet-title'] {
+            color: var(--foreground);
+            font-weight: var(--font-weight-bold);
+        }
+
+        & > [is-~='sheet-description'] {
+            color: var(--muted-foreground);
+        }
+
         & > [is-~='sheet-body'] {
             flex: 1;
+            min-height: 0;
             overflow-y: auto;
             padding: 1.25rem;
         }

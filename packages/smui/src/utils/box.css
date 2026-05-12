@@ -1,0 +1,43 @@
+@layer utils {
+    /* box-= utility — flat smui border container.
+       Mirrors @webtui/css [box-='square|round|double'] so showcase
+       markup using box-= keeps chrome when smui is active. */
+
+    [box-='square'],
+    [box-='round'],
+    [box-='double'] {
+        position: relative;
+        isolation: isolate;
+        padding: 0.75rem 1rem;
+        border: 1px solid hsl(var(--smui-border));
+    }
+
+    [box-='round'] {
+        border-radius: 4px;
+    }
+
+    [box-='double'] {
+        border-style: double;
+        border-width: 3px;
+    }
+
+    /* Shear variants */
+    [box-='square'][shear-='both'],
+    [box-='round'][shear-='both'],
+    [box-='double'][shear-='both'] {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    [box-='square'][shear-='top'],
+    [box-='round'][shear-='top'],
+    [box-='double'][shear-='top'] {
+        padding-top: 0;
+    }
+
+    [box-='square'][shear-='bottom'],
+    [box-='round'][shear-='bottom'],
+    [box-='double'][shear-='bottom'] {
+        padding-bottom: 0;
+    }
+}
