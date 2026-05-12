@@ -1,0 +1,157 @@
+@layer components {
+    /* CS-style HUD — stat readouts positioned in viewport corners.
+       Container is `position: fixed` by default; override to `relative`
+       when embedding inside a panel for demos.
+
+       Slots: cs-hud-hp, cs-hud-armor, cs-hud-ammo, cs-hud-money,
+       cs-hud-timer, cs-hud-round. Each accepts a position- attribute
+       (bottom-left, bottom-right, bottom-center, top-left, top-right,
+       top-center). */
+
+    [is-~='cs-hud'] {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        font-family: ArialPixel, var(--font-family);
+        z-index: 50;
+
+        &[anchor-='relative'],
+        &[anchor-='contained'] {
+            position: absolute;
+        }
+    }
+
+    [is-~='cs-hud'] > [is-~='cs-hud-stat'],
+    [is-~='cs-hud'] [is-~='cs-hud-hp'],
+    [is-~='cs-hud'] [is-~='cs-hud-armor'],
+    [is-~='cs-hud'] [is-~='cs-hud-ammo'],
+    [is-~='cs-hud'] [is-~='cs-hud-money'],
+    [is-~='cs-hud'] [is-~='cs-hud-timer'],
+    [is-~='cs-hud'] [is-~='cs-hud-round'] {
+        position: absolute;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5ch;
+        padding: 4px 10px;
+        color: var(--accent, #c4b550);
+        font-size: 32px;
+        font-weight: var(--font-weight-bold, 700);
+        line-height: 1;
+        letter-spacing: 0.04em;
+        text-shadow:
+            2px 2px 0 rgba(0, 0, 0, 0.8),
+            0 0 8px rgba(0, 0, 0, 0.6);
+        pointer-events: auto;
+        font-variant-numeric: tabular-nums;
+        user-select: none;
+
+        & > i,
+        & > [is-~='cs-hud-icon'] {
+            font-size: 0.85em;
+        }
+
+        & > [is-~='cs-hud-label'] {
+            display: block;
+            font-size: 11px;
+            font-weight: var(--font-weight-normal, 400);
+            color: var(--text-3, #a0aa95);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 2px;
+        }
+    }
+
+    /* Default slot positions matching classic CS layout */
+    [is-~='cs-hud'] [is-~='cs-hud-hp'],
+    [is-~='cs-hud'] [position-='bottom-left'] {
+        bottom: 18px;
+        left: 24px;
+    }
+
+    [is-~='cs-hud'] [is-~='cs-hud-armor'] {
+        bottom: 18px;
+        left: 160px;
+    }
+
+    [is-~='cs-hud'] [is-~='cs-hud-ammo'],
+    [is-~='cs-hud'] [position-='bottom-right'] {
+        bottom: 18px;
+        right: 24px;
+    }
+
+    [is-~='cs-hud'] [is-~='cs-hud-money'],
+    [is-~='cs-hud'] [position-='top-left'] {
+        top: 18px;
+        left: 24px;
+        color: var(--success, #6a8a4a);
+    }
+
+    [is-~='cs-hud'] [is-~='cs-hud-timer'],
+    [is-~='cs-hud'] [position-='top-center'] {
+        top: 18px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.5);
+        border: 1px solid var(--border-dark, #292c21);
+        padding: 6px 14px;
+    }
+
+    [is-~='cs-hud'] [is-~='cs-hud-round'],
+    [is-~='cs-hud'] [position-='top-right'] {
+        top: 18px;
+        right: 24px;
+        font-size: 18px;
+    }
+
+    /* Stacked label + value layout — wrap label and value separately */
+    [is-~='cs-hud'] [is-~='cs-hud-stack'] {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start;
+        line-height: 1;
+    }
+
+    /* Severity colors — switch HP color when low/critical */
+    [is-~='cs-hud-hp'][severity-='warning'] {
+        color: var(--warning, #c4b550);
+    }
+
+    [is-~='cs-hud-hp'][severity-='danger'],
+    [is-~='cs-hud-hp'][severity-='critical'] {
+        color: var(--destructive, #b04040);
+        animation: cs-hud-pulse 0.8s ease-in-out infinite;
+    }
+
+    /* Ammo formatting — bigger primary count, dimmer reserve */
+    [is-~='cs-hud-ammo'] [is-~='cs-hud-ammo-clip'] {
+        color: var(--accent, #c4b550);
+    }
+
+    [is-~='cs-hud-ammo'] [is-~='cs-hud-ammo-reserve'] {
+        color: var(--text-3, #a0aa95);
+        font-size: 0.6em;
+        margin-left: 0.5ch;
+        align-self: flex-end;
+        margin-bottom: 4px;
+    }
+
+    [is-~='cs-hud-ammo'] [is-~='cs-hud-ammo-sep'] {
+        color: var(--text-3, #a0aa95);
+        font-size: 0.7em;
+        margin: 0 0.25ch;
+    }
+
+    @keyframes cs-hud-pulse {
+        50% {
+            opacity: 0.55;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        [is-~='cs-hud-hp'][severity-='danger'],
+        [is-~='cs-hud-hp'][severity-='critical'] {
+            animation: none;
+        }
+    }
+}

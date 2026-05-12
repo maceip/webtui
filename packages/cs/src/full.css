@@ -84,6 +84,9 @@
 @import './components/tilt.css';
 @import './components/live-audio.css';
 
+/* CS-specific */
+@import './components/hud.css';
+
 /* Vendored upstream — kept last so its inlined rules don't
    block subsequent @import resolution */
 @import './upstream/cs16.css';

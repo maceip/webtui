@@ -110,6 +110,7 @@
                     <h2>Gallery</h2>
                     <ul>
                         <li><a href="#gallery-htop">htop</a></li>
+                        <li><a href="#gallery-cs-hud">CS HUD</a></li>
                     </ul>
 
                     <h2>Utilities</h2>
@@ -1741,6 +1742,73 @@ $ webtui list
                             </div>
                         </div>
                     </section>
+
+                    <section id="gallery-cs-hud" class="component">
+                        <div class="component-header">
+                            <h1>CS HUD</h1>
+                            <p>Counter-Strike-style heads-up display: HP in the bottom-left corner, ammo in the bottom-right, money top-left, timer top-center. Lives in <code>@webtui/cs</code> as <code>is-="cs-hud"</code>. Switch the theme picker to <strong>@webtui/cs (CS16)</strong> to see the full styling.</p>
+                        </div>
+
+                        <div class="example">
+                            <div class="example-label">HUD slots — change the player HP slider to see the severity color flip</div>
+                            <div class="example-stage" style="position: relative; height: 32lh; background: #2c3927; overflow: hidden;">
+                                <div is-="cs-hud" anchor-="contained">
+                                    <div is-="cs-hud-money" position-="top-left">
+                                        <i class="hgi-stroke hgi-dollar-circle"></i>
+                                        <span>$1600</span>
+                                    </div>
+                                    <div is-="cs-hud-timer" position-="top-center">1:35</div>
+                                    <div is-="cs-hud-round" position-="top-right">
+                                        <span style="color: var(--info, #6080a8);">CT</span>
+                                        <span style="color: var(--text-3, #a0aa95);">3</span>
+                                        <span style="color: var(--text-3, #a0aa95);">:</span>
+                                        <span style="color: var(--accent, #c4b550);">2</span>
+                                        <span style="color: var(--destructive, #b04040);">T</span>
+                                    </div>
+
+                                    <div is-="cs-hud-hp" id="demo-cs-hp">
+                                        <i class="hgi-stroke hgi-heart-add"></i>
+                                        <span data-cs-hp-value>100</span>
+                                    </div>
+
+                                    <div is-="cs-hud-armor">
+                                        <i class="hgi-stroke hgi-shield-01" style="color: var(--info, #6080a8);"></i>
+                                        <span style="color: var(--info, #6080a8);">100</span>
+                                    </div>
+
+                                    <div is-="cs-hud-ammo">
+                                        <span is-="cs-hud-ammo-clip">30</span>
+                                        <span is-="cs-hud-ammo-sep">/</span>
+                                        <span is-="cs-hud-ammo-reserve">90</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="example-stage" style="margin-top: 1lh;">
+                                <div class="row" style="gap: 2ch;">
+                                    <label is-="label">Player HP</label>
+                                    <input type="range" min="0" max="100" value="100" id="demo-cs-hp-slider" data-cs-hp-slider />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="example">
+                            <div class="example-label">Markup</div>
+                            <pre>&lt;div is-="cs-hud" anchor-="contained"&gt;
+  &lt;div is-="cs-hud-hp" severity-="warning"&gt;
+    &lt;i class="hgi-stroke hgi-heart-add"&gt;&lt;/i&gt;
+    &lt;span&gt;100&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div is-="cs-hud-armor"&gt;…&lt;/div&gt;
+  &lt;div is-="cs-hud-ammo"&gt;
+    &lt;span is-="cs-hud-ammo-clip"&gt;30&lt;/span&gt;
+    &lt;span is-="cs-hud-ammo-sep"&gt;/&lt;/span&gt;
+    &lt;span is-="cs-hud-ammo-reserve"&gt;90&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div is-="cs-hud-money" position-="top-left"&gt;…&lt;/div&gt;
+  &lt;div is-="cs-hud-timer" position-="top-center"&gt;1:35&lt;/div&gt;
+&lt;/div&gt;</pre>
+                        </div>
+                    </section>
                 </main>
             </div>
         </div>
@@ -1829,6 +1897,23 @@ $ webtui list
                             bar.dataset.tier = next < 40 ? 'low' : next < 75 ? 'mid' : 'high';
                         });
                     }, 1200);
+                }
+
+                /* CS HUD demo — slider updates HP value + severity color */
+                const csHpSlider = document.querySelector('[data-cs-hp-slider]');
+                const csHpEl = document.querySelector('#demo-cs-hp');
+                const csHpValueEl = document.querySelector('[data-cs-hp-value]');
+                if (csHpSlider && csHpEl && csHpValueEl) {
+                    const sync = () => {
+                        const v = +csHpSlider.value;
+                        csHpValueEl.textContent = v;
+                        if (v <= 25) csHpEl.setAttribute('severity-', 'danger');
+                        else if (v <= 50)
+                            csHpEl.setAttribute('severity-', 'warning');
+                        else csHpEl.removeAttribute('severity-');
+                    };
+                    csHpSlider.addEventListener('input', sync);
+                    sync();
                 }
 
                 /* Number-field steppers — wire any [data-action] button
