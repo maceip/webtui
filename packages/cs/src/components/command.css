@@ -1,4 +1,11 @@
 @layer components {
+    /* Author-origin `display: flex` below beats the UA rule
+       `[popover]:not(:popover-open) { display: none }`, so we must
+       restore it explicitly or the palette renders on page load. */
+    [is-~='command'][popover]:not(:popover-open) {
+        display: none;
+    }
+
     [is-~='command'] {
         display: flex;
         flex-direction: column;

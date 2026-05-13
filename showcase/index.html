@@ -2097,6 +2097,87 @@ $ webtui list
                     track.addEventListener('pointerleave', endDrag);
                 });
 
+                /* Overlay UX coordinator — solves two related papercuts:
+                   (1) Opening one popover/<details> closes any other
+                       open one, so only ONE overlay is open at a time.
+                   (2) A pointer-down outside *all* open overlays closes
+                       them at the pointerdown phase, BEFORE the click
+                       reaches its target — so a single click both
+                       dismisses the overlay AND navigates / activates
+                       whatever was clicked. Native popover light
+                       dismiss runs on click, after the click has
+                       already been consumed by the dismiss, which is
+                       what made the user need a second click.
+
+                   Skips `<details is-="accordion">` because accordion
+                   items are meant to be independently toggleable. */
+                const isManagedDetails = (d) =>
+                    d.matches('details[is-~="popover"], details[is-~="preview-card"], details[is-~="collapsible"], details[is-~="menu"]');
+
+                function closeAllOverlays(except) {
+                    for (const p of document.querySelectorAll(':popover-open')) {
+                        if (p === except) continue;
+                        try { p.hidePopover(); } catch {}
+                    }
+                    for (const d of document.querySelectorAll('details[open]')) {
+                        if (d === except || !isManagedDetails(d)) continue;
+                        d.open = false;
+                    }
+                }
+
+                // (1) One-at-a-time: when a popover starts opening,
+                // close every other open overlay.
+                document.addEventListener(
+                    'beforetoggle',
+                    (e) => {
+                        if (e.newState !== 'open') return;
+                        if (e.target.matches('[popover]')) {
+                            closeAllOverlays(e.target);
+                        }
+                    },
+                    true
+                );
+
+                // For <details>, the closest cross-instance event is
+                // `toggle`; we close others when one opens.
+                document.querySelectorAll('details').forEach((d) => {
+                    if (!isManagedDetails(d)) return;
+                    d.addEventListener('toggle', () => {
+                        if (d.open) closeAllOverlays(d);
+                    });
+                });
+
+                // (2) Single-click dismiss + navigate. Use `pointerdown`
+                // capture so we fire BEFORE the browser's own popover
+                // light-dismiss consumes the click. We only close —
+                // we never prevent default — so the same pointer event
+                // continues into the click and triggers the link/button
+                // under it.
+                document.addEventListener(
+                    'pointerdown',
+                    (e) => {
+                        // Ignore clicks inside any open overlay or on
+                        // their triggers (those toggle naturally).
+                        const target = e.target;
+                        if (target.closest('[popovertarget]')) return;
+                        if (target.closest('summary')) return;
+                        let insideOverlay = false;
+                        for (const p of document.querySelectorAll(':popover-open')) {
+                            if (p.contains(target)) { insideOverlay = true; break; }
+                        }
+                        if (!insideOverlay) {
+                            for (const d of document.querySelectorAll('details[open]')) {
+                                if (isManagedDetails(d) && d.contains(target)) {
+                                    insideOverlay = true; break;
+                                }
+                            }
+                        }
+                        if (insideOverlay) return;
+                        closeAllOverlays(null);
+                    },
+                    true
+                );
+
                 /* Tilt — mouse-tracked 3D rotation. Sets --tilt-x and
                    --tilt-y from cursor position. data-tilt-max overrides
                    --tilt-max. */

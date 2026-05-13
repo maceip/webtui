@@ -482,6 +482,35 @@ for (const theme of THEMES) {
             page,
         }) => {
             await goToSection(page, 'command');
+            // Pre-condition: the palette must NOT be visible before any
+            // interaction. Catches the cs/smui regression where author
+            // `display: flex` beat the UA `:not(:popover-open)` rule
+            // and the palette rendered on page load.
+            const initial = await page.evaluate(() => {
+                const el = document.getElementById('demo-command');
+                if (!el) return null;
+                const cs = getComputedStyle(el);
+                const r = el.getBoundingClientRect();
+                return {
+                    popoverOpen: el.matches(':popover-open'),
+                    display: cs.display,
+                    opacity: parseFloat(cs.opacity),
+                    height: r.height,
+                };
+            });
+            expect(
+                initial?.popoverOpen,
+                'palette is NOT :popover-open before any click'
+            ).toBe(false);
+            const initiallyHidden =
+                initial?.display === 'none' ||
+                initial?.opacity === 0 ||
+                initial?.height === 0;
+            expect(
+                initiallyHidden,
+                `palette hidden before trigger (display=${initial?.display}, opacity=${initial?.opacity}, height=${initial?.height})`
+            ).toBe(true);
+
             // Programmatic click on the trigger element — bypasses both
             // actionability checks and any overlay that would intercept
             // a synthetic mouse click. Validates popovertarget wiring.
