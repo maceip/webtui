@@ -22,6 +22,36 @@ const THEMES = [
 
 type Theme = (typeof THEMES)[number];
 
+/**
+ * Every component section that appears in the showcase. Coverage gate
+ * below verifies this list matches the actual section IDs — adding a
+ * new `<section id="…" class="component">` without listing it here
+ * fails CI. Each ID below either has a behaviour-specific test (see
+ * COMPONENTS_WITH_SPECIFIC_TESTS) or gets a generic "renders" test.
+ */
+const ALL_COMPONENTS = [
+    'accordion', 'alert', 'alert-dialog', 'autocomplete', 'avatar',
+    'badge', 'box', 'breadcrumb', 'button', 'calendar', 'card',
+    'carousel', 'chart', 'checkbox', 'checkbox-group', 'collapsible',
+    'combobox', 'command', 'date-picker', 'dialog', 'drawer',
+    'elevation', 'empty', 'field', 'fieldset', 'form', 'frame',
+    'gallery-cs-hud', 'gallery-htop', 'gauge', 'group', 'icons',
+    'input', 'input-group', 'kbd', 'label', 'live-audio', 'menu',
+    'meter', 'number-field', 'otp-field', 'pagination', 'popover',
+    'pre', 'preview-card', 'progress', 'radio', 'radio-group',
+    'range', 'rounded', 'scroll-area', 'select', 'separator',
+    'sheet', 'skeleton', 'sparkline', 'spinner', 'switch', 'table',
+    'tabs', 'textarea', 'tilt', 'toast', 'toggle', 'toggle-group',
+    'toolbar', 'tooltip', 'typography', 'view', 'water-meter',
+] as const;
+
+const COMPONENTS_WITH_SPECIFIC_TESTS = new Set<string>([
+    'accordion', 'alert', 'avatar', 'badge', 'button', 'card',
+    'checkbox', 'command', 'input', 'kbd', 'number-field',
+    'otp-field', 'popover', 'progress', 'separator', 'switch',
+    'table', 'tabs', 'tilt', 'toolbar', 'tooltip', 'water-meter',
+]);
+
 const TRANSPARENT = new Set([
     'rgba(0, 0, 0, 0)',
     'transparent',
@@ -543,5 +573,109 @@ for (const theme of THEMES) {
                 'separator has visible width'
             ).toBeGreaterThan(0);
         });
+
+        // Generic "renders non-degenerate" test for every component
+        // that doesn't already have a specific behaviour test above.
+        // Guarantees at least one assertion per (theme, component).
+        const NEEDS_GENERIC = ALL_COMPONENTS.filter(
+            (id) => !COMPONENTS_WITH_SPECIFIC_TESTS.has(id)
+        );
+        for (const id of NEEDS_GENERIC) {
+            test(`${id} — renders non-degenerate`, async ({ page }) => {
+                await goToSection(page, id);
+                // Target the visible .example-stage container — it
+                // wraps the component(s) on display and is always
+                // rendered even when the inner element is a closed
+                // overlay (popover dialog, sheet, drawer, toast).
+                // Falls back through .example and the section root.
+                const result = await page.evaluate((sid) => {
+                    const section = document.getElementById(sid);
+                    if (!section) return null;
+                    const stages = Array.from(
+                        section.querySelectorAll('.example-stage')
+                    ) as HTMLElement[];
+                    // Pick the first stage that's actually painted
+                    // (some `<details>`-based example sections leave
+                    // earlier stages collapsed).
+                    const target =
+                        stages.find((s) => {
+                            const r = s.getBoundingClientRect();
+                            return r.width > 0 && r.height > 0;
+                        }) ||
+                        (section.querySelector(
+                            '.example'
+                        ) as HTMLElement | null) ||
+                        (section as HTMLElement);
+                    const r = target.getBoundingClientRect();
+                    const cs = getComputedStyle(target);
+                    return {
+                        tag: target.tagName.toLowerCase(),
+                        cls: target.className,
+                        width: r.width,
+                        height: r.height,
+                        bg: cs.backgroundColor,
+                        borderTopWidth: cs.borderTopWidth,
+                        borderRadius: cs.borderRadius,
+                        outlineWidth: cs.outlineWidth,
+                        boxShadow: cs.boxShadow,
+                        hasText: (target.textContent || '').trim().length > 0,
+                        childCount: target.children.length,
+                    };
+                }, id);
+                expect(result, `${id} section exists`).not.toBeNull();
+                expect(
+                    result!.width,
+                    `${id} target [${result!.tag}.${result!.cls}] has width`
+                ).toBeGreaterThan(0);
+                expect(
+                    result!.height,
+                    `${id} target [${result!.tag}.${result!.cls}] has height`
+                ).toBeGreaterThan(0);
+                const hasChrome =
+                    hasBackground(result!.bg) ||
+                    hasBorder(result!.borderTopWidth) ||
+                    hasBorder(result!.outlineWidth) ||
+                    result!.borderRadius !== '0px' ||
+                    (result!.boxShadow !== 'none' && result!.boxShadow !== '');
+                expect(
+                    hasChrome || result!.hasText || result!.childCount > 0,
+                    `${id} renders chrome OR text OR children`
+                ).toBe(true);
+            });
+        }
     });
 }
+
+// Coverage gate — runs once, not per theme. Fails CI when someone adds a
+// `<section class="component">` to the showcase without listing its id
+// in ALL_COMPONENTS, forcing a test to be added alongside the markup.
+test.describe('coverage gate', () => {
+    test('smoke spec covers every showcase component', async ({ page }) => {
+        await page.goto('/');
+        await page.waitForLoadState('domcontentloaded');
+        const sectionIds = (
+            await page.evaluate(() =>
+                Array.from(
+                    document.querySelectorAll('section.component[id]')
+                ).map((s) => s.id)
+            )
+        ).filter((id) => id !== 'welcome');
+        const missing = sectionIds.filter(
+            (id) => !ALL_COMPONENTS.includes(id as never)
+        );
+        const stale = ALL_COMPONENTS.filter(
+            (id) => !sectionIds.includes(id)
+        );
+        expect(
+            missing,
+            `New component section(s) in showcase without smoke tests: ` +
+                `[${missing.join(', ')}]. Add them to ALL_COMPONENTS in ` +
+                `tests/smoke.spec.ts (and add a behaviour test if interactive).`
+        ).toEqual([]);
+        expect(
+            stale,
+            `ALL_COMPONENTS lists ids no longer present in showcase: ` +
+                `[${stale.join(', ')}]`
+        ).toEqual([]);
+    });
+});

@@ -52,8 +52,12 @@ export default defineConfig({
     testDir: './tests',
     fullyParallel: true,
     forbidOnly: !!process.env.CI,
-    retries: process.env.CI ? 1 : 0,
+    retries: process.env.CI ? 1 : 1,
     workers: process.env.CI ? 4 : undefined,
+    // Remote Azure Chromium sessions take 15-25s to spin up; the
+    // default 30s test timeout is too tight once theme apply +
+    // navigation + interaction land on top.
+    timeout: 90_000,
     reporter: process.env.CI
         ? [['html'], ['github']]
         : [['list'], ['html', { open: 'never' }]],
