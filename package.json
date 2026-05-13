@@ -11,13 +11,15 @@
         "format:check": "turbo run format:check",
         "lint": "turbo run lint",
         "clean": "rm -rf node_modules .turbo bun.lockb && turbo run clean",
-        "test:e2e": "playwright test",
+        "test:e2e": "playwright test tests/smoke.spec.ts",
         "test:e2e:headed": "playwright test --headed",
         "test:e2e:update": "playwright test --update-snapshots",
-        "test:e2e:ui": "playwright test --ui"
+        "test:e2e:ui": "playwright test --ui",
+        "test:quality": "playwright test tests/visual-quality.spec.ts",
+        "test:visual": "playwright test tests/visual-review.spec.ts"
     },
     "devDependencies": {
-        "turbo": "^2.4.4",
+        "@axe-core/playwright": "^4.11.3",
         "@playwright/test": "^1.50.0",
         "@typescript-eslint/parser": "^8.37.0",
         "eslint": "^9.31.0",
@@ -26,6 +28,7 @@
         "globals": "^16.3.0",
         "prettier": "^3.6.2",
         "prettier-plugin-astro": "^0.14.1",
+        "turbo": "^2.4.4",
         "typescript": "5.8.2",
         "typescript-eslint": "^8.37.0"
     },
