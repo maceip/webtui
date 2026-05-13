@@ -480,6 +480,49 @@ for (const theme of THEMES) {
             ).toBeLessThan(0.15);
         });
 
+        test('tilt — mouse move produces non-zero rotation', async ({
+            page,
+        }) => {
+            await goToSection(page, 'tilt');
+            const tilt = page.locator('#tilt [data-tilt]').first();
+            await tilt.waitFor({ state: 'visible' });
+            const box = await tilt.boundingBox();
+            if (!box) throw new Error('tilt has no bounding box');
+            // Real mouse move triggers the page's `mousemove` listener
+            // attached by the showcase JS — synthetic `dispatchEvent`
+            // does not reliably propagate through Playwright's
+            // accessibility layer for delegated events.
+            await page.mouse.move(
+                box.x + box.width - 4,
+                box.y + box.height - 4,
+                { steps: 5 }
+            );
+            // Wait past the spring transition (350ms).
+            await page.waitForTimeout(500);
+            const { tiltX, tiltY, transform } = await tilt.evaluate((el) => {
+                const inner = el.firstElementChild as HTMLElement | null;
+                return {
+                    tiltX: (el as HTMLElement).style.getPropertyValue(
+                        '--tilt-x'
+                    ),
+                    tiltY: (el as HTMLElement).style.getPropertyValue(
+                        '--tilt-y'
+                    ),
+                    transform: inner
+                        ? getComputedStyle(inner).transform
+                        : 'no-inner',
+                };
+            });
+            expect(
+                tiltX,
+                `--tilt-x set by mousemove handler (x=${tiltX}, y=${tiltY})`
+            ).not.toBe('');
+            expect(
+                transform,
+                `tilt inner has 3D transform (tilt-x=${tiltX}, tilt-y=${tiltY}, transform=${transform})`
+            ).toMatch(/matrix3d/);
+        });
+
         test('separator — has visible track', async ({ page }) => {
             await goToSection(page, 'separator');
             const dims = await page.evaluate(() => {

@@ -169,7 +169,23 @@ const COMPONENTS: Array<{ id: string; interact?: Interaction; wait?: number }> =
     { id: 'toggle-group' },
     // Motion
     { id: 'carousel' },
-    { id: 'tilt' },
+    {
+        id: 'tilt',
+        // Real mouse move at the bottom-right corner of the first
+        // tilt element — synthetic dispatchEvent doesn't reach the
+        // delegated mousemove handler reliably.
+        interact: async (page) => {
+            const el = page.locator('#tilt [data-tilt]').first();
+            const box = await el.boundingBox();
+            if (!box) return;
+            await page.mouse.move(
+                box.x + box.width - 4,
+                box.y + box.height - 4,
+                { steps: 5 }
+            );
+        },
+        wait: 500,
+    },
     { id: 'live-audio' },
 ];
 
